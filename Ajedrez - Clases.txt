@@ -1,0 +1,16 @@
+Tablero
+Escaque*
+Pieza
+Rey
+Reina
+Alfil
+Caballo
+Torre
+Peon
+Jugador*
+Movimiento
+Posicion
+Color <<Enum>>
+JuegoException
+Juego
+
