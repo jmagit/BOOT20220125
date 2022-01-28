@@ -3,8 +3,11 @@
  */
 package com.example;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.basicos.Calculadora;
+import com.example.basicos.CalculadoraCientifica;
+import com.example.basicos.Dias;
+import com.example.basicos.Factura;
+import com.example.basicos.Grafico;
 
 /**
  * Ejemplo de la sintaxis

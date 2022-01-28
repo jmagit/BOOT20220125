@@ -1,4 +1,4 @@
-package com.example;
+package com.example.basicos;
 
 public class CalculadoraCientifica extends Calculadora implements Grafico {
 	public CalculadoraCientifica() {

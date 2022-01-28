@@ -1,4 +1,4 @@
-package com.example;
+package com.example.basicos;
 
 public class Alumno extends Persona {
 

@@ -1,4 +1,4 @@
-package com.example;
+package com.example.basicos;
 
 public class Calculadora {
 	public static final int CONSTANTE = 1;

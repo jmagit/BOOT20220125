@@ -1,4 +1,4 @@
-package com.example;
+package com.example.basicos;
 
 import java.io.Serializable;
 
