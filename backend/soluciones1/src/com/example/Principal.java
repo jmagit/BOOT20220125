@@ -11,13 +11,14 @@ public class Principal {
 
 	public static void main(String[] args) {
 		Principal app = new Principal();
-
+		app.run();
+		
 		// app.juego();
 		// app.juegoConClase();
 
-		// decode("3+4+3,4-7*1=");
+//		decode("3+4+3,4-7*1=");
 		try {
-			//calcula("3+4+3,4-7*1=");
+			//calcula("2+2-2+7*5+162/15=");
 			calculaList("3+4+3,4-7*1=");
 			//calculaList("25+43-37*88/9,9=");
 		} catch (CalculadoraException e) {
@@ -27,7 +28,11 @@ public class Principal {
 		}
 	}
 
+	public void run() {
+		
+	}
 	public void juego() {
+		@SuppressWarnings("resource")
 		Scanner teclado = new Scanner(System.in);
 
 		int numeroBuscado = (new Random()).nextInt(100) + 1;
@@ -38,7 +43,7 @@ public class Principal {
 			try {
 				intentos += 1;
 				System.out.print("Dame tu número del 1 al 100 (" + intentos + " de 10): ");
-				System.out.print("[" + numeroBuscado + "]: ");
+//				System.out.print("[" + numeroBuscado + "]: ");
 				numeroIntroducido = Integer.parseInt(teclado.nextLine());
 				if (numeroBuscado == numeroIntroducido) {
 					encontrado = true;
@@ -58,7 +63,7 @@ public class Principal {
 			System.out.println("Upsss! Se acabaron los intentos, el número era el " + numeroBuscado);
 		}
 
-		teclado.close();
+//		teclado.close();
 	}
 
 	public void juegoConClase() {
@@ -69,17 +74,17 @@ public class Principal {
 			juego.inicializar();
 			for (int intentos = 1; intentos <= 10; intentos++) {
 				System.out.print("Dame tu número del 1 al 100 (" + (juego.getJugada() + 1) + " de 10): ");
-				try {
+//				try {
 					juego.jugada(teclado.nextLine());
 					System.out.println(juego.getResultado());
 					if (juego.getFinalizado())
 						break;
-				} catch (JuegoException e) {
-					if (e.getCause() instanceof NumberFormatException)
-						System.out.println(e.getMessage());
-					else
-						throw e;
-				}
+//				} catch (JuegoException e) {
+//					if (e.getCause() instanceof NumberFormatException)
+//						System.out.println(e.getMessage());
+//					else
+//						throw e;
+//				}
 			}
 		} catch (JuegoException e) {
 			e.printStackTrace();
@@ -137,7 +142,7 @@ public class Principal {
 					operando += "0";
 				}
 				calculadora.calcula(operando, ch);
-				System.out.println(operando + "\t" + ch /*+ "\t" + calculadora.getAcumulado()*/);
+				System.out.println(operando + "\t" + ch + "\t" + calculadora.getAcumulado());
 				if (ch == '=') {
 					break;
 				}

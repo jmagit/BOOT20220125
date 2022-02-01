@@ -3,12 +3,17 @@
  */
 package com.example;
 
+import java.util.Date;
+
+import com.example.basicos.Alumno;
 import com.example.basicos.Calculadora;
 import com.example.basicos.CalculadoraCientifica;
 import com.example.basicos.Dias;
+import com.example.basicos.DiasLaborables;
 import com.example.basicos.Factura;
 import com.example.basicos.Grafico;
-
+import com.example.basicos.Persona;
+import com.example.basicos.EjemplosGenericos;
 /**
  * Ejemplo de la sintaxis
  * 
@@ -18,14 +23,121 @@ import com.example.basicos.Grafico;
 public class Principal {
 
 	/**
+	 * 
+	 * @author Javier
+	 *
+	 */
+	enum Genero {
+		/**
+		 * 
+		 */
+		MASCULINO('M', 1), FEMENINO('F', 2), OTROS('O', 3);
+
+		private char letra;
+		private int numero;
+
+		private Genero(char letra, int numero) {
+			this.letra = letra;
+			this.numero = numero;
+		}
+
+		/**
+		 * Valor numerico asociado al genero
+		 * 
+		 * @return De 1 a 3
+		 */
+		public int getNumero() {
+			return numero;
+		}
+
+		public int getLetra() {
+			return letra;
+		}
+
+		public static Genero getEnum(int numero) {
+			switch (numero) {
+			case 1:
+				return Genero.MASCULINO;
+			case 2:
+				return Genero.FEMENINO;
+			case 3:
+				return Genero.OTROS;
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + numero);
+			}
+		}
+
+		public static Genero getEnum(char letra) {
+			switch (letra) {
+			case 'M':
+				return Genero.MASCULINO;
+			case 'F':
+				return Genero.FEMENINO;
+			case 'O':
+				return Genero.OTROS;
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + letra);
+			}
+		}
+	}
+
+	/**
 	 * Método principal
 	 * 
 	 * @param args Lista de argumentos
 	 * @return 0 si termina bien
 	 */
 	public static void main(String[] args) {
+		EjemplosGenericos.Elemento<Character, String> g = new EjemplosGenericos.Elemento<Character, String>('H', "Hombre");
+		g = new EjemplosGenericos.Elemento<Character, String>('M', "Mujer");
+		g.setKey('P');
+		EjemplosGenericos.Elemento<Integer, String> p = new EjemplosGenericos.Elemento<Integer, String>(8, "Barcelona");
+		p.setKey(2);
+	    // g.getValue().
+	}
+
+	public static void ejem4(String[] args) {
+		DiasLaborables d = DiasLaborables.LUNES;
+		int i = d.getValue();
+		d = DiasLaborables.getEnum(3);
+
+//		String s = "";
+//		for (var i = 0; i < 100; i++)
+//			s += "X";
+//		StringBuilder sb = new StringBuilder("");
+//		for (var i = 0; i < 100; i++)
+//			sb.append("X");
+//		s = sb.toString();
+		Genero g = Genero.getEnum(2);
+		if (g == Genero.FEMENINO || g == Genero.MASCULINO) {
+
+		}
+		i = g.getNumero();
+
+		Persona p = null;
+		try {
+			p = new Alumno(1, null, "Grillo");
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+		if (p == null)
+			System.out.println("No hay persona");
+
+	}
+
+	public static void ejer3(String[] args) {
 		Object o = null;
-		
+
+		o = 4; // new Integer(4);
+		int i = (int) o; // o.getValue()
+		o = i;
+		Integer v = 4;
+		i = v;
+		String s = "";
+
+//		for(int ) concatenacion - horario 13:30
+
 		Factura f = new Factura(1);
 		try {
 			f.addLinea(null, 0, 9.0);
@@ -35,29 +147,29 @@ public class Principal {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		if(f.getEstado() == Factura.Estado.PENDIENTE) {
+
+		if (f.getEstado() == Factura.Estado.PENDIENTE) {
 			f.cancelar();
 		}
 		f.guardar();
-		
+
 		Grafico grafico = f;
-		//grafico = new CalculadoraCientifica();
-		
+		// grafico = new CalculadoraCientifica();
+
 		grafico.pintate();
-		if(f instanceof Factura)
+		if (f instanceof Factura)
 			try {
-				((Factura)grafico).addLinea("Comida", 1, 9.0);
+				((Factura) grafico).addLinea("Comida", 1, 9.0);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
-		if(o instanceof Grafico)
-			((Grafico)o).pintate();
-		
-		
+
+		if (o instanceof Grafico)
+			((Grafico) o).pintate();
+
 	}
+
 	public static void ejemplos2(String[] args) {
 		Dias dia = Dias.DOMINGO;
 		String s = "Hola";

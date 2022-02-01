@@ -1,5 +1,7 @@
 package com.example.basicos;
 
+import java.util.Date;
+
 public abstract class Persona implements AutoCloseable {
 	private static int cont = 0;
 
@@ -7,6 +9,12 @@ public abstract class Persona implements AutoCloseable {
 	private String nombre = "";
 	private String apellidos;
 
+	public Persona(int id, String nombre) {
+		cont++;
+		setId(id);
+		setNombre(nombre);
+	}
+	
 	public Persona(int id, String nombre, String apellidos) {
 		cont++;
 		setId(id);
@@ -27,7 +35,7 @@ public abstract class Persona implements AutoCloseable {
 	}
 	
 	public void setNombre(String nombre) {
-		if(nombre == null) 
+		if(nombre == null || "".equals(nombre)) 
 			throw new IllegalArgumentException("El nombre no puede estar vacio"); // Error
 		if(this.nombre.equals(nombre)) return;
 		this.nombre = nombre;
@@ -39,7 +47,7 @@ public abstract class Persona implements AutoCloseable {
 	public void setApellidos(String apellidos) {
 		if(apellidos == null) 
 			throw new IllegalArgumentException("Los apellidos no puede estar vacio"); // Error
-		if(this.apellidos.equals(apellidos)) return;
+		if(apellidos.equals(this.apellidos)) return;
 		this.apellidos = apellidos;
 	}
 	
@@ -56,9 +64,17 @@ public abstract class Persona implements AutoCloseable {
 		cont--;
 	}
 
-	private void duermete() {
+	public void duermete() {
 		System.out.println("ZZZZZ");
 	}
 	
 	public abstract void veteAComer();
+	
+	public static int calculaAños(Date fechaNacimiento) {
+		return 0;
+	}
+	private Date fechaNacimiento;
+	public int dimeEdad() {
+		return calculaAños(fechaNacimiento);
+	}
 }

@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"com.example.juegos","c":"Juego","l":"getFinalizado()"},{"p":"com.example.juegos","c":"Juego","l":"getJugada()"},{"p":"com.example.juegos","c":"Juego","l":"getResultado()"},{"p":"com.example.juegos","c":"Juego","l":"inicializar()"},{"p":"com.example.juegos","c":"Juego","l":"jugada(String)","u":"jugada(java.lang.String)"}];updateSearchResults();
