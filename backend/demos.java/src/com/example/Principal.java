@@ -4,6 +4,7 @@
 package com.example;
 
 import java.util.Date;
+import java.util.Optional;
 
 import com.example.basicos.Alumno;
 import com.example.basicos.Calculadora;
@@ -94,6 +95,9 @@ public class Principal {
 		EjemplosGenericos.Elemento<Integer, String> p = new EjemplosGenericos.Elemento<Integer, String>(8, "Barcelona");
 		p.setKey(2);
 	    // g.getValue().
+		Class v = EjemplosGenericos.Elemento.class;
+		Optional<String> opcional = Optional.of("cadena");
+		var s = opcional.get();
 	}
 
 	public static void ejem4(String[] args) {
