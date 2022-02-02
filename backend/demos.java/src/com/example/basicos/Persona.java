@@ -3,6 +3,7 @@ package com.example.basicos;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Optional;
 
 @Autor(nombre = "Javi")
 public abstract class Persona implements AutoCloseable, Serializable {
@@ -51,8 +52,8 @@ public abstract class Persona implements AutoCloseable, Serializable {
 		this.nombre = nombre;
 	}
 	
-	public String getApellidos() {
-		return apellidos;
+	public Optional<String> getApellidos() {
+		return Optional.ofNullable(apellidos);
 	}
 	public void setApellidos(String apellidos) {
 		if(apellidos == null) 

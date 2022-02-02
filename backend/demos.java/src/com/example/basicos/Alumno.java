@@ -43,7 +43,7 @@ public class Alumno extends Persona {
 	
 	@Override
 	public Alumno clone()  {
-		var rslt = new Alumno(getId(), getNombre(), getApellidos(), "Sat, 12 Aug 1995 13:30:00 GMT");
+		var rslt = new Alumno(getId(), getNombre(), getApellidos().isPresent() ? getApellidos().get() : null, "Sat, 12 Aug 1995 13:30:00 GMT");
 		rslt.direccion = (Direccion) this.direccion.clone();
 		return rslt;
 	}

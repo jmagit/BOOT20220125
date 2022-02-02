@@ -4,8 +4,14 @@
 package com.example;
 
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import com.example.basicos.Alumno;
 import com.example.basicos.Autor;
@@ -91,6 +97,38 @@ public class Principal {
 	 * @return 0 si termina bien
 	 */
 	public static void main(String[] args) {
+		List<Alumno> lista = new ArrayList<>();
+		lista.add(new Alumno(1, "uno", "", "Sat, 12 Aug 1995 13:30:00 GMT"));
+		lista.add(new Alumno(2, "dos", "apell", "Sat, 12 Aug 1995 13:30:00 GMT"));
+		lista.add(new Alumno(4, "tres", "", "Sat, 12 Aug 1995 13:30:00 GMT"));
+		lista.forEach(item -> {
+			item.setNombre(item.getNombre().toUpperCase());
+			if(item.getApellidos().isPresent())
+				item.setApellidos(item.getApellidos().get().toUpperCase());
+		});
+		lista.forEach(System.out::println);
+		
+		Map<Integer, Persona> diccionario = new HashMap<>();
+		diccionario.put(1, new Alumno(1, "uno", "", "Sat, 12 Aug 1995 13:30:00 GMT"));
+		diccionario.put(2, new Alumno(2, "dos", "apell", "Sat, 12 Aug 1995 13:30:00 GMT"));
+		diccionario.put(4, new Alumno(4, "tres", "", "Sat, 12 Aug 1995 13:30:00 GMT"));
+		
+		System.out.println(lista.get(2));
+		System.out.println(diccionario.get(2));
+		diccionario.remove(2);
+		diccionario.values().forEach(System.out::println);
+		System.out.println("Conjuntos");
+		Set<Alumno> conjunto = new HashSet<>();
+		conjunto.add(new Alumno(1, "uno", "", "Sat, 12 Aug 1995 13:30:00 GMT"));
+		conjunto.add(new Alumno(2, "dos", "apell", "Sat, 12 Aug 1995 13:30:00 GMT"));
+		conjunto.add(new Alumno(4, "tres", "", "Sat, 12 Aug 1995 13:30:00 GMT"));
+		conjunto.add(new Alumno(1, "uno", "", "Sat, 12 Aug 1995 13:30:00 GMT"));
+		conjunto.add(new Alumno(2, "dos", "apell", "Sat, 12 Aug 1995 13:30:00 GMT"));
+		conjunto.add(new Alumno(3, "nuevo", "", "Sat, 12 Aug 1995 13:30:00 GMT"));
+		conjunto.forEach(System.out::println);
+		
+	}
+	public static void ejem6(String[] args) {
 		Annotation[] anotaciones = Alumno.class.getAnnotations();
 		Alumno a = new Alumno(1, "original", "", "Sat, 12 Aug 1995 13:30:00 GMT");
 		var a2 = a.clone();

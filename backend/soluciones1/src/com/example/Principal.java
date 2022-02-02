@@ -1,6 +1,7 @@
 package com.example;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -155,10 +156,10 @@ public class Principal {
 		return calculadora.getAcumulado();
 	}
 
-	public static ArrayList<Calculadora.Operacion> decodeToList(String expresion) {
+	public static List<Calculadora.Operacion> decodeToList(String expresion) {
 		if(expresion == null || "".equals(expresion) || !Character.isDigit(expresion.charAt(0)))
 			throw new java.lang.IllegalArgumentException("No es una expresión valida");
-		var resulatado = new ArrayList<Calculadora.Operacion>();
+		List<Calculadora.Operacion> resulatado = new ArrayList<>();
 		String operando = "";
 		for (int i = 0; i < expresion.length(); i++) {
 			char ch = expresion.charAt(i);
