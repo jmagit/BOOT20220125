@@ -1,7 +1,39 @@
 package com.example.basicos;
 
+import java.util.Objects;
+
 public class EjemplosGenericos {
 
+	public static record PuntoReg(double x, double y, double z) {};
+	
+	public static class Punto {
+		public final double x, y;
+
+		public Punto(double x, double y) {
+			super();
+			this.x = x;
+			this.y = y;
+		}
+
+		@Override
+		public int hashCode() {
+			return Objects.hash(x, y);
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Punto other = (Punto) obj;
+			return Double.doubleToLongBits(x) == Double.doubleToLongBits(other.x)
+					&& Double.doubleToLongBits(y) == Double.doubleToLongBits(other.y);
+		}
+		
+	}
 	public static class Elemento<K, V> {
 		private K key;
 		private V value;
