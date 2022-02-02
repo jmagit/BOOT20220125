@@ -33,5 +33,10 @@ public class CalculadoraCientifica extends Calculadora implements Grafico {
 	public void pintate() {
 		System.out.println("Soy un calculadora cientifica");
 	}
+	@Override
+	public void close() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

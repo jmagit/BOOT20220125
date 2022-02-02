@@ -92,12 +92,30 @@ public class Principal {
 	 */
 	public static void main(String[] args) {
 		Annotation[] anotaciones = Alumno.class.getAnnotations();
-		Persona a = new Alumno(1, "s", "", "Sat, 12 Aug 1995 13:30:00 GMT");
+		Alumno a = new Alumno(1, "original", "", "Sat, 12 Aug 1995 13:30:00 GMT");
+		var a2 = a.clone();
+		a.setCalle("Calle luna");
+		a.setNombre("Otro");
+		System.out.println(a.getNombre());
+		System.out.println(a2.getNombre());
+		System.out.println(a.getCalle());
+		System.out.println(a2.getCalle());
+		a.setCalle("Compartida");
+		System.out.println(a.getCalle());
+		System.out.println(a2.getCalle());
+
 		System.out.println(a.getClass().getName());
 		System.out.println(a.getClass().getAnnotation(Autor.class).nombre());
 		Class<Persona> clase = Persona.class;
 		System.out.println(clase.getAnnotation(Autor.class).nombre());
 		System.out.println(a.getEdad());
+		var f = new Factura(0);
+		f.saluda();
+		if(a == a2) {
+			
+		}
+		System.out.println(a);
+		System.out.println(a2);
 	}
 	
 	public static void ejem5(String[] args) {

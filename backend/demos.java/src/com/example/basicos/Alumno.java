@@ -5,6 +5,7 @@ import java.util.Date;
 
 @Autor(nombre = "Javier")
 public class Alumno extends Persona {
+	
 	private double[] notas;
 	
 	public Alumno(int id, String nombre, String apellidos, String fechaNacimiento) {
@@ -38,5 +39,20 @@ public class Alumno extends Persona {
 	public void duermete() {
 		System.out.println("No quiero");
 	}
+	
+	
+	@Override
+	public Alumno clone()  {
+		var rslt = new Alumno(getId(), getNombre(), getApellidos(), "Sat, 12 Aug 1995 13:30:00 GMT");
+		rslt.direccion = (Direccion) this.direccion.clone();
+		return rslt;
+	}
+
+	@Override
+	public String toString() {
+		return "Alumno [Id=" + getId() + ", Nombre=" + getNombre()
+				+ ", Apellidos=" + getApellidos() + "]";
+	}
+
 	
 }

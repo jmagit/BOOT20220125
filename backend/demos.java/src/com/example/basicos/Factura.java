@@ -117,4 +117,16 @@ public class Factura implements Grafico, Persistente, Serializable {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void saluda() {
+		// TODO Auto-generated method stub
+		Persistente.super.saluda();
+	}
+
+	@Override
+	public void close() {
+		// TODO Auto-generated method stub
+		
+	}
 }

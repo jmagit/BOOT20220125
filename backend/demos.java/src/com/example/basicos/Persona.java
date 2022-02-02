@@ -13,6 +13,7 @@ public abstract class Persona implements AutoCloseable, Serializable {
 	private String nombre = "";
 	private String apellidos;
 	private Date fechaNacimiento;
+	protected Direccion direccion = new Direccion();
 	
 	private transient int edad;
 
@@ -61,7 +62,7 @@ public abstract class Persona implements AutoCloseable, Serializable {
 	}
 	
 	public Date getFechaNacimiento() {
-		return fechaNacimiento;
+		return (Date)fechaNacimiento.clone();
 	}
 
 	public void setFechaNacimiento(Date fechaNacimiento) {
@@ -113,6 +114,13 @@ public abstract class Persona implements AutoCloseable, Serializable {
 			return false;
 		return id == ((Persona) obj).id;
 	}
+
+	public String getCalle() {
+		return direccion.getCalle();
+	}
 	
-	
+	public void setCalle(String nombre) {
+		this.direccion.setCalle(nombre); 
+	}
+
 }
