@@ -82,6 +82,7 @@ public class PatronDelegate {
 		return null;
 	}
 
+	@Deprecated
 	<T> List<T> ordena(List<T> lista, Comparacion<T> comp) {
 		// ...
 		T ele1 = lista.get(0);

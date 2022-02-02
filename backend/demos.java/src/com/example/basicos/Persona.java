@@ -1,13 +1,20 @@
 package com.example.basicos;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
-public abstract class Persona implements AutoCloseable {
+@Autor(nombre = "Javi")
+public abstract class Persona implements AutoCloseable, Serializable {
 	private static int cont = 0;
 
+	@Autor(nombre = "Yo mismo", version = 2)
 	private int id = 0;
 	private String nombre = "";
 	private String apellidos;
+	private Date fechaNacimiento;
+	
+	private transient int edad;
 
 	public Persona(int id, String nombre) {
 		cont++;
@@ -15,13 +22,15 @@ public abstract class Persona implements AutoCloseable {
 		setNombre(nombre);
 	}
 	
-	public Persona(int id, String nombre, String apellidos) {
+	public Persona(int id, String nombre, String apellidos, String fechaNacimiento) {
 		cont++;
 		setId(id);
 		setNombre(nombre);
 		setApellidos(apellidos);
+		setFechaNacimiento(new Date(fechaNacimiento));
 	}
 	
+	@Autor(nombre = "Javier")
 	public int getId() {
 		return id;
 	}
@@ -51,6 +60,17 @@ public abstract class Persona implements AutoCloseable {
 		this.apellidos = apellidos;
 	}
 	
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+		this.edad = calculaAños(fechaNacimiento);
+	}
+
+	public int getEdad() { return edad; }
+	
 	public static void dimeCuantos() { System.out.println("Personas " + cont); }
 
 	@Override
@@ -71,10 +91,28 @@ public abstract class Persona implements AutoCloseable {
 	public abstract void veteAComer();
 	
 	public static int calculaAños(Date fechaNacimiento) {
-		return 0;
+		Date hoy = new Date();
+		return hoy.getYear() - fechaNacimiento.getYear() - (hoy.getMonth() < fechaNacimiento.getMonth() || 
+				(hoy.getMonth() == fechaNacimiento.getMonth() && hoy.getDay() < fechaNacimiento.getDay()) ? 1 : 0);
 	}
-	private Date fechaNacimiento;
+
 	public int dimeEdad() {
 		return calculaAños(fechaNacimiento);
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Persona))
+			return false;
+		return id == ((Persona) obj).id;
+	}
+	
+	
 }

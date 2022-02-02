@@ -3,10 +3,12 @@
  */
 package com.example;
 
+import java.lang.annotation.Annotation;
 import java.util.Date;
 import java.util.Optional;
 
 import com.example.basicos.Alumno;
+import com.example.basicos.Autor;
 import com.example.basicos.Calculadora;
 import com.example.basicos.CalculadoraCientifica;
 import com.example.basicos.Dias;
@@ -89,6 +91,16 @@ public class Principal {
 	 * @return 0 si termina bien
 	 */
 	public static void main(String[] args) {
+		Annotation[] anotaciones = Alumno.class.getAnnotations();
+		Persona a = new Alumno(1, "s", "", "Sat, 12 Aug 1995 13:30:00 GMT");
+		System.out.println(a.getClass().getName());
+		System.out.println(a.getClass().getAnnotation(Autor.class).nombre());
+		Class<Persona> clase = Persona.class;
+		System.out.println(clase.getAnnotation(Autor.class).nombre());
+		System.out.println(a.getEdad());
+	}
+	
+	public static void ejem5(String[] args) {
 		EjemplosGenericos.Elemento<Character, String> g = new EjemplosGenericos.Elemento<Character, String>('H', "Hombre");
 		g = new EjemplosGenericos.Elemento<Character, String>('M', "Mujer");
 		g.setKey('P');
@@ -120,7 +132,7 @@ public class Principal {
 
 		Persona p = null;
 		try {
-			p = new Alumno(1, null, "Grillo");
+			p = new Alumno(1, null, "Grillo", "2000-01-01 00:00:00");
 
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());

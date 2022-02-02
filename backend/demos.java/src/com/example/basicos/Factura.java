@@ -5,6 +5,8 @@ import java.io.Serializable;
 import com.example.exceptions.DemosException;
 
 public class Factura implements Grafico, Persistente, Serializable {
+	private static final long serialVersionUID = 1L;
+
 	public static enum Estado { PENDIENTE, PAGADA, CANCELADA }
 	public class Linea {
 		private String concepto;

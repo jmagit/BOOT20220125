@@ -3,11 +3,12 @@ package com.example.basicos;
 import java.util.Arrays;
 import java.util.Date;
 
+@Autor(nombre = "Javier")
 public class Alumno extends Persona {
 	private double[] notas;
 	
-	public Alumno(int id, String nombre, String apellidos) {
-		super(id, nombre, apellidos);
+	public Alumno(int id, String nombre, String apellidos, String fechaNacimiento) {
+		super(id, nombre, apellidos, fechaNacimiento);
 	}
 
 	@Override
