@@ -46,4 +46,18 @@ public class Calculadora {
 		//for(double valor: resto) acumula += valor;
 		return acumula / resto.length;
 	}
+
+	public static Double resta(double operando1, double operando2) {
+		return operando1 - operando2;
+	}
+
+	public static Double divide(double operando1, double operando2) {
+		if(operando2 == 0)
+			throw new ArithmeticException("/ by zero");
+		return operando1 / operando2;
+	}
+
+	public static int divide(int operando1, int operando2) {
+		return operando1 / operando2;
+	}
 }
