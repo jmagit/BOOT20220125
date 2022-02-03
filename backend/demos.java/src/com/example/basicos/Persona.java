@@ -1,7 +1,7 @@
 package com.example.basicos;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -13,7 +13,7 @@ public abstract class Persona implements AutoCloseable, Serializable {
 	private int id = 0;
 	private String nombre = "";
 	private String apellidos;
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	protected Direccion direccion = new Direccion();
 	
 	private transient int edad;
@@ -29,7 +29,7 @@ public abstract class Persona implements AutoCloseable, Serializable {
 		setId(id);
 		setNombre(nombre);
 		setApellidos(apellidos);
-		setFechaNacimiento(new Date(fechaNacimiento));
+		setFechaNacimiento(LocalDate.parse(fechaNacimiento));
 	}
 	
 	@Autor(nombre = "Javier")
@@ -62,11 +62,11 @@ public abstract class Persona implements AutoCloseable, Serializable {
 		this.apellidos = apellidos;
 	}
 	
-	public Date getFechaNacimiento() {
-		return (Date)fechaNacimiento.clone();
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 		this.edad = calculaAños(fechaNacimiento);
 	}
@@ -92,10 +92,11 @@ public abstract class Persona implements AutoCloseable, Serializable {
 	
 	public abstract void veteAComer();
 	
-	public static int calculaAños(Date fechaNacimiento) {
-		Date hoy = new Date();
-		return hoy.getYear() - fechaNacimiento.getYear() - (hoy.getMonth() < fechaNacimiento.getMonth() || 
-				(hoy.getMonth() == fechaNacimiento.getMonth() && hoy.getDay() < fechaNacimiento.getDay()) ? 1 : 0);
+	public static int calculaAños(LocalDate fechaNacimiento) {
+		LocalDate hoy = LocalDate.now();
+		return hoy.getYear() - fechaNacimiento.getYear() - (hoy.getDayOfYear() < fechaNacimiento.getDayOfYear() ? 1 : 0);
+//		return hoy.getYear() - fechaNacimiento.getYear() - (hoy.getMonthValue() < fechaNacimiento.getMonthValue() || 
+//				(hoy.getMonth() == fechaNacimiento.getMonth() && hoy.getDayOfMonth() < fechaNacimiento.getDayOfMonth()) ? 1 : 0);
 	}
 
 	public int dimeEdad() {

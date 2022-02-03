@@ -98,20 +98,22 @@ public class Principal {
 	 */
 	public static void main(String[] args) {
 		List<Alumno> lista = new ArrayList<>();
-		lista.add(new Alumno(1, "uno", "", "Sat, 12 Aug 1995 13:30:00 GMT"));
-		lista.add(new Alumno(2, "dos", "apell", "Sat, 12 Aug 1995 13:30:00 GMT"));
-		lista.add(new Alumno(4, "tres", "", "Sat, 12 Aug 1995 13:30:00 GMT"));
+		lista.add(new Alumno(1, "uno", "", "1995-08-12"));
+		lista.add(new Alumno(2, "dos", "apell", "2000-02-01"));
+		lista.add(new Alumno(4, "tres", "", "2000-02-11"));
 		lista.forEach(item -> {
 			item.setNombre(item.getNombre().toUpperCase());
 			if(item.getApellidos().isPresent())
 				item.setApellidos(item.getApellidos().get().toUpperCase());
+			var a = item.clone();
+			System.out.println(a.getFechaNacimiento() + " -> " + a.getEdad());
 		});
 		lista.forEach(System.out::println);
 		
 		Map<Integer, Persona> diccionario = new HashMap<>();
-		diccionario.put(1, new Alumno(1, "uno", "", "Sat, 12 Aug 1995 13:30:00 GMT"));
-		diccionario.put(2, new Alumno(2, "dos", "apell", "Sat, 12 Aug 1995 13:30:00 GMT"));
-		diccionario.put(4, new Alumno(4, "tres", "", "Sat, 12 Aug 1995 13:30:00 GMT"));
+		diccionario.put(1, new Alumno(1, "uno", "", "1995-08-12"));
+		diccionario.put(2, new Alumno(2, "dos", "apell", "2000-02-01"));
+		diccionario.put(4, new Alumno(4, "tres", "", "2000-02-11"));
 		
 		System.out.println(lista.get(2));
 		System.out.println(diccionario.get(2));
@@ -119,12 +121,12 @@ public class Principal {
 		diccionario.values().forEach(System.out::println);
 		System.out.println("Conjuntos");
 		Set<Alumno> conjunto = new HashSet<>();
-		conjunto.add(new Alumno(1, "uno", "", "Sat, 12 Aug 1995 13:30:00 GMT"));
-		conjunto.add(new Alumno(2, "dos", "apell", "Sat, 12 Aug 1995 13:30:00 GMT"));
-		conjunto.add(new Alumno(4, "tres", "", "Sat, 12 Aug 1995 13:30:00 GMT"));
-		conjunto.add(new Alumno(1, "uno", "", "Sat, 12 Aug 1995 13:30:00 GMT"));
-		conjunto.add(new Alumno(2, "dos", "apell", "Sat, 12 Aug 1995 13:30:00 GMT"));
-		conjunto.add(new Alumno(3, "nuevo", "", "Sat, 12 Aug 1995 13:30:00 GMT"));
+		conjunto.add(new Alumno(1, "uno", "", "1995-08-12"));
+		conjunto.add(new Alumno(2, "dos", "apell", "2000-02-01"));
+		conjunto.add(new Alumno(4, "tres", "", "2000-02-11"));
+		conjunto.add(new Alumno(1, "uno", "", "1995-08-12"));
+		conjunto.add(new Alumno(2, "dos", "apell", "2000-02-01"));
+		conjunto.add(new Alumno(3, "nuevo", "", "2000-02-11"));
 		conjunto.forEach(System.out::println);
 		
 	}
