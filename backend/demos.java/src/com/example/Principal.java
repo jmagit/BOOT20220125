@@ -14,6 +14,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.example.basicos.Alumno;
+import com.example.basicos.AlumnoRepository;
+import com.example.basicos.AlumnoRepositoryMock;
 import com.example.basicos.Autor;
 import com.example.basicos.Calculadora;
 import com.example.basicos.CalculadoraCientifica;
@@ -108,26 +110,30 @@ public class Principal {
 			var a = item.clone();
 			System.out.println(a.getFechaNacimiento() + " -> " + a.getEdad());
 		});
+		AlumnoRepository dao = new AlumnoRepositoryMock();
+		lista.add(dao.getOne(666));
 		lista.forEach(System.out::println);
 		
-		Map<Integer, Persona> diccionario = new HashMap<>();
-		diccionario.put(1, new Alumno(1, "uno", "", "1995-08-12"));
-		diccionario.put(2, new Alumno(2, "dos", "apell", "2000-02-01"));
-		diccionario.put(4, new Alumno(4, "tres", "", "2000-02-11"));
+//		Map<Integer, Persona> diccionario = new HashMap<>();
+//		diccionario.put(1, new Alumno(1, "uno", "", "1995-08-12"));
+//		diccionario.put(2, new Alumno(2, "dos", "apell", "2000-02-01"));
+//		diccionario.put(4, new Alumno(4, "tres", "", "2000-02-11"));
+//		
+//		System.out.println(lista.get(2));
+//		System.out.println(diccionario.get(2));
+//		diccionario.remove(2);
+//		diccionario.values().forEach(System.out::println);
+//		System.out.println("Conjuntos");
+//		Set<Alumno> conjunto = new HashSet<>();
+//		conjunto.add(new Alumno(1, "uno", "", "1995-08-12"));
+//		conjunto.add(new Alumno(2, "dos", "apell", "2000-02-01"));
+//		conjunto.add(new Alumno(4, "tres", "", "2000-02-11"));
+//		conjunto.add(new Alumno(1, "uno", "", "1995-08-12"));
+//		conjunto.add(new Alumno(2, "dos", "apell", "2000-02-01"));
+//		conjunto.add(new Alumno(3, "nuevo", "", "2000-02-11"));
+//		conjunto.forEach(System.out::println);
 		
-		System.out.println(lista.get(2));
-		System.out.println(diccionario.get(2));
-		diccionario.remove(2);
-		diccionario.values().forEach(System.out::println);
-		System.out.println("Conjuntos");
-		Set<Alumno> conjunto = new HashSet<>();
-		conjunto.add(new Alumno(1, "uno", "", "1995-08-12"));
-		conjunto.add(new Alumno(2, "dos", "apell", "2000-02-01"));
-		conjunto.add(new Alumno(4, "tres", "", "2000-02-11"));
-		conjunto.add(new Alumno(1, "uno", "", "1995-08-12"));
-		conjunto.add(new Alumno(2, "dos", "apell", "2000-02-01"));
-		conjunto.add(new Alumno(3, "nuevo", "", "2000-02-11"));
-		conjunto.forEach(System.out::println);
+		
 		
 	}
 	public static void ejem6(String[] args) {
