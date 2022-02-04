@@ -1,5 +1,7 @@
 package com.example.basicos;
 
+import java.math.BigDecimal;
+
 public class Calculadora {
 	public static final int CONSTANTE = 1;
 	final int readOnly;
@@ -28,7 +30,8 @@ public class Calculadora {
 //		return a + a;
 //	}
 	public static double suma(double a, double b) {
-		return a + b;
+		return (new BigDecimal(a + b)).setScale(16, CONSTANTE).doubleValue();
+//		return (new BigDecimal(a)).add(new BigDecimal(b)).setScale(32, CONSTANTE).doubleValue();
 	}
 	
 //	public double avg(double... resto) {

@@ -12,7 +12,7 @@ import com.example.juegos.JuegoException;
  * @version 1.0
  */
 public class JuegoDelNumero implements Juego<String> {
-	private int numeroBuscado;
+	int numeroBuscado;
     private int intentos;
     private boolean encontrado;
     private String resultado;
@@ -27,7 +27,7 @@ public class JuegoDelNumero implements Juego<String> {
 	@Override
 	public void inicializar() {
      numeroBuscado = (new Random()).nextInt(100) + 1;
-     intentos = 0;
+     intentos = 1;
      encontrado = false;
      resultado = "Pendiente de empezar";
 	}
@@ -73,7 +73,7 @@ public class JuegoDelNumero implements Juego<String> {
 
 	@Override
 	public int getJugada() {
-		return intentos;
+		return intentos - 1;
 	}
 
 }
