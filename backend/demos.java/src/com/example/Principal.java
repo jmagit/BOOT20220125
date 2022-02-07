@@ -24,6 +24,7 @@ import com.example.basicos.DiasLaborables;
 import com.example.basicos.Factura;
 import com.example.basicos.Grafico;
 import com.example.basicos.Persona;
+import com.example.basicos.Profesor;
 import com.example.basicos.EjemplosGenericos;
 /**
  * Ejemplo de la sintaxis
@@ -99,6 +100,54 @@ public class Principal {
 	 * @return 0 si termina bien
 	 */
 	public static void main(String[] args) {
+		List<Persona> lista = new ArrayList<>();
+		lista.add(new Alumno(1, "uno", "", "1995-08-12"));
+		lista.add(new Alumno(2, "dos", "apell", "2000-02-01"));
+		lista.add(new Profesor(3, "Pepito", "Grillo", "1991-02-07", 1000));
+		lista.add(new Alumno(4, "tres", "", "2000-02-11"));
+		lista.add(new Profesor(5, "Otro", "Profe", "1988-12-17", 1500));
+
+		lista.stream()
+			.filter(item -> item instanceof Profesor)
+			.map(item -> (Profesor)item)
+			.peek(item -> item.setSalario(item.getSalario() * 1.1))
+			.count();
+//			.forEach(item -> System.out.println(item.getId() + " gana " + item.getSalario()));
+//
+		System.out.println(lista.stream()
+		.filter(item -> item instanceof Profesor)
+		.mapToDouble(item -> ((Profesor)item).getSalario())
+		.sum());
+////		System.out.println(lista.stream()
+////		.filter(item -> item instanceof Profesor)
+////		.map(item -> ((Profesor)item).getSalario())
+////		.reduce(0, (a, item) -> a + item));
+
+//		lista.stream().filter(item -> item.getEdad() <= 22)
+//			.forEach(item -> System.out.println(item.getNombre() + " " + item.getEdad()));
+		
+		boolean jovenes = true, paginado = true;
+		int page = 0, rows = 3;
+		var query = lista.stream();
+		if(jovenes)
+			query = query.filter(item -> item.getEdad() <= 22);
+		if(paginado)
+			query = query.skip(page * rows).limit(rows);
+		
+		query.forEach(item -> System.out.println(item.getNombre() + " " + item.getEdad()));
+//		query.forEach(item -> System.out.println(item.getNombre() + " " + item.getEdad()));
+		
+//		List<Integer> listOfIntegers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
+//		System.out.println("Sequential Stream: ");
+//		listOfIntegers.stream().forEach(e -> System.out.print(e + " "));
+//		System.out.println("\nParallel Stream: ");
+//		listOfIntegers.parallelStream().peek(item->  System.out.print(item+ "->")).sequential().forEach(e -> System.out.print(e + " "));
+
+		Genero g = Enum.valueOf(Genero.class, "MASCULINO");
+		String c = g.toString();
+	}
+	
+	public static void ejem7(String[] args) {
 		List<Alumno> lista = new ArrayList<>();
 		lista.add(new Alumno(1, "uno", "", "1995-08-12"));
 		lista.add(new Alumno(2, "dos", "apell", "2000-02-01"));
