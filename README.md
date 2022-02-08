@@ -6,8 +6,8 @@
 - Juego de “Adivina el número que estoy pensando”, un número del 0 al 100, ya te diré si es mayor o menor que el mío, pero tienes 10 intentos como mucho.
 
         Scanner teclado = new Scanner(System.in); cad = teclado.nextLine();  
-        var rnd = new Random(); num = rnd.nextInt(10);  
         num = Integer.parseInt(cad);
+        var rnd = new Random(); num = rnd.nextInt(10);  
 
 - *Opcional:* Decodificar las cadenas con el siguiente formato:  
 
@@ -30,27 +30,27 @@
 
 - Ficheros: Leer un fichero de entrada y generar un fichero de salida, realizando los cálculos necesarios, con los siguientes formatos:
 
-**FileIN: Entrada.txt**
+    **FileIN: Entrada.txt**
 
-> 3+4+3,4-7*1=
+        3+4+3,4-7*1=
 
-**FileOUT: Salida.txt**
+    **FileOUT: Salida.txt**
 
-> 3  
->  \+ 4  
->  \+ 3,4  
->  \- 7  
->  \* 1  
->  \----------  
->  3,400000
+        3  
+        + 4  
+        + 3,4  
+        - 7  
+        * 1  
+        ----------  
+        3,400000
 
-- *Ampliaciones (ficheros):*
+  - *Ampliaciones (ficheros):*
 
-  + Fichero de entrada con múltiples líneas.
-  + Fichero de salida comprimido
-  + Descompresor del fichero de salida: zip -> txt
-  + Compresor del fichero de entrada: txt -> zip
-  + Procesar entrada/salida comprimida
+    + Fichero de entrada con múltiples líneas.
+    + Fichero de salida comprimido
+    + Descompresor del fichero de salida: zip -> txt
+    + Compresor del fichero de entrada: txt -> zip
+    + Procesar entrada/salida comprimida
 
 ### Ejercicios de refuerzo
 
