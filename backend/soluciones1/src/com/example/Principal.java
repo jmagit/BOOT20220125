@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 import com.example.juegos.Juego;
 import com.example.juegos.JuegoException;
+import com.example.juegos.naipes.BarajaFrancesa;
+import com.example.juegos.naipes.ValorNaipe;
 
 public class Principal {
 
@@ -18,20 +20,21 @@ public class Principal {
 		// app.juegoConClase();
 
 //		decode("3+4+3,4-7*1=");
-		try {
-			//calcula("2+2-2+7*5+162/15=");
-			calculaList("3+4+3,4-7*1=");
-			//calculaList("25+43-37*88/9,9=");
-		} catch (CalculadoraException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			//calcula("2+2-2+7*5+162/15=");
+//			calculaList("3+4+3,4-7*1=");
+//			//calculaList("25+43-37*88/9,9=");
+//		} catch (CalculadoraException e) {
+//			e.printStackTrace();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	public void run() {
-		
+		naipes();
 	}
+	
 	public void juego() {
 		@SuppressWarnings("resource")
 		Scanner teclado = new Scanner(System.in);
@@ -195,6 +198,46 @@ public class Principal {
 			}
 			System.out.println((new Calculadora()).calcula(operaciones));
 		} catch (CalculadoraException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void naipes() {
+		var b = new BarajaFrancesa();
+		
+		try {
+			System.out.println("Baraja\n-------------------------------");
+			for(var c: b.getCartas())
+				System.out.println(c);
+			System.out.println("\nMazo\n-------------------------------");
+			b.barajar();
+			b.getMazo().forEach(System.out::println);
+			b.reparte(4, 5).forEach(item -> {
+				System.out.println("\nJugador\n-------------------------------");
+				item.forEach(System.out::println);
+			});
+				System.out.println("\nQuedan " + b.getMazo().size());
+			var mano = b.reparte(1, 2);
+			System.out.println("\nQuedan " + b.getMazo().size());
+			b.reparte(4, 5).forEach(item -> {
+				System.out.println("\nJugador\n-------------------------------");
+				item.forEach(System.out::println);
+			});
+			System.out.println("\nQuedan " + b.getMazo().size());
+			mano.forEach(item -> {
+				System.out.println("\nJugador\n-------------------------------");
+				item.forEach(System.out::println);
+			});
+			System.out.println("\nQuedan " + b.getMazo().size());
+			b.apilar(mano.get(0));
+			b.getMazo().forEach(System.out::println);
+			// b.apilar(mano.get(0));
+			// b.apilar(List.of(new NaipeFrances(NaipeFrances.Palos.CORAZONES, (byte)1)));
+			System.out.println("\nQuedan " + b.getMazo().size());
+			System.out.println(ValorNaipe.REINA.valorNumerico);
+			System.out.println(ValorNaipe.toEnum(12));
+		} catch (JuegoException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
