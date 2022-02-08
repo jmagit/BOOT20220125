@@ -97,7 +97,7 @@ class BarajaTest {
 	}
 	
 	private void barajarPorPorcentajeTest(Baraja baraja) throws JuegoException {
-		final int MAX_COINCIDENCIAS = 5;
+		final int MAX_COINCIDENCIAS = 2;
 		var cartas = baraja.getCartas();
 		baraja.barajar();
 		var mazo = baraja.getMazo();

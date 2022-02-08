@@ -28,6 +28,30 @@
 
 - Crear las clases para implementar juegos que utilizan una baraja de naipes. Los naipes tienen dos propiedades distintivas: valor y palo. Probar la funcionalidad de barajar, repartir, comparar, … (Utilizar Enumeraciones, genéricos, colecciones …)
 
+- Ficheros: Leer un fichero de entrada y generar un fichero de salida, realizando los cálculos necesarios, con los siguientes formatos:
+
+**FileIN: Entrada.txt**
+
+> 3+4+3,4-7*1=
+
+**FileOUT: Salida.txt**
+
+> 3  
+>  \+ 4  
+>  \+ 3,4  
+>  \- 7  
+>  \* 1  
+>  \----------  
+>  3,400000
+
+- *Ampliaciones (ficheros):*
+
+  + Fichero de entrada con múltiples líneas.
+  + Fichero de salida comprimido
+  + Descompresor del fichero de salida: zip -> txt
+  + Compresor del fichero de entrada: txt -> zip
+  + Procesar entrada/salida comprimida
+
 ### Ejercicios de refuerzo
 
 - Iniciación    

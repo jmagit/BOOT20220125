@@ -96,7 +96,7 @@ public abstract class Baraja<T> {
 		}
 		Random rnd = new Random();
 		mazo = new ArrayDeque<T>(Arrays.asList(cartas).stream()
-			.map(item -> new Orden(item, rnd.nextInt(1000)))
+			.map(item -> new Orden(item, rnd.nextInt(10000)))
 			.sorted((a, b) -> a.posicion - b.posicion)
 			.map(item -> item.carta)
 			.collect(Collectors.toList()));
