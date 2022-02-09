@@ -1,5 +1,8 @@
 package com.example;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.List;
 
 /**
@@ -13,7 +16,7 @@ public class Calculadora {
      */
     public static final String OPERACIONES_SOPORTADAS = "+-*/=%";
     
-    private double acumulado;
+    private BigDecimal acumulado;
     private char operadorPendiente;
 
     /**
@@ -27,7 +30,7 @@ public class Calculadora {
      * Restaura el valor inicial para calcular la siguiente secuencia
      */
     public void inicializa() {
-        acumulado = 0;
+        acumulado = new BigDecimal(0);
         operadorPendiente = '+';
     }
 
@@ -36,7 +39,7 @@ public class Calculadora {
      * @return Valor acumulado
      */
     public double getAcumulado() {
-        return acumulado;
+        return acumulado.setScale(16, RoundingMode.HALF_EVEN).doubleValue();
     }
 
     /**
@@ -59,30 +62,35 @@ public class Calculadora {
         if (!isOperacion(nuevoOperador)) {
             throw new CalculadoraException("Operación no soportada.");
         }
+        var operando = new BigDecimal(operando2);
         switch (operadorPendiente) {
             case '+':
-                acumulado += operando2;
+            	acumulado = acumulado.add(new BigDecimal(operando2));
+                // acumulado += operando2;
                 break;
             case '-':
-                acumulado -= operando2;
+            	acumulado = acumulado.subtract(new BigDecimal(operando2));
+                // acumulado -= operando2;
                 break;
             case '*':
-                acumulado *= operando2;
+            	acumulado = acumulado.multiply(new BigDecimal(operando2));
+                // acumulado *= operando2;
                 break;
             case '/':
-                acumulado /= operando2;
+            	acumulado = acumulado.divide(new BigDecimal(operando2), MathContext.DECIMAL64);
+                // acumulado /= operando2;
                 break;
             case '%':
-                acumulado %= operando2;
+            	acumulado = acumulado.remainder(new BigDecimal(operando2));
+                // acumulado %= operando2;
                 break;
             case '=':
-                acumulado += operando2;
                 break;
             default:
                 throw new CalculadoraException("Operación no soportada.");
         }
         this.operadorPendiente = nuevoOperador;
-        return acumulado;
+        return getAcumulado();
     }
 
     /**
@@ -133,7 +141,7 @@ public class Calculadora {
 		for (Operacion operacion : operaciones) {
 			calcula(operacion.getOperando(), operacion.getOperador());			
 		}
-		return acumulado;
+		return getAcumulado();
 	}
 	
 }
