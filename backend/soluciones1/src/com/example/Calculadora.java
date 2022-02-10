@@ -66,23 +66,18 @@ public class Calculadora {
         switch (operadorPendiente) {
             case '+':
             	acumulado = acumulado.add(new BigDecimal(operando2));
-                // acumulado += operando2;
                 break;
             case '-':
             	acumulado = acumulado.subtract(new BigDecimal(operando2));
-                // acumulado -= operando2;
                 break;
             case '*':
             	acumulado = acumulado.multiply(new BigDecimal(operando2));
-                // acumulado *= operando2;
                 break;
             case '/':
             	acumulado = acumulado.divide(new BigDecimal(operando2), MathContext.DECIMAL64);
-                // acumulado /= operando2;
                 break;
             case '%':
             	acumulado = acumulado.remainder(new BigDecimal(operando2));
-                // acumulado %= operando2;
                 break;
             case '=':
                 break;
