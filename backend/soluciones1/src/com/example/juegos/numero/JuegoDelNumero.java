@@ -54,14 +54,9 @@ public class JuegoDelNumero implements Juego<String> {
 		this.notifica = notifica;
 	}
 	
-	protected boolean onNotifica(String notificacion) {
-		if(notifica != null) {
-			var arg = new NotificaEventArgs(notificacion);
+	protected void onNotifica(NotificaEventArgs arg) {
+		if(notifica != null)
 			notifica.accept(arg);
-			if(arg.isCancel())
-				return true;
-		}
-		return false;
 	}
 
 	/**
@@ -74,7 +69,7 @@ public class JuegoDelNumero implements Juego<String> {
      intentos = 0;
      encontrado = false;
      resultado = "Pendiente de empezar";
-     onNotifica("Inicializado");
+     onNotifica(new NotificaEventArgs("Inicializado"));
 	}
 	
 	@Override
@@ -101,9 +96,11 @@ public class JuegoDelNumero implements Juego<String> {
         } else {
         	resultado = "Mi número es menor.";
         }
-        if(onNotifica(resultado)) {
+		var arg = new NotificaEventArgs(resultado);
+		onNotifica(arg);
+        if(arg.isCancel()) {
             encontrado = true;
-            resultado = "Cancelado";
+            resultado = "CANCELADO: " + arg.getMsg();
         }
 	}
 
