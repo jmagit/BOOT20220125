@@ -67,6 +67,18 @@
 
 ### Ejercicios de bases de datos
 
+- Obtener todos los actores de nombre ‘NICK’.
+- Obtener una lista con todos los distritos distintos (district en address).
+- Obtener las películas sobre agentes secretos (description contiene ‘Secret Agent’).
+- Mostrar la lista de las películas mas caras (coste por minuto)
+- Obtener los códigos y medias de gasto de los clientes que han gastado mas de 100 en menos de 25 operaciones.
+- Obtener los 5 nombres de actor más repetidos (aprox).
+- Para felicitar el año nuevo chino se necesita el listado con los datos postales de los clientes residentes en China y Taiwan
+- Mostrar los datos de las tiendas, conocidas por la ciudad y país donde están ubicadas, indicando el nombre del gerente, el numero de películas en inventario, el numero de títulos diferentes y el número de clientes atendidos.
+- Obtener el listado detallado de alquileres indicando el identificador de alquiler, el titulo alquilado, las fechas de alquiler, devolución y tiempo transcurrido, nombres del cliente (nombre con apellidos), empleado (nombre con apellidos) y tienda (ciudad, país).
+- Generar la lista diaria de alquileres vencidos no devueltos para poder llamar a los clientes y pedirles que los devuelvan, para ello debe mostrar las fechas de alquiler y vencimiento, el teléfono y nombre del cliente, así como el titulo de la película, priorizando los que mas tiempo llevan vencidos.
+- Elaborar el ranking de los países que más alquilan las películas de GINA DEGENERES.
+
 #### Ejercicios de refuerzo
 
 - Iniciación
