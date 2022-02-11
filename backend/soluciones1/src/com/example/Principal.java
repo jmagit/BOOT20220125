@@ -22,11 +22,11 @@ import com.example.juegos.naipes.ValorNaipe;
 public class Principal {
 
 	public static void main(String[] args) {
-//		Principal app = new Principal();
+		Principal app = new Principal();
 //		app.run();
 
 		// app.juego();
-		// app.juegoConClase();
+		 app.juegoConClase();
 
 //		decode("3+4+3,4-7*1=");
 //		try {
@@ -38,7 +38,7 @@ public class Principal {
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
-		ficheros();
+//		ficheros();
 	}
 
 	public void run() {
@@ -86,6 +86,11 @@ public class Principal {
 		try {
 			Juego<String> juego = new com.example.juegos.numero.JuegoDelNumero();
 			juego.inicializar();
+			((com.example.juegos.numero.JuegoDelNumero)juego).setNotifica(arg -> {
+				System.out.println("NOTIFICA: " + arg.getMsg());
+				System.out.println("¿Qieres cancelar?:");
+				arg.setCancel(teclado.nextLine().equals("s"));
+			});
 			for (int intentos = 1; intentos <= 10; intentos++) {
 				System.out.print("Dame tu número del 1 al 100 (" + (juego.getJugada() + 1) + " de 10): ");
 //				try {

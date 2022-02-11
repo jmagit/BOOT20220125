@@ -2,6 +2,8 @@ package com.example.juegos.numero;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import com.example.juegos.Juego;
 import com.example.juegos.JuegoException;
@@ -12,16 +14,57 @@ import com.example.juegos.JuegoException;
  * @version 1.0
  */
 public class JuegoDelNumero implements Juego<String> {
+	public static class NotificaEventArgs {
+		private String msg;
+		private boolean cancel = false;
+		public NotificaEventArgs(String msg) {
+			super();
+			this.msg = msg;
+		}
+		public String getMsg() {
+			return msg;
+		}
+		public void setMsg(String msg) {
+			this.msg = msg;
+		}
+		public boolean isCancel() {
+			return cancel;
+		}
+		public void setCancel(boolean cancel) {
+			this.cancel = cancel;
+		}
+		
+	}
 	private int numeroBuscado;
     private int intentos;
     private boolean encontrado;
     private String resultado;
+    
+    private Consumer<NotificaEventArgs> notifica;
 
     public JuegoDelNumero() {
 		inicializar();
 	}
     
-    /**
+    public Consumer<NotificaEventArgs> getNotifica() {
+		return notifica;
+	}
+
+	public void setNotifica(Consumer<NotificaEventArgs> notifica) {
+		this.notifica = notifica;
+	}
+	
+	protected boolean onNotifica(String notificacion) {
+		if(notifica != null) {
+			var arg = new NotificaEventArgs(notificacion);
+			notifica.accept(arg);
+			if(arg.isCancel())
+				return true;
+		}
+		return false;
+	}
+
+	/**
      * Inicializa el juego
      */
 	@Override
@@ -31,6 +74,7 @@ public class JuegoDelNumero implements Juego<String> {
      intentos = 0;
      encontrado = false;
      resultado = "Pendiente de empezar";
+     onNotifica("Inicializado");
 	}
 	
 	@Override
@@ -56,6 +100,10 @@ public class JuegoDelNumero implements Juego<String> {
         	resultado = "Mi número es mayor.";
         } else {
         	resultado = "Mi número es menor.";
+        }
+        if(onNotifica(resultado)) {
+            encontrado = true;
+            resultado = "Cancelado";
         }
 	}
 
