@@ -39,3 +39,9 @@ bool hayPieza(f,c)
 clone() -> List, Arrays.copy
 mover -> solo valida si hay pieza inicial
 ColorEscaque -> informativo
+
+
+
+Juego
+  getTablero()
+  getTurno()

@@ -52,7 +52,7 @@
     + Compresor del fichero de entrada: txt -> zip
     + Procesar entrada/salida comprimida
 
-### Ejercicios de refuerzo
+#### Ejercicios de refuerzo
 
 - Iniciación    
     1. <http://puntocomnoesunlenguaje.blogspot.com/p/ejercicios.html>
@@ -64,6 +64,13 @@
     1. <https://tutobasico.com/basicos3-java/>
     2. <http://ejerciciosresueltosprogramacion.blogspot.com/>
     3. <https://www.discoduroderoer.es/ejercicios-propuestos-y-resueltos-programacion-orientado-a-objetos-java/>
+
+### Ejercicios de bases de datos
+
+#### Ejercicios de refuerzo
+
+- Iniciación
+    1. https://www.discoduroderoer.es/ejercicios-propuestos-y-resueltos-sakila-mysql/
 
 ## Front End
 
