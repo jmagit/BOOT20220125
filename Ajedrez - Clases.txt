@@ -14,3 +14,28 @@ Color <<Enum>>
 JuegoException
 Juego
 
+
+Aclaraciones
+-------------------------------------------------------
+
+new Pos(posAct.getF()+deltaF(), posAct.getC()+deltaC())
+
+delta -> 
+ 0 : ini == fin
+ 1 : ini < fin
+-1 : ini > fin
+
+Tablero
+esValida(f|c) -> 1 <= f|c <= 8
+Escaque ->
+Pieza getPieza(Pos)
+setPieza(Pos, Pieza)
+Pieza getPieza(f,c)
+setPieza(f,c, Pieza)
+
+bool hayPieza(Pos)
+bool hayPieza(f,c)
+
+clone() -> List, Arrays.copy
+mover -> solo valida si hay pieza inicial
+ColorEscaque -> informativo

@@ -65,8 +65,6 @@ SELECT title, f.rating, rental_rate,
 WHERE rental_rate > (SELECT avg(rental_rate) from film where rating = f.rating)
 
 
-
-
 SELECT ROW_NUMBER () over(ORDER  BY LENGTH) NumLinea, film_id,
 title, LENGTH, NTILE(5) over(ORDER BY length)
 FROM film
