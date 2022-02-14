@@ -70,4 +70,13 @@ title, LENGTH, NTILE(5) over(ORDER BY length)
 FROM film
 ORDER BY NumLinea
 
+SELECT max(f.film_id), title, COUNT(a.actor_id) actores
+FROM film f
+	LEFT JOIN film_actor fa ON f.film_id = fa.film_id
+	LEFT JOIN actor a ON a.actor_id = fa.actor_id
+WHERE a.first_name LIKE 'P%'
+GROUP BY title
+HAVING COUNT(a.actor_id) > 1
+ORDER BY actores DESC 
+
 
