@@ -14,20 +14,31 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import com.example.juegos.Color;
 import com.example.juegos.Juego;
 import com.example.juegos.JuegoException;
+import com.example.juegos.Pieza;
+import com.example.juegos.Tablero;
+import com.example.juegos.ajedrez.Ajedrez;
+import com.example.juegos.ajedrez.Alfil;
+import com.example.juegos.ajedrez.Caballo;
+import com.example.juegos.ajedrez.Dama;
+import com.example.juegos.ajedrez.PromocionEventArgs;
+import com.example.juegos.ajedrez.Torre;
 import com.example.juegos.naipes.BarajaFrancesa;
 import com.example.juegos.naipes.ValorNaipe;
 
 public class Principal {
+	@SuppressWarnings("resource")
+	private static Scanner teclado = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		Principal app = new Principal();
 //		app.run();
 
 		// app.juego();
-		 app.juegoConClase();
-
+		// app.juegoConClase();
+		app.ajedrez();
 //		decode("3+4+3,4-7*1=");
 //		try {
 //			//calcula("2+2-2+7*5+162/15=");
@@ -46,8 +57,6 @@ public class Principal {
 	}
 
 	public void juego() {
-		@SuppressWarnings("resource")
-		Scanner teclado = new Scanner(System.in);
 
 		int numeroBuscado = (new Random()).nextInt(100) + 1;
 		int numeroIntroducido;
@@ -289,6 +298,63 @@ public class Principal {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public void ajedrez() {
+		Juego<Tablero> juego = new Ajedrez(e -> pidePieza(e));
+		juego.inicializar();
+		do {
+			try {
+				pintaTablero(juego.getResultado());
+				System.out.print("Juegan las " + (((Ajedrez) juego).getTurno() == Color.BLANCO ? "blancas" : "negras")
+						+ ". Dame jugada [CFCF]: ");
+				juego.jugada(teclado.nextLine().toUpperCase());
+			} catch (JuegoException e) {
+				System.out.println(e.getMessage());
+			}
+		} while (!juego.getFinalizado());
+		System.out.println("Juego Finalizado");
+	}
+
+	private void pintaTablero(Tablero t) {
+		for (int f = 8; f > 0; f--) {
+			System.out.print(String.format("%2s ", f));
+			for (int c = 1; c <= 8; c++) {
+				if (t.hayPieza(f, c))
+					System.out.print(String.format("%10s ", t.getPieza(f, c)));
+				else
+					System.out.print(Tablero.colorEscaque(f, c) == Color.BLANCO ? "            " : "-----------");
+			}
+			System.out.println();
+		}
+		for (char c = 'A'; c <= 'H'; c++) {
+			System.out.print(String.format("%8c    ", c));
+		}
+		System.out.println();
+	}
+	
+	private Pieza pidePieza(PromocionEventArgs e) {
+		System.out.print("\t1: Dama\n\t2: Alfil\n\t3: Torre\n\t4: Caballo\n\t5: Cancelar\n"
+				+ "Dame la opción para promocionar el peón " + (e.getColor() == Color.BLANCO ? "blanco: " : "negro:"));
+		switch (Integer.parseInt(teclado.nextLine())) {
+		case 1:
+			return new Dama(e.getColor());
+		case 2:
+			return new Alfil(e.getColor());
+		case 3:
+			return new Torre(e.getColor());
+		case 4:
+			return new Caballo(e.getColor());
+		case 5:
+			e.setCancel(true);
+		default:
+			return null;
+		}
+	}
+	
+	public String kk(String nombre) {
+		if(nombre == null)
+			throw new IllegalArgumentException("No puede ser nulo");
+		return "Hola " + nombre;
 	}
 
 }
