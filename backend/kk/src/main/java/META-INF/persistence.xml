@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="kk">
+		<class>com.example.domains.entities.Actor</class>
+		<class>com.example.domains.entities.Address</class>
+		<class>com.example.domains.entities.Category</class>
+		<class>com.example.domains.entities.City</class>
+		<class>com.example.domains.entities.Country</class>
+		<class>com.example.domains.entities.Customer</class>
+		<class>com.example.domains.entities.Film</class>
+		<class>com.example.domains.entities.FilmActor</class>
+		<class>com.example.domains.entities.FilmActorPK</class>
+		<class>com.example.domains.entities.FilmCategory</class>
+		<class>com.example.domains.entities.FilmCategoryPK</class>
+		<class>com.example.domains.entities.FilmText</class>
+		<class>com.example.domains.entities.Inventory</class>
+		<class>com.example.domains.entities.Language</class>
+		<class>com.example.domains.entities.Payment</class>
+		<class>com.example.domains.entities.Rental</class>
+		<class>com.example.domains.entities.Staff</class>
+		<class>com.example.domains.entities.Store</class>
+	</persistence-unit>
+</persistence>

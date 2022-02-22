@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.ioc.Servicio;
+import com.example.jdbc.ConsultaSQL;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,13 +25,19 @@ public class Application implements CommandLineRunner {
 	@Qualifier("manual")
 	Servicio srv1;
 	
+	@Autowired
+	ConsultaSQL jdbc;
+	
 	@Override
 	public void run(String... args) throws Exception {
-		srv.run();
-		if(srv1 != null) srv1.run();
-		srv.setName("coña");
-		srv.run();
-		if(srv1 != null) srv1.run();
+//		srv.run();
+//		if(srv1 != null) srv1.run();
+//		srv.setName("coña");
+//		srv.run();
+//		if(srv1 != null) srv1.run();
+		
+		jdbc.run();
+		jdbc.conPlantilla();
 	}
 
 
