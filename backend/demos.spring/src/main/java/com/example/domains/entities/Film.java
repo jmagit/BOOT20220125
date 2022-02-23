@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -69,6 +70,11 @@ public class Film implements Serializable {
 	private List<Inventory> inventories;
 
 	public Film() {
+	}
+
+	public Film(int filmId) {
+		super();
+		this.filmId = filmId;
 	}
 
 	public int getFilmId() {
@@ -231,6 +237,20 @@ public class Film implements Serializable {
 		inventory.setFilm(null);
 
 		return inventory;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(filmId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Film))
+			return false;
+		return filmId == ((Film) obj).filmId;
 	}
 
 }

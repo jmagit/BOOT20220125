@@ -66,21 +66,21 @@ cad
 			}
 	}
 	
-	@Autowired
-	JdbcTemplate jdbcTemplate;
-	
-	public void conPlantilla() {
-		List<Actor> listado = jdbcTemplate.query(
-				"SELECT * FROM actor WHERE first_name LIKE ?",
-				(resultSet, rowNum) -> {
-		            Actor newActor = new Actor();
-		            newActor.setActorId(resultSet.getInt("actor_id"));
-		            newActor.setFirstName(resultSet.getString("first_name"));
-		            newActor.setLastName(resultSet.getString("last_name"));
-		            newActor.setLastUpdate(resultSet.getDate("last_update"));
-		            return newActor;
-		        }, "P%");
-		listado.forEach(System.out::println);
-
-	}
+//	@Autowired
+//	JdbcTemplate jdbcTemplate;
+//	
+//	public void conPlantilla() {
+//		List<Actor> listado = jdbcTemplate.query(
+//				"SELECT * FROM actor WHERE first_name LIKE ?",
+//				(resultSet, rowNum) -> {
+//		            Actor newActor = new Actor();
+//		            newActor.setActorId(resultSet.getInt("actor_id"));
+//		            newActor.setFirstName(resultSet.getString("first_name"));
+//		            newActor.setLastName(resultSet.getString("last_name"));
+//		            newActor.setLastUpdate(resultSet.getDate("last_update"));
+//		            return newActor;
+//		        }, "P%");
+//		listado.forEach(System.out::println);
+//
+//	}
 }
