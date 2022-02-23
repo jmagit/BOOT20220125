@@ -23,12 +23,12 @@ public class FilmActor implements Serializable {
 
 	//bi-directional many-to-one association to Actor
 	@ManyToOne
-	@JoinColumn(name="actor_id")
+	@JoinColumn(name="actor_id", insertable=false, updatable=false)
 	private Actor actor;
 
 	//bi-directional many-to-one association to Film
 	@ManyToOne
-	@JoinColumn(name="film_id")
+	@JoinColumn(name="film_id", insertable=false, updatable=false)
 	private Film film;
 
 	public FilmActor() {
