@@ -11,6 +11,8 @@ import org.hibernate.annotations.GenerationTime;
 import org.hibernate.validator.constraints.Length;
 
 import com.example.domains.core.entities.EntityBase;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -46,10 +48,12 @@ public class Actor extends EntityBase<Actor> implements Serializable {
 	@Column(name="last_update")
 	@Generated(value = GenerationTime.ALWAYS)
 	@PastOrPresent
+	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private Timestamp lastUpdate;
 
 	//bi-directional many-to-one association to FilmActor
 	@OneToMany(mappedBy="actor", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore
 	private List<FilmActor> filmActors = new ArrayList<>();
 
 	public Actor() {
