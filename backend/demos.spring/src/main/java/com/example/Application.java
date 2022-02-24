@@ -103,7 +103,7 @@ public class Application implements CommandLineRunner {
 //			e.printStackTrace();
 //		}
 		
-		srvActor.getAll().forEach(item -> System.out.println(item));
+//		srvActor.getAll().forEach(item -> System.out.println(item));
 		
 //		try {
 //			srvActor.add(new Actor(0, "", null, new Timestamp(0)));
