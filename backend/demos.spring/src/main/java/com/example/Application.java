@@ -3,6 +3,7 @@ package com.example;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.application.dtos.ActorDTO;
 import com.example.domains.contracts.ActorRepositoy;
 import com.example.domains.entities.Actor;
 import com.example.ioc.Servicio;
@@ -13,6 +14,7 @@ import java.sql.Timestamp;
 
 import javax.transaction.Transactional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
@@ -71,7 +73,12 @@ public class Application implements CommandLineRunner {
 			System.out.println(a.getErrorsMessage());
 		else 
 			System.out.println("OK");
-		dao.save(a);
+		//dao.save(a);
+		a = dao.getById(1);
+		ModelMapper modelMapper = new ModelMapper();
+		var dto = modelMapper.map(a, ActorDTO.class);
+		System.out.println(a);		
+		System.out.println(dto);		
 	}
 
 	@Transactional
