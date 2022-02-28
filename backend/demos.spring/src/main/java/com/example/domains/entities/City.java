@@ -2,8 +2,17 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+import org.hibernate.validator.constraints.Length;
+
+import com.example.domains.core.entities.EntityBase;
+
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -13,7 +22,7 @@ import java.util.List;
 @Entity
 @Table(name="city")
 @NamedQuery(name="City.findAll", query="SELECT c FROM City c")
-public class City implements Serializable {
+public class City extends EntityBase<City> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -21,9 +30,12 @@ public class City implements Serializable {
 	@Column(name="city_id")
 	private int cityId;
 
+	@NotBlank
+	@Length(max=50)
 	private String city;
 
 	@Column(name="last_update")
+	@Generated(value = GenerationTime.ALWAYS)
 	private Timestamp lastUpdate;
 
 	//bi-directional many-to-one association to Address
@@ -37,6 +49,27 @@ public class City implements Serializable {
 
 	public City() {
 	}
+	
+	public City(int cityId) {
+		super();
+		this.cityId = cityId;
+	}
+
+	public City(int cityId, @NotBlank @Length(max = 50) String city, Country country) {
+		super();
+		this.cityId = cityId;
+		this.city = city;
+		this.country = country;
+	}
+
+	public City(int cityId, @NotBlank @Length(max = 50) String city, List<Address> addresses) {
+		super();
+		this.cityId = cityId;
+		this.city = city;
+		this.addresses = addresses;
+	}
+
+
 
 	public int getCityId() {
 		return this.cityId;
@@ -90,6 +123,26 @@ public class City implements Serializable {
 
 	public void setCountry(Country country) {
 		this.country = country;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cityId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof City))
+			return false;
+		City other = (City) obj;
+		return cityId == other.cityId;
+	}
+
+	@Override
+	public String toString() {
+		return "City [cityId=" + cityId + ", city=" + city + ", country=" + country + "]";
 	}
 
 }
