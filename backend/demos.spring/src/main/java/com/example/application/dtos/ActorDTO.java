@@ -1,5 +1,7 @@
 package com.example.application.dtos;
 
+import javax.validation.constraints.NotBlank;
+
 import com.example.domains.entities.Actor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class ActorDTO {
 	@JsonProperty("id")
 	private int actorId;
+	@NotBlank
 	@JsonProperty("nombre")
 	private String firstName;
 	@JsonProperty("apellidos")

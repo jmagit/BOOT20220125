@@ -9,7 +9,7 @@ import javax.validation.Validator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class EntityBase<E> {
+public abstract class EntityBase<E> {
 	
 	@Transient
 	@JsonIgnore

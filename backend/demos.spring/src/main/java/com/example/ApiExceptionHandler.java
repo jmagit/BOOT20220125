@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -51,7 +53,7 @@ public class ApiExceptionHandler {
 		return new ErrorMessage(exception.getMessage(), request.getRequestURI());
 	}
 
-	@ExceptionHandler({ InvalidDataException.class })
+	@ExceptionHandler({ InvalidDataException.class, MethodArgumentNotValidException.class })
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
 	public ErrorMessage invalidData(Exception exception) {
@@ -62,6 +64,13 @@ public class ApiExceptionHandler {
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
 	public ErrorMessage badRequest(Exception exception) {
+		return new ErrorMessage(exception.getMessage(), "");
+	}
+
+	@ExceptionHandler({ HttpRequestMethodNotSupportedException.class })
+	@ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+	@ResponseBody
+	public ErrorMessage FormatoInvalido(Exception exception) {
 		return new ErrorMessage(exception.getMessage(), "");
 	}
 }
