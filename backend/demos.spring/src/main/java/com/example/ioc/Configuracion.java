@@ -10,7 +10,7 @@ public class Configuracion {
 	@Bean
 	@Qualifier("manual")
 	public Servicio miServicio(Dependencia dep) {
-		System.out.println("Creando el servicio de " + dep.getName());
+//		System.out.println("Creando el servicio de " + dep.getName());
 		return new ServicioMock();
 	}
 }

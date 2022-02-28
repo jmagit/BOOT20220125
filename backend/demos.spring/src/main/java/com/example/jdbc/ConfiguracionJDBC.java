@@ -22,10 +22,10 @@ public class ConfiguracionJDBC {
 //    	return ds;
 //    }	
 //
-    @Bean
-    JdbcTemplate jdbcTemplate(DataSource dataSource) {
-        return new JdbcTemplate(dataSource);        
-    }
+//    @Bean
+//    JdbcTemplate jdbcTemplate(DataSource dataSource) {
+//        return new JdbcTemplate(dataSource);        
+//    }
 //     
 //    @Bean
 //    DataSourceTransactionManager dataSourceTransactionManager(DataSource dataSource) {

@@ -63,7 +63,7 @@ public class ActorResource {
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public void update(@PathVariable int id, @Valid @RequestBody ActorDTO item) throws InvalidDataException, NotFoundException {
 		if(id != item.getActorId())
-			throw new InvalidDataException("No coinciden los identificadore");
+			throw new InvalidDataException("No coinciden los identificadores");
 		Actor actor = ActorDTO.from(item);
 		if(actor.isInvalid())
 			throw new InvalidDataException(actor.getErrorsMessage());
