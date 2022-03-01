@@ -30,7 +30,7 @@ import com.example.application.dtos.CiudadEditDTO;
 import com.example.application.dtos.CiudadShortDTO;
 import com.example.application.dtos.PaisDTO;
 import com.example.domains.contracts.services.ActorService;
-import com.example.domains.contracts.services.CiudadesService;
+import com.example.domains.contracts.services.PeliculasService;
 import com.example.domains.entities.Actor;
 import com.example.domains.entities.City;
 import com.example.domains.entities.Country;
@@ -41,10 +41,10 @@ import com.example.exceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
 
 @RestController
-@RequestMapping("/api/ciudades")
-public class CiudadesResource {
+@RequestMapping("/api/peliculas")
+public class PeliculasResource {
 	@Autowired
-	private CiudadesService srv;
+	private PeliculasService srv;
 
 	@GetMapping
 	public List<CiudadDetailsDTO> getAll() {
@@ -61,19 +61,6 @@ public class CiudadesResource {
 			throws NotFoundException {
 			return CiudadEditDTO.from(srv.getOne(id));
 	}
-	@GetMapping(path = "/{id}", params = "mode=entity")
-	public City getOneEntity(@PathVariable int id, @RequestParam(required = true) String mode)
-			throws NotFoundException {
-			return srv.getOne(id);
-	}
-//	@GetMapping(path = "/{id}", params = "modo=details")
-//	public ResponseEntity<Object> getOne(@PathVariable int id, @RequestParam(required = false, defaultValue = "details") String modo)
-//			throws NotFoundException {
-//		if ("edit".equals(modo))
-//			return ResponseEntity.ok(CiudadEditDTO.from(srv.getOne(id)));
-//		else
-//			return ResponseEntity.ok(CiudadDetailsDTO.from(srv.getOne(id)));
-//	}
 
 	@PostMapping
 	public ResponseEntity<Object> create(@Valid @RequestBody CiudadEditDTO item)

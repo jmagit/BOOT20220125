@@ -7,6 +7,7 @@ import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 
 
 /**
@@ -76,6 +77,21 @@ public class FilmActor implements Serializable {
 
 	public void setFilm(Film film) {
 		this.film = film;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof FilmActor))
+			return false;
+		FilmActor other = (FilmActor) obj;
+		return Objects.equals(id, other.id);
 	}
 
 }

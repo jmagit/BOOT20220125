@@ -2,8 +2,23 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+import org.hibernate.validator.constraints.Length;
+
+import com.example.domains.core.entities.EntityBase;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,7 +30,7 @@ import java.util.Objects;
 @Entity
 @Table(name="film")
 @NamedQuery(name="Film.findAll", query="SELECT f FROM Film f")
-public class Film implements Serializable {
+public class Film extends EntityBase<Film> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,29 +38,17 @@ public class Film implements Serializable {
 	@Column(name="film_id")
 	private int filmId;
 
+	@NotBlank
+	@Length(max=128)
+	private String title;
+
 	@Lob
 	private String description;
 
-	@Column(name="last_update")
-	private Timestamp lastUpdate;
-
-	private int length;
-
-	private String rating;
-
 	@Column(name="release_year")
+	@Min(1901)
+	@Max(2155)
 	private short releaseYear;
-
-	@Column(name="rental_duration")
-	private byte rentalDuration;
-
-	@Column(name="rental_rate")
-	private BigDecimal rentalRate;
-
-	@Column(name="replacement_cost")
-	private BigDecimal replacementCost;
-
-	private String title;
 
 	//bi-directional many-to-one association to Language
 	@ManyToOne
@@ -56,6 +59,32 @@ public class Film implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="original_language_id")
 	private Language languageVO;
+
+	@Column(name="rental_duration")
+	@NotNull
+	@Positive
+	private byte rentalDuration;
+
+	@Column(name="rental_rate")
+	@NotNull
+    @DecimalMin(value = "0.0", inclusive = false)
+    @Digits(integer=2, fraction=2)
+	private BigDecimal rentalRate;
+
+	@Positive
+	private int length;
+
+	@Column(name="replacement_cost")
+	@NotNull
+    @DecimalMin(value = "0.0", inclusive = false)
+    @Digits(integer=3, fraction=2)
+	private BigDecimal replacementCost;
+
+	private String rating;
+
+	@Column(name="last_update")
+	@Generated(value = GenerationTime.ALWAYS)
+	private Timestamp lastUpdate;
 
 	//bi-directional many-to-one association to FilmActor
 	@OneToMany(mappedBy="film")
@@ -70,11 +99,36 @@ public class Film implements Serializable {
 	private List<Inventory> inventories;
 
 	public Film() {
+		super();
+		filmActors = new ArrayList<>();
+		filmCategories = new ArrayList<>();
+		inventories = new ArrayList<>();
 	}
 
 	public Film(int filmId) {
+		this();
+		this.filmId = filmId;
+	}
+
+	public Film(int filmId, @NotBlank @Length(max = 128) String title, String description,
+			@Min(1901) @Max(2155) short releaseYear, Language language, Language languageVO,
+			@NotNull @Positive byte rentalDuration,
+			@NotNull @DecimalMin(value = "0.0", inclusive = false) @Digits(integer = 2, fraction = 2) BigDecimal rentalRate,
+			@Positive int length,
+			@NotNull @DecimalMin(value = "0.0", inclusive = false) @Digits(integer = 3, fraction = 2) BigDecimal replacementCost,
+			String rating) {
 		super();
 		this.filmId = filmId;
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		this.language = language;
+		this.languageVO = languageVO;
+		this.rentalDuration = rentalDuration;
+		this.rentalRate = rentalRate;
+		this.length = length;
+		this.replacementCost = replacementCost;
+		this.rating = rating;
 	}
 
 	public int getFilmId() {
@@ -253,4 +307,10 @@ public class Film implements Serializable {
 		return filmId == ((Film) obj).filmId;
 	}
 
+	@Override
+	public String toString() {
+		return "Film [filmId=" + filmId + ", title=" + title + "]";
+	}
+
+	
 }
