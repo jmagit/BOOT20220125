@@ -90,7 +90,7 @@ public class FilmActor implements Serializable {
 			return true;
 		if (!(obj instanceof FilmActor))
 			return false;
-		FilmActor other = (FilmActor) obj;
+		FilmActor other = (FilmActor) obj; 
 		return Objects.equals(id, other.id);
 	}
 

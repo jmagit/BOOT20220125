@@ -87,11 +87,11 @@ public class Film extends EntityBase<Film> implements Serializable {
 	private Timestamp lastUpdate;
 
 	// bi-directional many-to-one association to FilmActor
-	@OneToMany(mappedBy = "film")
+	@OneToMany(mappedBy = "film", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<FilmActor> filmActors;
 
 	// bi-directional many-to-one association to FilmCategory
-	@OneToMany(mappedBy = "film")
+	@OneToMany(mappedBy = "film", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<FilmCategory> filmCategories;
 
 	// bi-directional many-to-one association to Inventory
@@ -117,7 +117,7 @@ public class Film extends EntityBase<Film> implements Serializable {
 			@Positive int length,
 			@NotNull @DecimalMin(value = "0.0", inclusive = false) @Digits(integer = 3, fraction = 2) BigDecimal replacementCost,
 			String rating) {
-		super();
+		this();
 		this.filmId = filmId;
 		this.title = title;
 		this.description = description;
@@ -281,10 +281,23 @@ public class Film extends EntityBase<Film> implements Serializable {
 		return filmCategory;
 	}
 
+	public FilmCategory addFilmCategory(Category category) {
+		var filmCategory = new FilmCategory(category, this);
+		getFilmCategories().add(filmCategory);
+		return filmCategory;
+	}
+
 	public FilmCategory removeFilmCategory(FilmCategory filmCategory) {
 		getFilmCategories().remove(filmCategory);
 		filmCategory.setFilm(null);
 
+		return filmCategory;
+	}
+
+	public FilmCategory removeFilmCategory(Category category) {
+		var filmCategory = new FilmCategory(category, this);
+		getFilmCategories().remove(filmCategory);
+		filmCategory.setFilm(null);
 		return filmCategory;
 	}
 

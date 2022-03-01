@@ -31,6 +31,9 @@ import com.example.application.dtos.CiudadDetailsDTO;
 import com.example.application.dtos.CiudadEditDTO;
 import com.example.application.dtos.CiudadShortDTO;
 import com.example.application.dtos.PaisDTO;
+import com.example.application.dtos.PeliculaDetailsDTO;
+import com.example.application.dtos.PeliculaEditDTO;
+import com.example.application.dtos.PeliculaShortDTO;
 import com.example.domains.contracts.services.ActorService;
 import com.example.domains.contracts.services.PeliculasService;
 import com.example.domains.entities.Actor;
@@ -50,54 +53,60 @@ public class PeliculasResource {
 
 
 	@GetMapping
-	public List<ActorDTO> getAll() {
-		return srv.getByProjection(ActorDTO.class);
+	public List<PeliculaShortDTO> getAll() {
+		return srv.getByProjection(PeliculaShortDTO.class);
 	}
 
 	@GetMapping(params = "page")
-	public Page<ActorDTO> getAll(Pageable page) {
-		return srv.getByProjection(page, ActorDTO.class);
+	public Page<PeliculaShortDTO> getAll(Pageable page) {
+		return srv.getByProjection(page, PeliculaShortDTO.class);
 	}
 
 	@GetMapping(path = "/{id}")
-	public CiudadDetailsDTO getOneDetails(@PathVariable int id, @RequestParam(required = false, defaultValue = "details") String mode)
+	public PeliculaDetailsDTO getOneDetails(@PathVariable int id, @RequestParam(required = false, defaultValue = "details") String mode)
 			throws NotFoundException {
-			return CiudadDetailsDTO.from(srv.getOne(id));
+			return PeliculaDetailsDTO.from(srv.getOne(id));
 	}
 	@GetMapping(path = "/{id}", params = "mode=edit")
-	public CiudadEditDTO getOneEdit(@PathVariable int id, @RequestParam(required = true) String mode)
+	public PeliculaEditDTO getOneEdit(@PathVariable int id, @RequestParam(required = true) String mode)
 			throws NotFoundException {
-			return CiudadEditDTO.from(srv.getOne(id));
+			return PeliculaEditDTO.from(srv.getOne(id));
 	}
 
 	@PostMapping
-	public ResponseEntity<Object> create(@Valid @RequestBody CiudadEditDTO item)
-			throws InvalidDataException, DuplicateKeyException {
-		var entity = CiudadEditDTO.from(item);
+	@Transactional
+	public ResponseEntity<Object> create(@Valid @RequestBody PeliculaEditDTO item)
+			throws InvalidDataException, DuplicateKeyException, NotFoundException {
+		var entity = PeliculaEditDTO.from(item);
 		if (entity.isInvalid())
 			throw new InvalidDataException(entity.getErrorsMessage());
 		entity = srv.add(entity);
+		entity = srv.getOne(entity.getFilmId());
+		item.update(entity);
+		srv.change(entity);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(entity.getCityId()).toUri();
+				.buildAndExpand(entity.getFilmId()).toUri();
 		return ResponseEntity.created(location).build();
 
 	}
 
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public void update(@PathVariable int id, @Valid @RequestBody CiudadEditDTO item)
+	@Transactional
+	public void update(@PathVariable int id, @Valid @RequestBody PeliculaEditDTO item)
 			throws InvalidDataException, NotFoundException {
-		if (id != item.getCityId())
+		if (id != item.getFilmId())
 			throw new InvalidDataException("No coinciden los identificadores");
-		var entity = CiudadEditDTO.from(item);
+		var entity = srv.getOne(id);
+		item.update(entity);
 		if (entity.isInvalid())
 			throw new InvalidDataException(entity.getErrorsMessage());
 		srv.change(entity);
 	}
-
-	@DeleteMapping("/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable int id) {
-		srv.deleteById(id);
-	}
+//
+//	@DeleteMapping("/{id}")
+//	@ResponseStatus(HttpStatus.NO_CONTENT)
+//	public void delete(@PathVariable int id) {
+//		srv.deleteById(id);
+//	}
 }
