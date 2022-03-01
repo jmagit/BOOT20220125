@@ -3,6 +3,7 @@ package com.example.application.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.transaction.Transactional;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.Validator;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.application.dtos.ActorDTO;
+import com.example.application.dtos.CiudadShortDTO;
 import com.example.application.dtos.PaisDTO;
 import com.example.domains.contracts.services.ActorService;
 import com.example.domains.contracts.services.PaisesService;
@@ -48,6 +50,12 @@ public class PaisResource {
 	@GetMapping(path = "/{id}")
 	public PaisDTO getOne(@PathVariable int id) throws NotFoundException {
 		return PaisDTO.from(srv.getOne(id));
+	}
+	
+	@GetMapping(path = "/{id}/ciudades")
+	@Transactional
+	public List<CiudadShortDTO> getCiudades(@PathVariable int id) throws NotFoundException {
+		return srv.getOne(id).getCities().stream().map(item -> CiudadShortDTO.from(item)).toList();
 	}
 	
 	@PostMapping
