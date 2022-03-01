@@ -1,33 +1,12 @@
 package com.example.application.dtos;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
-
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
-import org.hibernate.validator.constraints.Length;
 
 import com.example.domains.entities.Actor;
 import com.example.domains.entities.Category;
-import com.example.domains.entities.City;
 import com.example.domains.entities.Film;
-import com.example.domains.entities.FilmActor;
-import com.example.domains.entities.FilmCategory;
 import com.example.domains.entities.Language;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -84,7 +63,7 @@ public class PeliculaEditDTO {
 	}
 	
 	public Film update(Film target) {
-		target.setFilmId(filmId);
+//		target.setFilmId(filmId);
 		target.setTitle(title);
 		target.setDescription(description);
 		target.setReleaseYear(releaseYear);
