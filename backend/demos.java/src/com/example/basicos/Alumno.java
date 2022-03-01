@@ -1,8 +1,6 @@
 package com.example.basicos;
 
-import java.util.Arrays;
-import java.util.Date;
-
+@SuppressWarnings("serial")
 @Autor(nombre = "Javier")
 public class Alumno extends Persona {
 	

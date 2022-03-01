@@ -9,7 +9,6 @@ public class Dependencia {
 	private String nombre;
 	
 	public Dependencia() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getName() {

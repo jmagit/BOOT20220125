@@ -256,14 +256,15 @@ public class Film extends EntityBase<Film> implements Serializable {
 	}
 
 	public FilmActor removeFilmActor(Actor actor) {
-		var filmActor = getFilmActors().stream().filter(item -> item.getId().getActorId() == actor.getActorId())
-				.findFirst();
-		if (filmActor.isPresent()) {
-			getFilmActors().remove(filmActor.get());
-			filmActor.get().setFilm(null);
-		}
-		// getFilmActors().remove(new FilmActor(actor, this));
-		return filmActor.get();
+//		var filmActor = getFilmActors().stream().filter(item -> item.getId().getActorId() == actor.getActorId())
+//				.findFirst();
+//		if (filmActor.isPresent()) {
+//			getFilmActors().remove(filmActor.get());
+//			filmActor.get().setFilm(null);
+//		}
+		var filmActor = new FilmActor(actor, this);
+		getFilmActors().remove(filmActor);
+		return filmActor;
 	}
 
 	public List<FilmCategory> getFilmCategories() {

@@ -93,7 +93,7 @@ public class PeliculaEditDTO {
 		delCategorias.forEach(item -> target.removeFilmCategory(item));
 		// Añade las categorias que falta
 		categorias.stream()
-			.filter(idCategoriaDTO -> !target.getFilmCategories().stream().anyMatch(filmCategory -> filmCategory.getCategory().getCategoryId() == idCategoriaDTO))
+			.filter(idCategoriaDTO -> target.getFilmCategories().stream().noneMatch(filmCategory -> filmCategory.getCategory().getCategoryId() == idCategoriaDTO))
 			.forEach(idCategoriaDTO -> target.addFilmCategory(new Category(idCategoriaDTO)));
 		return target;
 	}

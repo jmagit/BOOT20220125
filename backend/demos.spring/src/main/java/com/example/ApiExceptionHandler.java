@@ -70,7 +70,7 @@ public class ApiExceptionHandler {
 	@ExceptionHandler({ HttpRequestMethodNotSupportedException.class })
 	@ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
 	@ResponseBody
-	public ErrorMessage FormatoInvalido(Exception exception) {
+	public ErrorMessage formatoInvalido(Exception exception) {
 		return new ErrorMessage(exception.getMessage(), "");
 	}
 }

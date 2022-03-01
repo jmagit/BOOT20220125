@@ -8,7 +8,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.domains.entities.City;
-import com.example.domains.entities.Country;
 
 public interface CiudadesRepository extends JpaRepository<City, Integer> {
 	<T> List<T> findByCityIdIsNotNull(Class<T> type);

@@ -13,6 +13,7 @@ public abstract class EntityBase<E> {
 	
 	@Transient
 	@JsonIgnore
+	@SuppressWarnings("unchecked")
 	public Set<ConstraintViolation<E>> getErrors() {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		return validator.validate((E)this);

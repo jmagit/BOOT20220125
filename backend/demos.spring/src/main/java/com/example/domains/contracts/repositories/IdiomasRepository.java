@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.domains.entities.Country;
 import com.example.domains.entities.Language;
 
 public interface IdiomasRepository extends JpaRepository<Language, Integer> {

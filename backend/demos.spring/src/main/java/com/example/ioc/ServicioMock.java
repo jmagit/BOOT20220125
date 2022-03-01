@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 public class ServicioMock implements Servicio {
 
 	public ServicioMock() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -18,7 +17,6 @@ public class ServicioMock implements Servicio {
 
 	@Override
 	public void setName(String value) {
-		// TODO Auto-generated method stub
 		
 	}
 

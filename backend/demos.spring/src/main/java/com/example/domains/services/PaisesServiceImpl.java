@@ -7,10 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.example.domains.contracts.repositories.ActorRepositoy;
 import com.example.domains.contracts.repositories.PaisesRepository;
 import com.example.domains.contracts.services.PaisesService;
-import com.example.domains.entities.Actor;
 import com.example.domains.entities.Country;
 import com.example.exceptions.DuplicateKeyException;
 import com.example.exceptions.InvalidDataException;

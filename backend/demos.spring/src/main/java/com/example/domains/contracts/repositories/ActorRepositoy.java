@@ -7,8 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.application.dtos.ActorDTO;
-import com.example.application.dtos.ActorShortDTO;
 import com.example.domains.entities.Actor;
 
 public interface ActorRepositoy extends JpaRepository<Actor, Integer> {
