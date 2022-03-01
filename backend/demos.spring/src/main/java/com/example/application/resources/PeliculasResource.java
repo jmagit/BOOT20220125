@@ -10,6 +10,8 @@ import javax.validation.Validator;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,9 +48,15 @@ public class PeliculasResource {
 	@Autowired
 	private PeliculasService srv;
 
+
 	@GetMapping
-	public List<CiudadDetailsDTO> getAll() {
-		return srv.getAll().stream().map(item -> CiudadDetailsDTO.from(item)).toList();
+	public List<ActorDTO> getAll() {
+		return srv.getByProjection(ActorDTO.class);
+	}
+
+	@GetMapping(params = "page")
+	public Page<ActorDTO> getAll(Pageable page) {
+		return srv.getByProjection(page, ActorDTO.class);
 	}
 
 	@GetMapping(path = "/{id}")
