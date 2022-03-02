@@ -25,10 +25,18 @@ public class PeliculaDetailsDTO {
 	private List<String> categorias;
 
 	public static PeliculaDetailsDTO from(Film source) {
-		return new PeliculaDetailsDTO(source.getFilmId(), source.getTitle(), source.getDescription(),
-				source.getReleaseYear(), source.getLanguage().getName(),
-				source.getLanguageVO() == null ? null : source.getLanguageVO().getName(), source.getRentalDuration(),
-				source.getRentalRate(), source.getLength(), source.getReplacementCost(), source.getRating(),
+		return new PeliculaDetailsDTO(
+				source.getFilmId(), 
+				source.getTitle(), 
+				source.getDescription(),
+				source.getReleaseYear(), 
+				source.getLanguage().getName(),
+				source.getLanguageVO() == null ? null : source.getLanguageVO().getName(), 
+						source.getRentalDuration(),
+				source.getRentalRate(), 
+				source.getLength(), 
+				source.getReplacementCost(), 
+				source.getRating(),
 				source.getFilmActors().stream()
 						.map(item -> item.getActor().getFirstName() + " " + item.getActor().getLastName()).sorted().toList(),
 				source.getFilmCategories().stream().map(item -> item.getCategory().getName()).sorted().toList());

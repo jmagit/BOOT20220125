@@ -86,6 +86,16 @@ public class PeliculaEditDTO {
 		actores.stream()
 			.filter(idActorDTO -> !target.getFilmActors().stream().anyMatch(filmActor -> filmActor.getActor().getActorId() == idActorDTO))
 			.forEach(idActorDTO -> target.addFilmActor(new Actor(idActorDTO)));
+//			.forEach(idActorDTO -> {
+//				var filmActor = new FilmActor();
+//				filmActor.setFilm(target);
+//				filmActor.setActor(new Actor(idActorDTO));
+//				var pk = new FilmActorPK();
+//				pk.setActorId(idActorDTO);
+//				pk.setFilmId(filmId);
+//				filmActor.setId(pk);
+//				target.getFilmActors().add(filmActor);
+//			});
 		// Borra las categorias que sobran
 		var delCategorias = target.getFilmCategories().stream()
 				.filter(item -> !categorias.contains(item.getCategory().getCategoryId()))
