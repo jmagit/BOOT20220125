@@ -59,7 +59,7 @@ public class ContactoResource {
 
 	@GetMapping(params = "_page")
 	@ApiOperation(value = "Listar paginados", hidden = true )
-	public List<Contacto> getPaged(@ApiParam(required = false) @RequestParam int _page,
+	public List<Contacto> getPaged(@ApiParam(value = "Empieza en la pagina 0", required = false) @RequestParam int _page,
 			@RequestParam(required = false, defaultValue = "20") int _rows, @RequestParam(required = false) String _sort) {
 		if (_sort != null)
 			return dao.findAll(PageRequest.of(_page, _rows, Sort.by(Direction.ASC, _sort))).getContent();

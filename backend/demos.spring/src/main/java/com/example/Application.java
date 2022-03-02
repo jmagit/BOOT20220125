@@ -3,10 +3,13 @@ package com.example;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import springfox.documentation.oas.annotations.EnableOpenApi;
+
 import javax.transaction.Transactional;
 
 import org.springframework.boot.CommandLineRunner;
 
+@EnableOpenApi
 @SpringBootApplication
 public class Application implements CommandLineRunner { 
 

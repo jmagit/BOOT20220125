@@ -16,6 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 @Document("contactos")
 @ApiModel(value = "Contacto", description = "Datos de la persona de contacto")
@@ -23,6 +24,7 @@ public class Contacto {
 	@Id
 	@Field("_id")
 	private int id;
+	@ApiModelProperty(name = "Esto es un ejemplo", value = "Maximo 3 letras")
 	private String tratamiento;
 	@NotBlank
 	@Length(min=2, max=50)
