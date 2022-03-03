@@ -36,7 +36,7 @@ public class PeliculaDetailsDTO {
 				source.getRentalRate(), 
 				source.getLength(), 
 				source.getReplacementCost(), 
-				source.getRating(),
+				source.getRating() == null ? null : source.getRating().getValue(),
 				source.getFilmActors().stream()
 						.map(item -> item.getActor().getFirstName() + " " + item.getActor().getLastName()).sorted().toList(),
 				source.getFilmCategories().stream().map(item -> item.getCategory().getName()).sorted().toList());

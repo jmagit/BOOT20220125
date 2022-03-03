@@ -32,6 +32,52 @@ import java.util.Objects;
 @NamedQuery(name = "Film.findAll", query = "SELECT f FROM Film f")
 public class Film extends EntityBase<Film> implements Serializable {
 	private static final long serialVersionUID = 1L;
+	public static enum Rating {
+	    GENERAL_AUDIENCES("G"),
+	    PARENTAL_GUIDANCE_SUGGESTED("PG"),
+	    PARENTS_STRONGLY_CAUTIONED("PG-13"),
+	    RESTRICTED("R"),
+	    ADULTS_ONLY("NC-17");
+
+	    String value;
+	    
+	    Rating(String value) {
+	        this.value = value;
+	    }
+
+	    public String getValue() {
+	        return value;
+	    }
+		public static Rating getEnum(String value) {
+			switch (value) {
+			case "G": return Rating.GENERAL_AUDIENCES;
+			case "PG": return Rating.PARENTAL_GUIDANCE_SUGGESTED;
+			case "PG-13": return Rating.PARENTS_STRONGLY_CAUTIONED;
+			case "R": return Rating.RESTRICTED;
+			case "NC-17": return Rating.ADULTS_ONLY;
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + value);
+			}
+		}
+	}
+	@Converter
+	private static class RatingConverter implements AttributeConverter<Rating, String> {
+	    @Override
+	    public String convertToDatabaseColumn(Rating rating) {
+	        if (rating == null) {
+	            return null;
+	        }
+	        return rating.getValue();
+	    }
+	    @Override
+	    public Rating convertToEntityAttribute(String value) {
+	        if (value == null) {
+	            return null;
+	        }
+
+	        return Rating.getEnum(value);
+	    }
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -80,7 +126,8 @@ public class Film extends EntityBase<Film> implements Serializable {
 	@Digits(integer = 3, fraction = 2)
 	private BigDecimal replacementCost;
 
-	private String rating;
+	@Convert(converter = RatingConverter.class)
+	private Rating rating;
 
 	@Column(name = "last_update")
 	@Generated(value = GenerationTime.ALWAYS)
@@ -116,7 +163,7 @@ public class Film extends EntityBase<Film> implements Serializable {
 			@NotNull @DecimalMin(value = "0.0", inclusive = false) @Digits(integer = 2, fraction = 2) BigDecimal rentalRate,
 			@Positive int length,
 			@NotNull @DecimalMin(value = "0.0", inclusive = false) @Digits(integer = 3, fraction = 2) BigDecimal replacementCost,
-			String rating) {
+			Rating rating) {
 		this();
 		this.filmId = filmId;
 		this.title = title;
@@ -163,11 +210,11 @@ public class Film extends EntityBase<Film> implements Serializable {
 		this.length = length;
 	}
 
-	public String getRating() {
+	public Rating getRating() {
 		return this.rating;
 	}
 
-	public void setRating(String rating) {
+	public void setRating(Rating rating) {
 		this.rating = rating;
 	}
 
