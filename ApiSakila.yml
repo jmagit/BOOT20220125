@@ -1,0 +1,1360 @@
+openapi: 3.0.3
+info:
+  title: 'Microservicio: Ejemplos Bootcamp'
+  description: Ejemplo de Microservicio utilizando la base de datos **Sakila**.
+  contact:
+    name: Yo Mismo
+    url: http://www.example.com
+    email: myeaddress@example.com
+  license:
+    name: Apache License Version 2.0
+  version: '1.0'
+servers:
+  - url: http://localhost:8001
+    description: Inferred Url
+tags:
+  - name: actor-resource
+    description: Actor Resource
+  - name: category-resource
+    description: Category Resource
+  - name: ciudades-resource
+    description: Ciudades Resource
+  - name: demos-resource
+    description: Demos Resource
+  - name: idiomas-resource
+    description: Idiomas Resource
+  - name: pais-resource
+    description: Pais Resource
+  - name: peliculas-resource
+    description: Mantenimiento de películas
+paths:
+  /pizza
+    get:
+      summary: getAll
+      description: Listado de pizzas
+      
+  /api/actores:
+    get:
+      tags:
+        - actor-resource
+      summary: getAll
+      operationId: getAllUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActorDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - actor-resource
+      summary: create
+      operationId: createUsingPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActorDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/actores/{id}:
+    get:
+      tags:
+        - actor-resource
+      summary: getOne
+      operationId: getOneUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActorDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - actor-resource
+      summary: update
+      operationId: updateUsingPUT
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActorDTO'
+      responses:
+        '201':
+          description: Created
+        '202':
+          description: Accepted
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - actor-resource
+      summary: delete
+      operationId: deleteUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /api/categorias:
+    get:
+      tags:
+        - category-resource
+      summary: getAll
+      operationId: getAllUsingGET_2
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CategoryRes'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - category-resource
+      summary: create
+      operationId: createUsingPOST_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryReq'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/categorias/{id}:
+    get:
+      tags:
+        - category-resource
+      summary: getOne
+      operationId: getOneUsingGET_1
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CategoryRes'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - category-resource
+      summary: update
+      operationId: updateUsingPUT_1
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryReq'
+      responses:
+        '201':
+          description: Created
+        '202':
+          description: Accepted
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - category-resource
+      summary: delete
+      operationId: deleteUsingDELETE_1
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /api/ciudades:
+    get:
+      tags:
+        - ciudades-resource
+      summary: getAll
+      operationId: getAllUsingGET_3
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CiudadDetailsDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - ciudades-resource
+      summary: create
+      operationId: createUsingPOST_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CiudadEditDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/ciudades/{id}:
+    get:
+      tags:
+        - ciudades-resource
+      summary: getOneEdit
+      operationId: getOneEditUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+        - name: mode
+          in: query
+          description: mode
+          required: true
+          style: form
+          allowReserved: true
+          schema:
+            type: string
+            enum:
+              - edit
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CiudadEditDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - ciudades-resource
+      summary: update
+      operationId: updateUsingPUT_2
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CiudadEditDTO'
+      responses:
+        '201':
+          description: Created
+        '202':
+          description: Accepted
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - ciudades-resource
+      summary: delete
+      operationId: deleteUsingDELETE_2
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /demos/datos:
+    post:
+      tags:
+        - demos-resource
+      summary: datos
+      operationId: datosUsingPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActorDTO'
+      responses:
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: string
+  /demos/datos/{id}:
+    get:
+      tags:
+        - demos-resource
+      summary: datos
+      operationId: datosUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActorDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /demos/params/{id}:
+    get:
+      tags:
+        - demos-resource
+      summary: cotilla
+      operationId: cotillaUsingGET_1
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/idiomas:
+    get:
+      tags:
+        - idiomas-resource
+      summary: getAll
+      operationId: getAllUsingGET_4
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IdiomaDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - idiomas-resource
+      summary: create
+      operationId: createUsingPOST_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdiomaDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/idiomas/{id}:
+    get:
+      tags:
+        - idiomas-resource
+      summary: getOne
+      operationId: getOneUsingGET_2
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/IdiomaDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - idiomas-resource
+      summary: update
+      operationId: updateUsingPUT_3
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdiomaDTO'
+      responses:
+        '201':
+          description: Created
+        '202':
+          description: Accepted
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - idiomas-resource
+      summary: delete
+      operationId: deleteUsingDELETE_3
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /api/paises:
+    get:
+      tags:
+        - pais-resource
+      summary: getAll
+      operationId: getAllUsingGET_5
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaisDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - pais-resource
+      summary: create
+      operationId: createUsingPOST_4
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaisDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/paises/{id}:
+    get:
+      tags:
+        - pais-resource
+      summary: getOne
+      operationId: getOneUsingGET_3
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PaisDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - pais-resource
+      summary: update
+      operationId: updateUsingPUT_4
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaisDTO'
+      responses:
+        '201':
+          description: Created
+        '202':
+          description: Accepted
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - pais-resource
+      summary: delete
+      operationId: deleteUsingDELETE_4
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /api/paises/{id}/ciudades:
+    get:
+      tags:
+        - pais-resource
+      summary: getCiudades
+      operationId: getCiudadesUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CiudadShortDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/peliculas:
+    get:
+      tags:
+        - peliculas-resource
+      summary: Listado paginable de las películas
+      operationId: getAllUsingGET_7
+      parameters:
+        - name: page
+          in: query
+          required: true
+          style: form
+          allowReserved: true
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          required: false
+          style: form
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PagePeliculaShortDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - peliculas-resource
+      summary: Añadir una nueva película
+      operationId: createUsingPOST_5
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Película editable'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+        '201':
+          description: Película añadida
+        '400':
+          description: Error al validar los datos o clave duplicada
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Película no encontrada
+  /api/peliculas/{id}:
+    get:
+      tags:
+        - peliculas-resource
+      summary: getOneDetails
+      operationId: getOneDetailsUsingGET_1
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+        - name: mode
+          in: query
+          description: mode
+          required: false
+          style: form
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PeliculaDetailsDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - peliculas-resource
+      summary: Modificar una película existente
+      description: Los identificadores deben coincidir
+      operationId: updateUsingPUT_5
+      parameters:
+        - name: id
+          in: path
+          description: Identificador de la película
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Película editable'
+      responses:
+        '201':
+          description: Película añadida
+        '202':
+          description: Accepted
+        '400':
+          description: Error al validar los datos o discrepancias en los identificadores
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Película no encontrada
+    delete:
+      tags:
+        - peliculas-resource
+      summary: Borrar una película existente
+      operationId: deleteUsingDELETE_5
+      parameters:
+        - name: id
+          in: path
+          description: Identificador de la película
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '204':
+          description: Película borrada
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Película no encontrada
+components:
+  schemas:
+    Pizza:
+      nombre: 
+        type: string
+    ActorDTO:
+      title: ActorDTO
+      required:
+        - nombre
+      type: object
+      properties:
+        apellidos:
+          type: string
+        id:
+          type: integer
+          format: int32
+        nombre:
+          type: string
+    CategoryReq:
+      title: CategoryReq
+      required:
+        - categoria
+      type: object
+      properties:
+        categoria:
+          type: string
+        id:
+          type: integer
+          format: int32
+        lastUpdate:
+          $ref: '#/components/schemas/TimestampReq'
+    CategoryRes:
+      title: CategoryRes
+      required:
+        - categoria
+      type: object
+      properties:
+        categoria:
+          type: string
+        id:
+          type: integer
+          format: int32
+        lastUpdate:
+          $ref: '#/components/schemas/TimestampRes'
+    City:
+      title: City
+      required:
+        - city
+      type: object
+      properties:
+        city:
+          type: string
+        cityId:
+          type: integer
+          format: int32
+        country:
+          $ref: '#/components/schemas/Country'
+        lastUpdate:
+          $ref: '#/components/schemas/Timestamp'
+    CiudadDetailsDTO:
+      title: CiudadDetailsDTO
+      type: object
+      properties:
+        ciudad:
+          type: string
+        id:
+          type: integer
+          format: int32
+        pais:
+          type: string
+    CiudadEditDTO:
+      title: CiudadEditDTO
+      type: object
+      properties:
+        ciudad:
+          type: string
+        id:
+          type: integer
+          format: int32
+        pais:
+          type: integer
+          format: int32
+    CiudadShortDTO:
+      title: CiudadShortDTO
+      type: object
+      properties:
+        ciudad:
+          type: string
+        id:
+          type: integer
+          format: int32
+    Country:
+      title: Country
+      required:
+        - country
+      type: object
+      properties:
+        country:
+          type: string
+        countryId:
+          type: integer
+          format: int32
+        lastUpdate:
+          $ref: '#/components/schemas/Timestamp'
+    IdiomaDTO:
+      title: IdiomaDTO
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        idioma:
+          type: string
+    Pageable:
+      title: Pageable
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+    PageActorDTO:
+      title: PageActorDTO
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorDTO'
+        empty:
+          type: boolean
+        first:
+          type: boolean
+        last:
+          type: boolean
+        number:
+          type: integer
+          format: int32
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        size:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+    PagePeliculaShortDTO:
+      title: PagePeliculaShortDTO
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/PeliculaShortDTO'
+        empty:
+          type: boolean
+        first:
+          type: boolean
+        last:
+          type: boolean
+        number:
+          type: integer
+          format: int32
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        size:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+    PaisDTO:
+      title: PaisDTO
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        pais:
+          type: string
+    PeliculaDetailsDTO:
+      title: PeliculaDetailsDTO
+      type: object
+      properties:
+        actores:
+          type: array
+          items:
+            type: string
+        categorias:
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+        id:
+          type: integer
+          format: int32
+        language:
+          type: string
+        languageVO:
+          type: string
+        length:
+          type: integer
+          format: int32
+        rating:
+          type: string
+        releaseYear:
+          type: integer
+          format: int32
+        rentalDuration:
+          type: string
+          format: byte
+        rentalRate:
+          type: number
+          format: bigdecimal
+        replacementCost:
+          type: number
+          format: bigdecimal
+        title:
+          type: string
+    PeliculaShortDTO:
+      title: PeliculaShortDTO
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        titulo:
+          type: string
+    Película editable:
+      title: Película editable
+      type: object
+      properties:
+        actores:
+          type: array
+          description: Lista de identificadores de actores.
+          items:
+            type: integer
+            format: int32
+        categorias:
+          type: array
+          description: Lista de identificadores de categoría.
+          items:
+            type: integer
+            format: int32
+        description:
+          type: string
+          description: Cadena sin limite de longitud.
+        id:
+          type: integer
+          format: int32
+        language:
+          type: integer
+          description: Identificador del idioma de la película.
+          format: int32
+        languageVO:
+          type: integer
+          description: Identificador del idioma de la versión original de la película.
+          format: int32
+        length:
+          type: integer
+          description: Duración en minutos de la película, mayor que 0.
+          format: int32
+        rating:
+          type: string
+          description: Clasificación por edades.
+          enum:
+            - G
+            - NC-17
+            - PG
+            - PG-13
+            - R
+        releaseYear:
+          type: integer
+          description: Valor entre 1901 y 2155.
+          format: int32
+        rentalDuration:
+          type: string
+          description: Entre 1 y 255.
+          format: byte
+        rentalRate:
+          minimum: 0
+          exclusiveMinimum: true
+          type: number
+          description: Un máximo de 2 dígitos enteros y 2 decimales.
+          format: bigdecimal
+        replacementCost:
+          minimum: 0
+          exclusiveMinimum: true
+          type: number
+          description: Un máximo de 3 dígitos enteros y 2 decimales.
+          format: bigdecimal
+        title:
+          type: string
+          description: Longitud máxima de 128 caracteres.
+      description: Version editable de las películas.
+    Sort:
+      title: Sort
+      type: object
+      properties:
+        empty:
+          type: boolean
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
+    Timestamp:
+      title: Timestamp
+      type: object
+      properties:
+        date:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+        hours:
+          type: integer
+          format: int32
+        minutes:
+          type: integer
+          format: int32
+        month:
+          type: integer
+          format: int32
+        nanos:
+          type: integer
+          format: int32
+        seconds:
+          type: integer
+          format: int32
+        time:
+          type: integer
+          format: int64
+        timezoneOffset:
+          type: integer
+          format: int32
+        year:
+          type: integer
+          format: int32
+    TimestampReq:
+      title: TimestampReq
+      type: object
+      properties:
+        date:
+          type: integer
+          format: int32
+        hours:
+          type: integer
+          format: int32
+        minutes:
+          type: integer
+          format: int32
+        month:
+          type: integer
+          format: int32
+        nanos:
+          type: integer
+          format: int32
+        seconds:
+          type: integer
+          format: int32
+        time:
+          type: integer
+          format: int64
+        year:
+          type: integer
+          format: int32
+    TimestampRes:
+      title: TimestampRes
+      type: object
+      properties:
+        date:
+          type: integer
+          format: int32
+        day:
+          type: integer
+          format: int32
+        hours:
+          type: integer
+          format: int32
+        minutes:
+          type: integer
+          format: int32
+        month:
+          type: integer
+          format: int32
+        nanos:
+          type: integer
+          format: int32
+        seconds:
+          type: integer
+          format: int32
+        time:
+          type: integer
+          format: int64
+        timezoneOffset:
+          type: integer
+          format: int32
+        year:
+          type: integer
+          format: int32
+
