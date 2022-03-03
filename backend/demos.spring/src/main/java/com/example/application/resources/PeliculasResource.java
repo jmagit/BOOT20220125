@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -55,7 +56,10 @@ public class PeliculasResource {
 	@GetMapping(params = "page")
 	@ApiOperation(value = "Listado paginable de las películas")
 	public Page<PeliculaShortDTO> getAll(@ApiParam(required = false) Pageable page) {
-		return srv.getByProjection(page, PeliculaShortDTO.class);
+		var content = srv.getAll(page);
+		return new PageImpl(content.getContent().stream().map(item -> PeliculaShortDTO.from(item)).toList(), 
+				page, content.getTotalElements());
+//		return srv.getByProjection(page, PeliculaShortDTO.class);
 	}
 
 	@GetMapping(path = "/{id}")
