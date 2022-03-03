@@ -2,6 +2,8 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.Valid;
+
 import java.util.Date;
 import java.sql.Timestamp;
 import java.util.List;
@@ -35,6 +37,7 @@ public class Rental implements Serializable {
 
 	//bi-directional many-to-one association to Payment
 	@OneToMany(mappedBy="rental")
+	@Valid
 	private List<Payment> payments;
 
 	//bi-directional many-to-one association to Customer
@@ -98,6 +101,7 @@ public class Rental implements Serializable {
 	public Payment addPayment(Payment payment) {
 		getPayments().add(payment);
 		payment.setRental(this);
+		payment.setCustomer(getCustomer());
 
 		return payment;
 	}

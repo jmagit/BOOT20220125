@@ -335,6 +335,12 @@ public class Film extends EntityBase<Film> implements Serializable {
 		return filmCategory;
 	}
 
+	public FilmCategory addFilmCategory(int categoryId) {
+		var filmCategory = new FilmCategory(new Category(categoryId), this);
+		getFilmCategories().add(filmCategory);
+		return filmCategory;
+	}
+
 	public FilmCategory removeFilmCategory(FilmCategory filmCategory) {
 		getFilmCategories().remove(filmCategory);
 		filmCategory.setFilm(null);
