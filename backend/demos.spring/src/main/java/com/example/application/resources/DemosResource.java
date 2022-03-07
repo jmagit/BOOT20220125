@@ -1,5 +1,9 @@
 package com.example.application.resources;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.example.application.dtos.ActorDTO;
+import com.example.application.dtos.ContactoDTO;
+import com.example.application.proxies.ContactosProxy;
 import com.example.exceptions.InvalidDataException;
 import com.example.exceptions.NotFoundException;
 
@@ -69,4 +76,36 @@ public class DemosResource {
 	    //return item.toString() ;
 	}
 
+	@Autowired
+	RestTemplate srvRest;
+
+	@GetMapping("/contactos/{id}")
+	public ContactoDTO contactos(@PathVariable int id) throws Exception {
+//		var contacto = srvRest.getForObject("http://localhost:8008/api/contactos/{id}", ContactoDTO.class, id);
+		var contacto = srvRest.getForObject("lb://contactos-service/api/contactos/{id}", ContactoDTO.class, id);
+		contacto.setApellidos(contacto.getApellidos().toUpperCase());
+		return contacto;
+	}
+
+
+	@Autowired
+	ContactosProxy proxy;
+	
+	@GetMapping("/proxy/{id}")
+	public ContactoDTO contactosOne(@PathVariable int id) throws Exception {
+		return proxy.getContacto(id);
+	}
+	@GetMapping("/proxy")
+	public List<ContactoDTO> contactosAll() throws Exception {
+		return proxy.getAll();
+	}
+
+	@Value("${jwt.secret}")
+	String cotilla;
+	
+	@GetMapping("/secreto")
+	public String secreto() throws Exception {
+		return cotilla;
+	}
+	
 }

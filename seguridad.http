@@ -1,0 +1,47 @@
+get http://localhost:8091/login?name=kk&password=kk
+
+###
+
+post http://localhost:8091/login?name=kk&password=kk
+Content-Type: application/json
+
+{
+    "name": "admin",
+    "password": "kk"
+}
+
+###
+
+post http://localhost:8091/login?name=kk&password=kk
+Content-Type: application/json
+
+{
+    "name": "falla",
+    "password": "kk"
+}
+
+###
+
+post http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+    "name": "admin",
+    "password": "kk"
+}
+
+###
+
+get http://localhost:8091/seguro
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJNaWNyb3NlcnZpY2lvc0pXVCIsInN1YiI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIiwiUk9MRV9BRE1JTiJdLCJpYXQiOjE2NDY2NjM2NjMsImV4cCI6MTY0NjY2NDI2M30.PKwUx8Dg0srR5HnPT7cbKF0iSXvVllOMkZBRxIZxjbTYDf6kcOv77MTiGDm2BUKUtBubHosIU2JgmRLwujRe2A
+
+###
+
+get http://localhost:8091/admin
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJNaWNyb3NlcnZpY2lvc0pXVCIsInN1YiI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIiwiUk9MRV9BRE1JTiJdLCJpYXQiOjE2NDY2NjM2NjMsImV4cCI6MTY0NjY2NDI2M30.PKwUx8Dg0srR5HnPT7cbKF0iSXvVllOMkZBRxIZxjbTYDf6kcOv77MTiGDm2BUKUtBubHosIU2JgmRLwujRe2A
+
+###
+
+get http://localhost:8091/secreto
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJNaWNyb3NlcnZpY2lvc0pXVCIsInN1YiI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIiwiUk9MRV9BRE1JTiJdLCJpYXQiOjE2NDY2NjM2NjMsImV4cCI6MTY0NjY2NDI2M30.PKwUx8Dg0srR5HnPT7cbKF0iSXvVllOMkZBRxIZxjbTYDf6kcOv77MTiGDm2BUKUtBubHosIU2JgmRLwujRe2A
+
