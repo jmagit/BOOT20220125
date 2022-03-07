@@ -1,0 +1,59 @@
+server:
+  port: ${PORT:8080}
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: false
+    serviceUrl:
+      defaultZone: ${DISCOVERY_URL:http://localhost:8761}/eureka/
+  instance:
+    appname: apigateway-server
+spring:
+  application:
+    name: apigateway-server
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+      routes:
+      - id: serv-catalogo
+          #lb:// cuando se va a acceder a través de Eureka
+        predicates:
+          - Path=/catalogo/**
+        uri: lb://catalogo-service
+        filters:
+          - RewritePath=/catalogo, /
+          - RewriteLocationResponseHeader=AS_IN_REQUEST, Location, ,
+      - id: serv-demos
+        predicates:
+          - Path=/demos/**
+        uri: lb://demo-service
+        filters:
+          - RewritePath=/demos, /
+      - id: serv-demos
+        predicates:
+          - Path=/demos/**
+        uri: lb://demo-service
+        filters:
+          - RewritePath=/demos, /
+      - id: serv-autentication
+        predicates:
+          - Path=/auth/**
+        uri: lb://autentication-service
+        filters:
+          - RewritePath=/auth, /
+      - id: serv-search
+        predicates:
+          - Path=/search/**
+        uri: https://www.google.com/
+        filters:
+          - RewritePath=/search, /
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG

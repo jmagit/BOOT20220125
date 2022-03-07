@@ -1,12 +1,26 @@
 package com.example.domains.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+
+import com.example.domains.core.entities.EntityBase;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.sql.Timestamp;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 
 /**
@@ -16,7 +30,7 @@ import java.util.List;
 @Entity
 @Table(name="rental")
 @NamedQuery(name="Rental.findAll", query="SELECT r FROM Rental r")
-public class Rental implements Serializable {
+public class Rental extends EntityBase<Rental> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -24,19 +38,19 @@ public class Rental implements Serializable {
 	@Column(name="rental_id")
 	private int rentalId;
 
-	@Column(name="last_update")
-	private Timestamp lastUpdate;
-
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="rental_date")
+	@NotNull
+	@PastOrPresent
 	private Date rentalDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="return_date")
+	@PastOrPresent
 	private Date returnDate;
 
 	//bi-directional many-to-one association to Payment
-	@OneToMany(mappedBy="rental")
+	@OneToMany(mappedBy="rental", cascade = CascadeType.ALL, orphanRemoval = true)
 	@Valid
 	private List<Payment> payments;
 
@@ -55,7 +69,29 @@ public class Rental implements Serializable {
 	@JoinColumn(name="staff_id")
 	private Staff staff;
 
+	@Column(name="last_update")
+	@Generated(value = GenerationTime.ALWAYS)
+	private Timestamp lastUpdate;
+
 	public Rental() {
+		super();
+		payments = new ArrayList<Payment>();
+	}
+
+	public Rental(int rentalId) {
+		this();
+		this.rentalId = rentalId;
+	}
+
+	public Rental(int rentalId, @NotNull @PastOrPresent Date rentalDate, Inventory inventory, Customer customer,
+			Staff staff, @PastOrPresent Date returnDate) {
+		this();
+		this.rentalId = rentalId;
+		this.rentalDate = rentalDate;
+		this.inventory = inventory;
+		this.customer = customer;
+		this.staff = staff;
+		this.returnDate = returnDate;
 	}
 
 	public int getRentalId() {
@@ -105,6 +141,18 @@ public class Rental implements Serializable {
 
 		return payment;
 	}
+	public Payment addPayment(BigDecimal amount, Date paymentDate, Staff staff) {
+		return addPayment(new Payment(0, 
+				amount, 
+				paymentDate, 
+				staff));
+	}
+	public Payment addPayment(BigDecimal amount, Date paymentDate, int staffId) {
+		return addPayment(amount, paymentDate, new Staff(staffId));
+	}
+	public Payment addPayment(BigDecimal amount, Date paymentDate) {
+		return addPayment(amount, paymentDate, staff);
+	}
 
 	public Payment removePayment(Payment payment) {
 		getPayments().remove(payment);
@@ -135,6 +183,61 @@ public class Rental implements Serializable {
 
 	public void setStaff(Staff staff) {
 		this.staff = staff;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(rentalId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Rental))
+			return false;
+		return rentalId == ((Rental) obj).rentalId;
+	}
+	
+	
+	public Payment facturar() {
+		if(returnDate != null)
+			throw new IllegalStateException("Pelicula ya devuelta.");
+		return addPayment(inventory.getFilm().getRentalRate(), new Date());
+	}
+	
+	public Optional<Payment> devolver(int staffId) {
+		return devolver(new Staff(staffId));
+	}
+	public Optional<Payment> devolver(Staff staff) {
+		if(returnDate != null)
+			throw new IllegalStateException("Pelicula ya devuelta.");
+		returnDate = new Date();
+		var periodo = 
+				rentalDate.toInstant()
+			      .atZone(ZoneId.systemDefault())
+			      .toLocalDate()
+			      .until(returnDate.toInstant()
+					      .atZone(ZoneId.systemDefault())
+					      .toLocalDate(), 
+					      ChronoUnit.DAYS
+			    		);
+		if(periodo > inventory.getFilm().getRentalDuration()) {
+			var penalizacion = Math.floor((double)periodo / inventory.getFilm().getRentalDuration());
+			var multa = inventory.getFilm().getRentalRate().multiply(BigDecimal.valueOf(penalizacion)).doubleValue();
+			return Optional.of(addPayment(BigDecimal.valueOf(multa), new Date(), staff));
+		}	
+		return Optional.empty();
+	}
+	
+	public Payment multarPorPerdida(int staffId) {
+		return multarPorPerdida(new Staff(staffId));
+	}
+	public Payment multarPorPerdida(Staff staff) {
+		if(returnDate != null)
+			throw new IllegalStateException("Pelicula ya devuelta.");
+		returnDate = new Date();
+		return addPayment(inventory.getFilm().getReplacementCost(), returnDate, staff);
 	}
 
 }

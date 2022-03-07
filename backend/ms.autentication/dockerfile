@@ -1,0 +1,7 @@
+# mvnw clean package
+FROM openjdk:17
+COPY target/ms.autentication-0.0.1-SNAPSHOT.jar /usr/app.jar
+EXPOSE 8091
+ENTRYPOINT ["java","-jar","/usr/app.jar"]
+# docker build -t ms-autentication-server .
+# docker run -d --name ms-autentication-server -p 8091:8091 --env DISCOVERY_URL=http://host.docker.internal:8761 --env ADMINSRV_URL=http://host.docker.internal:8088 --env SPRING_CLOUD_CONFIG_URI=http://host.docker.internal:8888/ ms-autentication-server

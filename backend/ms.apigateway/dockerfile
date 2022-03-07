@@ -1,0 +1,7 @@
+# mvnw clean package
+FROM openjdk:17
+COPY target/ms.apigateway-0.0.1-SNAPSHOT.jar /usr/app.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/usr/app.jar"]
+# docker build -t ms-apigateway-server .
+# docker run -d --name ms-apigateway-server -p 8080:8080 ms-apigateway-server

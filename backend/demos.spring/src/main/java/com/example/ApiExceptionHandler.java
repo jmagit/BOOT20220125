@@ -17,6 +17,7 @@ import com.example.exceptions.NotFoundException;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 
 @ControllerAdvice
 public class ApiExceptionHandler {
@@ -53,7 +54,7 @@ public class ApiExceptionHandler {
 		return new ErrorMessage(exception.getMessage(), request.getRequestURI());
 	}
 
-	@ExceptionHandler({ InvalidDataException.class, MethodArgumentNotValidException.class })
+	@ExceptionHandler({ InvalidDataException.class, MethodArgumentNotValidException.class, HttpMessageNotReadableException.class })
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
 	public ErrorMessage invalidData(Exception exception) {

@@ -19,7 +19,7 @@ public class Staff implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="staff_id")
-	private byte staffId;
+	private int staffId;
 
 	private byte active;
 
@@ -66,11 +66,16 @@ public class Staff implements Serializable {
 	public Staff() {
 	}
 
-	public byte getStaffId() {
+	public Staff(int staffId) {
+		super();
+		this.staffId = staffId;
+	}
+
+	public int getStaffId() {
 		return this.staffId;
 	}
 
-	public void setStaffId(byte staffId) {
+	public void setStaffId(int staffId) {
 		this.staffId = staffId;
 	}
 

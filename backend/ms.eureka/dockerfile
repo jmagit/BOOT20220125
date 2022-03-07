@@ -1,0 +1,7 @@
+# mvnw clean package
+FROM openjdk:17
+COPY target/ms.eureka-0.0.1-SNAPSHOT.jar /usr/app.jar
+EXPOSE 8761
+ENTRYPOINT ["java","-jar","/usr/app.jar"]
+# docker build -t ms-eureka-server .
+# docker run -d --name ms-eureka-server -p 8761:8761 ms-eureka-server
