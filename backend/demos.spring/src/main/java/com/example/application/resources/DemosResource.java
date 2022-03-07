@@ -81,8 +81,8 @@ public class DemosResource {
 
 	@GetMapping("/contactos/{id}")
 	public ContactoDTO contactos(@PathVariable int id) throws Exception {
-//		var contacto = srvRest.getForObject("http://localhost:8008/api/contactos/{id}", ContactoDTO.class, id);
-		var contacto = srvRest.getForObject("lb://contactos-service/api/contactos/{id}", ContactoDTO.class, id);
+		var contacto = srvRest.getForObject("http://localhost:8008/api/contactos/{id}", ContactoDTO.class, id);
+//		var contacto = srvRest.getForObject("lb://contactos-service/api/contactos/{id}", ContactoDTO.class, id);
 		contacto.setApellidos(contacto.getApellidos().toUpperCase());
 		return contacto;
 	}
