@@ -89,6 +89,7 @@
 ## HTML
 
 - Prototipo Pizza Project
+- Formulario de clientes
 
 ### Ejemplos de refuerzo
 
