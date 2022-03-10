@@ -1,23 +1,84 @@
 <!DOCTYPE html>
-<html>
-<body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="./theme/style.css">
+    <title>Ejemplos formulario</title>
 
-<h2>HTML Forms</h2>
+</head>
 
-<form action="/action_page.php">
-  <input type="hidden" name="estado" value="solo para el servido">
-  <label for="fname">First name:</label><br>
-  <input type="text" id="fname" name="fname" value="John"><br>
-  <label for="lname">Last name:</label><br>
-  <input type="text" id="lname" name="lname" value="Doe"><br><br>
-  <label for="fecha">Last name:</label><br>
-  <input type="date" id="fecha" name="fecha"><br><br>
-  <input name="boton" type="submit" value="Submit">
-  <input type="reset" value="Borrar">
-  <button type="button">Saluda</button>
-</form> 
+<body class="formularios">
 
-<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+  <header>
+    <img id="logo" src="images/logo.svg" alt="logotipo">
+    <nav>
+      <a href="index.html">inicio</a>
+      <a href="formulario.html">formulario</a>
+      <a href="page1.html">page 1</a>
+      <a href="page2.html">page 2</a>
+      <a href="page3.html">page 3</a>
+    </nav>
 
+  </header>
+  <main>
+    <h1>HTML Forms</h1>
+
+    <form method="get">
+      <h1>Persona</h1>
+      <input type="hidden" name="estado" value="solo para el servido">
+      <label for="fname">First name:</label><br>
+      <input type="text" id="fname" name="fname" value="John" required minlength="2"><br>
+      <label for="lname">Last name:</label><br>
+      <input type="text" id="lname" name="lname" minlength="2"><br><br>
+      <label for="nif">nif:</label><br>
+      <input type="text" id="nif" name="nif" pattern="\d{1,8}[A-Z]"><br><br>
+      <label for="fecha">Last name:</label><br>
+      <input type="date" id="fecha" name="fecha"><br>
+      <label for="edad">edad:</label><br>
+      <input type="number" id="edad" name="edad" min="16" max="67" step="2"><br><br>
+      <label for="color">color:</label><br>
+      <input type="color" id="color" name="color"><br>
+      <input type="checkbox" name="checkbox" value="esto es lo que manada">
+      <br>
+      genero:
+      <input type="radio" name="genero" value="m"> Masculino
+      <input type="radio" name="genero" value="f"> Femenino
+      <input type="radio" name="genero" value="o"> Otros
+      <br>
+      celiaco:
+      <input type="radio" name="celiaco" value="true"> Si
+      <input type="radio" name="celiaco" value="false" checked> No
+      <br>
+      <select name="order" size="5" multiple="true">
+        <option value="1" selected>Uno</option>
+        <option value="2">Dos</option>
+        <option>Tres</option>
+      </select><br>
+      <textarea name="largo" rows="3" cols="50">Aliquam erat volutpat.</b> Ut tempus posuere velit id molestie. Donec auctor enim ut mollis iaculis. Donec
+    feugiat, lectus id feugiat sollicitudin, ligula orci elementum dui, vitae consequat metus tellus id metus.
+    Aenean sem purus, suscipit quis enim at, consectetur aliquam felis. Nullam finibus cursus felis, in egestas
+    velit congue malesuada. Vivamus volutpat enim nec interdum eleifend. Nam convallis libero eget lacinia euismod.
+    Nam eget facilisis sapien. Nullam ligula orci, malesuada vel scelerisque in, blandit nec turpis. Etiam dictum
+    tincidunt consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Aliquam erat volutpat.</b> Ut tempus posuere velit id molestie. Donec auctor enim ut mollis iaculis. Donec
+    feugiat, lectus id feugiat sollicitudin, ligula orci elementum dui, vitae consequat metus tellus id metus.
+    Aenean sem purus, suscipit quis enim at, consectetur aliquam felis. Nullam finibus cursus felis, in egestas
+    velit congue malesuada. Vivamus volutpat enim nec interdum eleifend. Nam convallis libero eget lacinia euismod.
+    Nam eget facilisis sapien. Nullam ligula orci, malesuada vel scelerisque in, blandit nec turpis. Etiam dictum
+    tincidunt consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea>
+      <input name="boton" type="submit" value="Submit">
+      <input type="reset" value="Borrar">
+      <button type="button">Saluda</button>
+    </form>
+
+    <p class="error">If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+
+  </main>
+  <footer>
+    <hr>
+    &copy; Todos los dere.... ©
+  </footer>
 </body>
+
 </html>

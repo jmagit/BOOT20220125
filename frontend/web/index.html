@@ -5,13 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="./theme/style.css" media="print">
     <title>Ejemplos curso</title>
 </head>
 
 <body>
     <header>
-        <img src="images/logo.svg" alt="logotipo" >
+        <img id="logo" src="images/logo.svg" alt="logotipo" >
         <nav>
+            <a href="index.html">inicio</a>
             <a href="formulario.html">formulario</a>
             <a href="page1.html">page 1</a>
             <a href="page2.html">page 2</a>
@@ -20,13 +22,15 @@
         
     </header>
     <main>
-        <video width="400" autoplay>
+        <video width="400" controls>
             <source src="images/mov_bbb.mp4" type="video/mp4">
              Your browser does not support HTML video.
           </video>
           
     <h1>Lorem ipsum dolor</h1>
-    <summary>Proin molestie, eros non rutrum tempor, est velit
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <summary class="error grande" >Proin molestie, eros non rutrum tempor, est velit
         convallis nisl, et imperdiet ipsum risus vel neque. Suspendisse sem ante, consequat in est eget, rhoncus
         ultricies mi.</summary>
     <p><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</i>  Integer fermentum eu dolor ut lobortis. Pellentesque id ipsum at neque condimentum finibus
@@ -34,7 +38,7 @@
         Integer massa metus,
         dapibus vel ex non, consequat fringilla dui. Nulla facilisi. Duis eget diam vitae tellus convallis venenatis non <kbd>Cntr-Z</kbd>
     </p>
-    <code>
+    <code class="error">
         non sapien. <abbr title="Donec gravida tellus nisl">kk</abbr>, at pulvinar enim ullamcorper et. Fusce a egestas ipsum. Vestibulum ante
         ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus feugiat leo quis justo
         molestie, finibus consectetur nunc convallis. Nullam metus dui, congue sed volutpat vel, volutpat sit amet sem.

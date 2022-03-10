@@ -1,0 +1,60 @@
+@import url("formularios.css");
+
+@font-face {
+    font-family: "Principal";
+    src: 
+        url("Honey Baby.ttf") format("truetype"), 
+        url("Honey Baby.woff") format("woff"), 
+        url("Honey Baby.woff2") format("woff"), 
+        url("Honey Baby.otf") format("opentype");
+  }
+
+:root {
+    --color-error-letra: white;
+    --color-error-fondo: rgba(255, 0, 0, 0.596);
+    --color-border: red;
+}
+
+#logo {
+    width: 200px;
+    background-color: var(--color-border);
+}
+
+h1 {
+  color: blue;  
+}
+
+p.error {
+    color: var(--color-error-letra);
+    background-color: var(--color-error-fondo);
+}
+
+.grande {
+    font-size: 1.2em;
+}
+
+h1 + p {
+    font-style: italic;
+}
+
+h1 + p::first-letter {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+body {
+    font-family: "Principal";
+    font-size: 8pt;
+}
+
+@media print {
+    body {
+        font-size: 20pt;
+    }
+    input[type=submit], input[type=reset], button {
+        display: none;
+    }
+    input {
+        border-style: none;
+    }
+}
