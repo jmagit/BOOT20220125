@@ -1,0 +1,300 @@
+@use "sass:list";
+@use "variables" as *;
+$sizes: 576px, 768px, 992px, 1200px;
+
+@import url("../../node_modules/@fortawesome/fontawesome-free/css/all.css");
+@font-face {
+  font-family: "Principal";
+  src: url("Honey\ Baby.ttf") format("truetype"),
+    url("Honey\ Baby.woff") format("woff"),
+    url("Honey\ Baby.woff2") format("woff"),
+    url("Honey\ Baby.otf") format("opentype");
+}
+@font-face {
+  font-family: "Titulo";
+  src: url("cinema_st.ttf") format("truetype");
+}
+body {
+  background-color: $principal-background-color;
+  color: $principal-text-color;
+  margin: 0;
+  //font-family: "Principal";
+}
+main {
+  margin: 5px 10px;
+}
+
+@mixin barras-principales {
+  display: flex;
+  flex-flow: row wrap;
+  background-color: $secundario-background-color;
+  color: $secundario-text-color;
+  padding: 10px;
+  align-items: stretch;
+  a {
+    color: $secundario-text-color;
+    text-decoration: none;
+    padding: 2px 5px;
+  }
+  a:hover {
+    color: $secundario-background-color;
+    background-color: $secundario-text-color;
+    text-decoration: none;
+    border-radius: 25px;
+  }
+  @media print {
+    & {
+      display: none;
+    }
+  }
+}
+.cabecera-principal {
+  @include barras-principales();
+  position: sticky;
+  top: 0;
+  &__logo {
+    flex-grow: 1;
+    max-width: 120px;
+  }
+
+  &__menu {
+    flex-grow: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  &__login {
+    text-align: right;
+    flex-grow: 1;
+    &--hidden {
+      display: none;
+    }
+  }
+  &__logout {
+    align-self: flex-start;
+    &--hidden {
+      display: none;
+    }
+  }
+  &--hidden {
+    display: none;
+  }
+}
+.pie-principal {
+  @include barras-principales();
+}
+
+.error-msg {
+  color: $error-color;
+  background-color: $error-background-color;
+}
+
+.novedades {
+  $cabecera-font-size: 2em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  text-align: center;
+  &__cabecera {
+    font-family: Titulo;
+    font-size: $cabecera-font-size;
+    width: 100%;
+  }
+  &__articulo {
+    margin: 10px;
+    text-align: center;
+    // border: 1px solid $principal-text-color;
+    &-figure {
+      margin-inline-start: 0;
+      margin-inline-end: 0;
+      @media print {
+        & img {
+          max-width: 210px;
+        }
+      }
+    }
+    &-summary {
+      text-align: justify;
+      width: 100%;
+      @media print {
+        & {
+          width: 210px;
+          font-size: 1em;
+        }
+      }
+    }
+    &-figcaption {
+      font-size: small;
+    }
+  }
+  
+  @for $delta from 0 to list.length($sizes) {
+    @media (min-width: list.nth($sizes, $delta + 1)) {
+      &__cabecera {
+        font-size: $cabecera-font-size + ($delta + 1) * 0.5em;
+      }
+      &__articulo-summary {
+        width: 300px + $delta * 50px;
+        font-size: 1em + $delta * 0.2em;
+      }
+    }
+  }
+
+  @media (max-width: 320px) {
+    &__articulo-figure {
+      display: none;
+    }
+  }
+}
+
+.img--redonda {
+  border-radius: 50%;
+}
+
+@media print {
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  button {
+    display: none;
+  }
+  body {
+    font-size: 10pt;
+  }
+}
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    grid-column: $i;
+  }
+  @if $i < 12 {
+    @for $s from 2 through 13 - $i {
+      .col-#{$i}x#{$s} {
+        grid-column: $i #{"/"} span $s;
+      }
+    }
+  }
+}
+@for $s from 2 through 12 {
+  .colspan-#{$s} {
+    grid-column: span $s;
+  }
+}
+
+@for $i from 1 through 20 {
+  .row-#{$i} {
+    grid-row: $i;
+  }
+  @for $s from 2 through 21 - $i {
+    .row-#{$i}x#{$s} {
+      grid-row: $i #{"/"} span $s;
+    }
+  }
+}
+@for $s from 2 through 2 {
+  .rowpan-#{$s} {
+    grid-row: span $s;
+  }
+}
+
+.form {
+  display: grid;
+  grid-gap: 5px;
+
+  &__comand {
+    text-align: right;
+  }
+  @for $c from 2 through 12 {
+    &--col#{$c} {
+      $tmpl: "auto";
+      @for $i from 1 to $c {
+        $tmpl: $tmpl + " auto";
+      }
+      grid-template-columns: repeat($c, auto);
+    }
+    &--col#{$c} &__comand {
+      grid-column: span $c;
+    }
+  }
+}
+
+.field {
+  display: flex;
+  flex-flow: row wrap;
+  label {
+    margin-right: 10px;
+  }
+  &__radio {
+    flex-flow: row wrap;
+  }
+  input,
+  select,
+  &__radio {
+    width: 80%;
+  }
+  input[type="checkbox"],
+  input[type="radio"] {
+    max-width: 10%;
+  }
+}
+
+.Calculadora {
+  @mixin tamañoFont($factor: 0.3em) {
+    @for $delta from 0 to list.length($sizes) {
+      @media (min-width: list.nth($sizes, $delta + 1)) {
+        font-size: 1em + ($delta + 1) * $factor !important;
+      }
+    }
+  }
+  $fuente: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(4, 1fr);
+
+  background-color: #e6f3ff !important;
+  border-style: outset !important;
+  padding: 6px !important;
+  margin: 4px !important;
+  max-width: 100%;
+  min-width: 150px;
+  font: $fuente;
+
+  @for $delta from 1 to list.length($sizes) {
+    @media (min-width: list.nth($sizes, $delta + 1)) {
+      max-width: 300px + $delta * 200px;
+    }
+  }
+
+  .Pantalla {
+    grid-column: 1 / span 4;
+    background-color: #004000;
+    color: yellow;
+    border-style: inset !important;
+    text-align: right !important;
+    padding: 4px !important;
+    @include tamañoFont(1em);
+  }
+
+  .Resumen {
+    grid-column: 1 / span 4;
+    text-align: right !important;
+    @include tamañoFont(0.7em);
+  }
+  @mixin botones {
+    width: 100%;
+    font: $fuente;
+    @include tamañoFont;
+  }
+
+  .btnDigito {
+    color: navy;
+    @include botones;
+  }
+
+  .btnOperar {
+    color: red;
+    @include botones;
+  }
+}

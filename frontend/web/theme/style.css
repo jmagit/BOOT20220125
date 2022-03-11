@@ -13,6 +13,7 @@
     --color-error-letra: white;
     --color-error-fondo: rgba(255, 0, 0, 0.596);
     --color-border: red;
+    --tamaño-base: 1em;
 }
 
 #logo {
@@ -58,3 +59,28 @@ body {
         border-style: none;
     }
 }
+
+
+@media only screen and (max-width: 999px) {
+    body {
+      font-size: calc(var(--tamaño-base));
+      background-color: aqua;
+    }
+}
+@media only screen and  (max-width: 768px) {
+    body {
+      font-size: calc(var(--tamaño-base) * 1.2);
+      background-color: blueviolet;
+    }
+}
+@media only screen and (max-width: 576px) {
+    body {
+      font-size: calc(var(--tamaño-base) * 1.6);
+      background-color: darkcyan;
+    }
+    video {
+        display: none;
+    }
+}
+
+
