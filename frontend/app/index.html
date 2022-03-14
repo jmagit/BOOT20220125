@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <title>CGPizza</title>
+    <link rel="stylesheet" href="theme/style.css">
+</head>
+
+<body>
+    <header class="cabecera-principal">
+        <img id="logo" src="./images/logo.svg" alt="Logotipo de Cap Gemini">
+        <nav class="cabecera-principal__menu">
+            <a href="index.html"><i class="fas fa-home"></i> inicio</a>
+            <a href="pizza-form.html"><i class="fas fa-th-list"></i> carta</a>
+            <a href="tiendas"><i class="fas fa-store-alt"></i> tiendas</a>
+            <a href="cliente-form.html"><i class="fas fa-id-card-alt"></i> hazte cliente</a>
+            <a href="contactos.html"><i class="fas fa-address-book"></i> contacto</a>
+        </nav>
+        <form class="cabecera-principal__login">
+            <input type="text" name="user" size="8" placeholder="Usuario">
+            <input type="password" name="password" size="8" placeholder="Contraseña">
+            <input type="submit" value="Login">
+            <input type="submit" value="Registrarse">
+        </form>
+    </header>
+    <main>
+        <section class="novedades">
+            <header class="novedades__cabecera">
+                Novedades
+            </header>
+            <article class="novedades__articulo">
+                <figure class="novedades__articulo-figure">
+                    <picture class="novedades__articulo-figure-picture">
+                        <source media="(min-width:768px)" srcset="./images/pizza1x400.jpg">
+                        <source media="(min-width:576px)" srcset="./images/pizza1x300.jpg">
+                        <img class="img--redonda" src="./images/pizza1x200.jpg" alt="Lorem ipsum dolor">
+                    </picture>
+                    <figcaption>Lorem ipsum dolor</figcaption>
+                </figure>
+                <summary class="novedades__articulo-summary">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis animi repellat, ipsum
+                    consequuntur reiciendis qui repellendus dignissimos aspernatur provident ipsa eligendi repudiandae
+                    soluta corporis quidem ea asperiores enim deleniti maiores? 
+                    <!-- <a href="pizza-details.html" title="Para ver mas sobre Lorem ipsum dolor">Leer mas …</a> -->
+                    <a href="pizza-details.html" title="Para ver mas sobre Lorem ipsum dolor">Leer mas &mldr;</a>
+                </summary>
+            </article>
+            <article class="novedades__articulo">
+                <figure class="novedades__articulo-figure">
+                    <picture class="novedades__articulo-figure-picture">
+                        <source media="(min-width:768px)" srcset="https://picsum.photos/400?rnd=11">
+                        <source media="(min-width:576px)" srcset="https://picsum.photos/300?rnd=12">
+                        <img class="img--redonda" src="https://picsum.photos/200?rnd=1" alt="Morbi libero nisi">
+                    </picture>
+                    <figcaption>Morbi libero nisi</figcaption>
+                </figure>
+                <summary class="novedades__articulo-summary">
+                    Morbi libero nisi, porttitor sed finibus sit amet, dictum non dolor. Praesent sagittis turpis
+                    malesuada porta auctor. Sed varius urna vel libero volutpat porta. Etiam finibus luctus enim, quis
+                    eleifend est suscipit volutpat. Nam id eros eu velit venenatis dictum non vel lorem.
+                    <a href="pizza-details.html" title="Para ver mas sobre Morbi libero nisi">Leer mas &mldr;</a>
+                </summary>
+            </article>
+            <article class="novedades__articulo">
+                <figure class="novedades__articulo-figure">
+                    <picture class="novedades__articulo-figure-picture">
+                        <source media="(min-width:768px)" srcset="./images/pizza6x400.jpg">
+                        <source media="(min-width:576px)" srcset="./images/pizza6x300.jpg">
+                        <img class="img--redonda" src="./images/pizza6x200.jpg" alt="Cras elementum non odio at vulputate">
+                    </picture>
+                    <figcaption>Cras elementum non odio at vulputate</figcaption>
+                </figure>
+                <summary class="novedades__articulo-summary">
+                    Cras elementum non odio at vulputate. Nunc eleifend orci justo. Sed placerat libero vitae augue
+                    placerat, commodo ornare lectus elementum. Fusce a auctor nibh, vitae faucibus leo. Nulla vestibulum
+                    nunc in efficitur fringilla.
+                    <a href="pizza-details.html" title="Para ver mas sobre Cras elementum non odio at vulputate">Leer mas &mldr;</a>
+                </summary>
+            </article>
+        </section>
+    </main>
+    <footer class="pie-principal">
+        <div>
+            &copy; 2021 Todos los derechos reservados | <a href="/aviso-legal" target="_blank">Aviso Legal</a> | <a
+                href="/politica-de-privacidad" target="_blank">Política de Privacidad</a> | <a
+                href="/politica-de-cookies" target="_blank">Política de Cookies</a>
+        </div>
+    </footer>
+</body>
+
+</html>

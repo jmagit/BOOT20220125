@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <title>CGPizza</title>
+    <link rel="stylesheet" href="theme/style.css">
+</head>
+
+<body>
+    <header class="cabecera-principal">
+        <img id="logo" src="./images/logo.svg" alt="Logotipo de Cap Gemini">
+        <nav class="cabecera-principal__menu">
+            <a href="index.html"><i class="fas fa-home"></i> inicio</a>
+            <a href="pizza-form.html"><i class="fas fa-th-list"></i> carta</a>
+            <a href="tiendas"><i class="fas fa-store-alt"></i> tiendas</a>
+            <a href="cliente-form.html"><i class="fas fa-id-card-alt"></i> hazte cliente</a>
+            <a href="contactos.html"><i class="fas fa-address-book"></i> contacto</a>
+        </nav>
+        <form class="cabecera-principal__login">
+            <input type="text" name="user" size="8" placeholder="Usuario">
+            <input type="password" name="password" size="8" placeholder="Contraseña">
+            <input type="submit" value="Login">
+            <input type="submit" value="Registrarse">
+        </form>
+    </header>
+    <main>
+        <form id="miForm" name="miForm" class="form form--col4">
+            <label for="customer_id">Código</label>
+            <input type="number" id="customer_id" name="customer_id" placeholder="Código del usuario" required min="0"
+                data-label="otro" value="0"><output class="error-msg" id="customer_idErr" hidden></output>
+            <label for="store_id">Tienda</label>
+            <select id="store_id" name="store_id">
+                <option value="1">Tienda 1</option>
+                <option value="2">Tienda 2</option>
+            </select>
+            <label for="first_name">Nombre</label>
+            <input class="colspan-3" type="text" id="first_name" name="first_name" required minlength="2" maxlength="10"
+                value="0123456789123" data-label="Nombre"><output class="error-msg" id="first_nameErr" hidden></output>
+            <label for="last_name">Apellidos</label>
+            <input class="colspan-3" type="text" id="last_name" name="last_name" minlength="2" maxlength="50"><output
+                class="error-msg" id="last_nameErr" hidden></output>
+            <label for="email">Correo</label>
+            <input class="colspan-3" type="email" id="email" name="email" placeholder="Correo electrónico"
+                ><output class="error-msg" id="emailErr" hidden></output>
+            <label for="address_id">Dirección</label>
+            <div class="field__radio" id="address_id">
+                <input type="radio" id="address_id_casa" name="address_id" checked value="1">
+                <label for="address_id_casa">Casa</label>
+                <input type="radio" id="address_id_trabajo" name="address_id" value="2">
+                <label for="address_id_trabajo">Trabajo</label>
+            </div>
+            <label for="active">Activo</label>
+            <input type="checkbox" id="active" name="active" value="true" checked>
+            <label for="create_date">F. Creación</label>
+            <input type="date" id="create_date" name="create_date">
+            <label for="last_update">Última modificación</label>
+            <input type="date" id="last_update" name="last_update">
+            <label for="nif">DNI</label>
+            <input type="text" id="nif" name="nif"  minlength="2"><output class="error-msg" id="nifErr"
+                hidden></output>
+            <div class="form__command">
+                <input id="btnEnviar" type="submit" value="enviar">
+                <input type="button" value="volver">
+            </div>
+        </form>
+    </main>
+    <footer class="pie-principal">
+        <div>
+            &copy; 2021 Todos los derechos reservados | <a href="/aviso-legal" target="_blank">Aviso Legal</a> | <a
+                href="/politica-de-privacidad" target="_blank">Política de Privacidad</a> | <a
+                href="/politica-de-cookies" target="_blank">Política de Cookies</a>
+        </div>
+    </footer>
+
+    <script>
+        function esNIF(nif) {
+            const LETRAS_DEL_NIF = 'TRWAGMYFPDXBNJZSQVHLCKE'
+            if (!/^\d{1,8}[A-Za-z]$/.test(nif))
+                return false;
+            const letterValue = nif.substr(nif.length - 1);
+            const numberValue = nif.substr(0, nif.length - 1);
+            return letterValue.toUpperCase() === LETRAS_DEL_NIF.charAt(numberValue % 23);
+        }
+
+        function validacion() {
+            const form = document.forms.namedItem('miForm');
+            for (let item of form.elements) {
+                switch (item.name) {
+                    case 'nif':
+                        if (item.value && !esNIF(item.value)) {
+                            item.setCustomValidity('No es un NIF valido');
+                        } else {
+                            item.setCustomValidity('');
+                        }
+                        break;
+                }
+                const out = document.querySelector(`#${item.name}Err`)
+                if (out) {
+                    out.textContent = item.validationMessage;
+                    out.hidden = item.checkValidity();
+                }
+            }
+            document.querySelector('#btnEnviar').disabled = !form.checkValidity()
+        }
+        // document.querySelector('#nif').addEventListener('change', function (ev) {
+        //     if (ev.target.value && !esNIF(ev.target.value)) {
+        //         ev.target.setCustomValidity('No es un NIF valido');
+        //     } else {
+        //         ev.target.setCustomValidity('');
+        //     }
+        // });
+
+        // document.querySelectorAll('input').forEach(cntr => cntr.addEventListener('change', function (ev) {
+        //     let cmp = `#${ev.target.name}Err`
+        //     const out = document.querySelector(cmp)
+        //     if (out) {
+        //         out.textContent = ev.target.validationMessage;
+        //         out.hidden = ev.target.checkValidity();
+        //     }
+        // }));
+        document.querySelectorAll('input').forEach(cntr => cntr.addEventListener('change', function (ev) {
+            validacion()
+        }));
+        validacion()
+
+    </script>
+</body>
+
+</html>
