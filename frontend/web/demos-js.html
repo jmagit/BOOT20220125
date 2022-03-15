@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demos JS</title>
+</head>
+
+<body>
+    <h1>Demos JS</h1>
+    <script src="js/uno.js"></script>
+    <script src="js/dos.js"></script>
+    <script>
+        let v = window;
+        // var a = 3;
+        // var b = "2";
+        // c = a + b;
+        // console.log(c);
+        // c = a * b;
+        // console.log(c);
+        // b = 2;
+        // c = a + b;
+        // console.log(c);
+
+        // function kk() {
+        //     var x = 1;
+        //     if (true) {
+        //        var y = 1;
+        //     }
+        //     c = x + y;
+        //     return c;
+        // }
+        // if (kk() === c) {
+        //     console.log("Idénticos")
+        // }
+
+        // t = [10, 20, 30]
+        // o = { x : 10, yy: 20 }
+        // o['x'] = o.x;
+        // with (t) {
+        //     x = y + 2;
+        // }
+        // for (var i in t) {
+        //     console.log(i)
+        // }
+        // for (var i of t) {
+        //     console.log(i)
+        // }
+        function avg() {
+            var rslt = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                rslt += arguments[i];
+            }
+            return arguments.length ? (rslt / arguments.length) : 0;
+        }
+
+        // function suma(a, b) {
+        //     return a + b;
+        // }
+        // console.log(suma(2, 2))
+        // suma = function (a, b) {
+        //     return a + b;
+        // }
+        // // console.log(suma(2, 2))
+        // //suma = 5;
+        // // // console.log(suma)
+        // // function suma(a, b) {
+        // //     return a / b;
+        // // }
+        // suma = function (a, b) {
+        //     return a - b;
+        // }
+        // suma = (a,b) => a + b;
+        // otra = (a,b) => suma(a + b) * 2;
+        pinta = str => console.log(str);
+       
+        // if (typeof (suma) === "function") {
+        //     console.log(suma(2, 2))
+        //     console.log(suma(2, 2, 4))
+        //     console.log(suma(2))
+        // }
+        // console.log(suma)
+        // console.log(avg(1, 2))
+        // console.log(avg(1, 2, 3, 4))
+        // choca(44);
+        // console.log(pinta(avg(1, 2, 3, 4)))
+
+        // (function() {
+        //     let mia = 5;
+        //     // ...
+        // })()
+
+        t = [];
+        t[0] = 10;
+        t[1] = "Cadena";
+        t[7] = 80;
+        t[3] =  str => console.log(str)
+        for (var i in t) {
+            console.log(i)
+        }
+        for (var i of t) {
+            console.log(i)
+        }
+        t[3]('Hola mundo')
+        t.splice(3)
+        for (var i in t) {
+            console.log(i)
+        }
+        for (var i of t) {
+            console.log(i)
+        }
+        o = { x: 10, y: 20, suma: (x, y) => x + y }
+        console.log(o, o.x, o.y, o.suma(2, 3))
+        o.z = 30;
+        cmp = 'z'
+        o[cmp] = 50;
+        o.cmp = 70;
+        o.suma(2, 3);
+        o.suma = 10;
+        console.log(o)
+        // delete o.x
+        // console.log(o)
+
+        function Punto(x, y) {
+            this.x = x;
+            this.y = y;
+            this.z = 0;
+            this.suma = () => this.x + this.y;
+        }
+        s = '';
+        let p1 = new Punto(10, 20);
+        let p2 = new Punto(20, "cadena");
+        p1.KK = p2;
+        p1.kk.z=4;
+        p2.suma = function() { return this.x - this.y; }
+        delete p2.z;
+        
+        console.log(p1, p2)
+        console.log(p1.suma())
+        console.log(p2.suma())
+
+    </script>
+</body>
+
+</html>
