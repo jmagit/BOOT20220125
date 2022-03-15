@@ -12,7 +12,7 @@
     <h1>Demos JS</h1>
     <script src="js/uno.js"></script>
     <script src="js/dos.js"></script>
-    <script>
+    <!-- <script>
         let v = window;
         // var a = 3;
         // var b = "2";
@@ -126,21 +126,120 @@
         function Punto(x, y) {
             this.x = x;
             this.y = y;
-            this.z = 0;
-            this.suma = () => this.x + this.y;
+            this.suma = function() { return this.x + this.y; };
         }
-        s = '';
+
+        class PuntoConClase {
+            constructor(x, y) {
+                this._x = x;
+                this.y = y;
+            }
+            suma() {
+                return this._x + this.y;
+            }
+
+            get X() { return this._x; }
+            set X(valor) {
+                if(valor < 0)
+                    throw new Error('No puede ser negativo')
+                this._x = valor
+            }
+        }
+
+        pinta(typeof(Punto))
+        pinta('--------- >' + typeof(PuntoConClase))
+        let p5 = new PuntoConClase(3, 3)
+        if(p5.X == 5) {
+            p5.X = -1;
+        }
+        if(p5.x == 5) {
+            p5.x = -1;
+        }
+        pinta(p5)
+        Punto.prototype.saluda =  () => console.log('Soy un punto');
+        Punto.prototype.cont =  0;
+        function Punto3D(x, y, z) {
+            let vm = this;
+            let privado = 3;
+            vm.x = x;
+            vm.y = y;
+            vm.z = 0;
+            vm.suma = () => vm.x + vm.y + vm.z;
+            vm.dame = () => privado;
+            vm.pon = valor => {
+                if(valor != privado) {
+                    privado = valor;
+                }
+            }
+        }
+        Punto3D.prototype = Object.assign({}, Punto.prototype);
+        Punto3D.prototype.algo = () => console.log('Soy algo');
         let p1 = new Punto(10, 20);
-        let p2 = new Punto(20, "cadena");
-        p1.KK = p2;
-        p1.kk.z=4;
-        p2.suma = function() { return this.x - this.y; }
-        delete p2.z;
+        let p2 = new Punto(20, 50);
+        // p1.pon(3);
+        // pinta(p1.dame())
+        // p1.KK = p2;
+        // p1.kk.z=4;
+        // p2.suma = function() { return this.x - this.y; }
+        // delete p2.z;
         
         console.log(p1, p2)
         console.log(p1.suma())
         console.log(p2.suma())
+        p2.suma.bind(p1)
+        console.log(p2.suma())
+        //console.log(p2.suma.call(p1))
 
+        // p1.saluda()
+        // // p2.saluda =  () => console.log('Soy otro método');
+        // p2.saluda()
+        // Punto.prototype.saluda =  () => console.log('Adioooos');
+        // p1.saluda()
+        // // p2.saluda =  () => console.log('Soy otro método');
+        // p2.saluda()
+        // let p3 = new Punto3D(20, "cadena", 4);
+        // p3.saluda()
+        // p3.algo()
+        // p1.algo()
+ 
+        function cotilla() {
+            this.valor = 'ejemplo';
+
+        }
+
+        pinta(this)
+        cotilla();
+        pinta(valor);
+        pinta(this)
+        let demo = { fijo: 0 }
+        cotilla.call(demo);
+        pinta(demo);
+        cotilla.call(p1);
+        pinta(p1);
+        // Punto(666, 20);
+        // pinta(x)
+        pinta(new cotilla())
+
+        let x = 4, y = 5;
+        let punto = { x: x, y: y};
+        punto = { x, y};
+    </script> -->
+
+    <script type="module">
+        // import * as m1 from './js/modulo1.js';
+        // import * as m2 from './js/modulo2.js';
+
+        // m1.choca()
+        // console.log(m1.suma(2, 2))
+        // m2.choca()
+        // console.log(m2.suma(2, 2))
+
+        import { choca } from './js/modulo2.js';
+        // import { choca as choca2 } from './js/modulo2.js';
+        import { miChoca } from './js/modulo1.js';
+        choca()
+        miChoca()
+        
     </script>
 </body>
 
