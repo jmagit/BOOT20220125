@@ -239,7 +239,48 @@
         import { miChoca } from './js/modulo1.js';
         choca()
         miChoca()
+
+        // int[] tab = new int[10];
+
+        // let tab = new Array(); // []
+        // tab[4] = 0;// [undefined, undefined, undefined, undefined, 0]
+        // tab = dameArray(10, 'algo'); // [0,0,0,0,0,0,0,0,0]
+        // function dameArray(elementos, defecto = 0) {
+
+        // }
+
+        var o = new Object(); // {}
+        o.id = 1;
+        o.nombre = 'pepito';
+        o.apellidos = 'Grillo';
+        o.getNombreCompleto = function () { return `${this.nombre} ${this.apellidos}` }
+        var o2 = new Object(); // {}
+        o2.id = 3;
+        o2.nombre = 'Capitan';
+        o2.apellidos = 'Tan';
+        o2.getNombreCompleto = function () { return `${this.nombre} ${this.apellidos}` }
+
+        function Persona(id, nombre, apellidos) {
+            this.id = id;
+            this.nombre = nombre;
+            this.apellidos = apellidos;
+            //this.getNombreCompleto = function () { return `${this.nombre} ${this.apellidos}` }
+        }
+        Persona.prototype.getNombreCompleto = function () { return `${this.nombre} ${this.apellidos}` }
+
+        class PersonaConClase {
+            constructor(id, nombre, apellidos) {
+                this.id = id;
+                this.nombre = nombre;
+                this.apellidos = apellidos;
+            }
+            getNombreCompleto() { return `${this.nombre} ${this.apellidos}` }
+        }
         
+        var o3 = new Persona(2, 'Carmelo', 'Coton')
+        o3.nombre = null;
+
+
     </script>
 </body>
 

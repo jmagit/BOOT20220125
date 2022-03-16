@@ -4,13 +4,65 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejecicios</title>
+    <title>Ejercicios</title>
 </head>
 <body>
     <script src="./ejercicios.js"></script>
     <script>
         // Ejercicio0();
-        console.log(dameValores());
+        // console.log(dameValores());
+
+        //console.log(aleatorio(1, 100))
+
+        // JuegoDelNumero();
+
+        // console.log(dameArray(10, 0));
+        // console.log(dameArray(5, 0, 1, 2, 3));
+
+        // console.log(damePrimos(100));
+        // console.log(damePrimosGenerator(100))
+        // console.log(damePrimosIterator(100))
+
+        // let casos = ['12345678z', '12345678Z', '1234S', '1234J', '4g', '12345678', 'Z', 'Z12345678']
+        // casos.forEach(caso => 
+        //     console.log(`${caso} ${esNIF(caso)? 'ES': 'NO ES'} un NIF valido`)
+        //     )
+
+        // casos = ['ana', 'reconocer', 'La ruta nos aporto otro paso natural', 'SOMOS O NO SOMOS',
+        //     'Dábale arroz a la zorra el abad', 'áéíóúüuuoiea', 'a¿¡+-*!?\'"a',
+        //     'No subas, abusón', '¿Será lodo o dólares?',
+        //     'Este no lo es'
+        // ]
+        // casos.forEach(caso => 
+        //     console.log(`${caso} ${esPalindromo(caso)? 'ES': 'NO ES'} un palíndromo`)
+        //     )
+        
+        // var juego = new Juego(10, 100);
+        var juego = new JuegoConClase(10, 100);
+        console.log(typeof(JuegoConClase))
+        console.log(juego)
+        do {
+            do {
+                var numeroLeido = prompt(`Dame tu número ${juego.intentos + 1} de ${juego.DameMaxIntentos()}:`);
+                if (numeroLeido === null)
+                    break;
+                if (isNaN(parseInt(numeroLeido))) {
+                    alert('No es un número valido');
+                    continue;
+                }
+                try {
+                    juego.PruebaCon(+numeroLeido);
+                } catch (error) {
+                    alert('ERROR: ' + error.message + '\n' + juego.mensaje)
+                    break;
+                }
+                alert(juego.mensaje);
+            } while (juego.intentos < 10 && !juego.encontrado);
+            if (!confirm('¿Otra?'))
+                break;
+            juego.Inicializa();
+        } while (true);
+
     </script>
 </body>
-</html>
+</html> 
