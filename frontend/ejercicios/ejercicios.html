@@ -5,21 +5,107 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicios</title>
+    <style>
+        .errorMsg {
+            color: red;
+        }
+    </style>
 </head>
 <body>
+    <main>
+        <form id="miForm">
+            <fieldset>
+                <label class="meinteresa" id="lbPideNumero" for="txtNumero" hidden>Dame el número</label>
+                <input class="meinteresa" id="txtNumero" type="text" hidden required>
+                <button class="meinteresa" id="btnJugar">Empezar</button>
+                <output id="txtMensaje"></output>
+            </fieldset>
+        </form>
+    </main>
     <script src="./ejercicios.js"></script>
+    <script>
+        (function() {
+            let juego = new Juego(10, 100);
+            let lbPideNumero = document.querySelector('#lbPideNumero')
+            let txtNumero = document.querySelector('#txtNumero')
+            //let btnJugar = document.getElementById('btnJugar')
+            let btnJugar = document.querySelector('button')
+            let txtMensaje = document.querySelector('#txtMensaje')
+
+            function Empezar(ev) {
+                juego.Inicializa();
+                lbPideNumero.textContent = `Dame tu número ${juego.intentos + 1} de ${juego.DameMaxIntentos()}:`
+                lbPideNumero.hidden = false;
+                txtNumero.hidden = false;
+                // txtNumero.focus()
+                txtMensaje.textContent = null
+                btnJugar.textContent = 'Probar'
+                btnJugar.removeEventListener('click', Empezar)
+                ev.preventDefault()
+            }
+            btnJugar.addEventListener('click', Empezar)
+
+            document.forms.miForm.addEventListener('submit', ev => {
+                ev.preventDefault()
+                txtMensaje.className = ` ${txtMensaje.className} `.replace(' errorMsg ', '')
+                try {
+                    txtMensaje.textContent = juego.PruebaCon(+txtNumero.value);
+                    lbPideNumero.textContent = `Dame tu número ${juego.intentos + 1} de ${juego.DameMaxIntentos()}:`
+                } catch (error) {
+                    txtMensaje.className = ' errorMsg'
+                    txtMensaje.textContent = error.message
+                }
+                if (juego.intentos >= 10 || juego.encontrado) {
+                    lbPideNumero.hidden = true;
+                    txtNumero.hidden = true;
+                    btnJugar.textContent = 'Empezar'
+                    btnJugar.addEventListener('click', Empezar)
+                }
+            })
+            txtNumero.addEventListener('change', function (ev) {
+                if (ev.target.value < 0) {
+                    ev.target.setCustomValidity('no es un número valido');
+                } else {
+                    ev.target.setCustomValidity('');
+                }
+            })
+
+            // btnJugar.addEventListener('click', function(ev) {
+            //     //alert(txtNumero.value)
+            //     txtNumero.hidden = !txtNumero.hidden
+            //     if(!txtNumero.hidden)
+            //         txtNumero.focus();
+            //     lbPideNumero.innerHTML = lbPideNumero.textContent +'<b>x</b>';
+            // } )
+            // txtNumero.addEventListener('change', function() {
+            //     console.log(txtNumero.value)
+            // })
+            // txtNumero.addEventListener('keydown', function(ev) {
+            //     console.log(ev.keyCode)
+            // })
+
+            // for(let tag of document.querySelectorAll('.meinteresa')){
+            //     tag.addEventListener('mouseover', function(ev) {
+            //     console.log(ev.target.name)
+            // })
+            // }        
+        })();
+        console.log(this)
+    </script>
     <script>
         // Ejercicio0();
         // console.log(dameValores());
 
-        //console.log(aleatorio(1, 100))
+        // console.log(aleatorio(1, 100))
 
         // JuegoDelNumero();
 
         // console.log(dameArray(10, 0));
         // console.log(dameArray(5, 0, 1, 2, 3));
-
-        // console.log(damePrimos(100));
+        // let params = [10, 0, 1, 2, 3]
+        // console.log(dameArray(...params));
+        
+        // console.log(damePrimos(1000));
         // console.log(damePrimosGenerator(100))
         // console.log(damePrimosIterator(100))
 
@@ -38,31 +124,30 @@
         //     )
         
         // var juego = new Juego(10, 100);
-        var juego = new JuegoConClase(10, 100);
-        console.log(typeof(JuegoConClase))
-        console.log(juego)
-        do {
-            do {
-                var numeroLeido = prompt(`Dame tu número ${juego.intentos + 1} de ${juego.DameMaxIntentos()}:`);
-                if (numeroLeido === null)
-                    break;
-                if (isNaN(parseInt(numeroLeido))) {
-                    alert('No es un número valido');
-                    continue;
-                }
-                try {
-                    juego.PruebaCon(+numeroLeido);
-                } catch (error) {
-                    alert('ERROR: ' + error.message + '\n' + juego.mensaje)
-                    break;
-                }
-                alert(juego.mensaje);
-            } while (juego.intentos < 10 && !juego.encontrado);
-            if (!confirm('¿Otra?'))
-                break;
-            juego.Inicializa();
-        } while (true);
-
+        // // var juego = new JuegoConClase(10, 100);
+        // console.log(typeof(JuegoConClase))
+        // console.log(juego)
+        // do {
+        //     do {
+        //         var numeroLeido = prompt(`Dame tu número ${juego.intentos + 1} de ${juego.DameMaxIntentos()}:`);
+        //         if (numeroLeido === null)
+        //             break;
+        //         if (isNaN(parseInt(numeroLeido))) {
+        //             alert('No es un número valido');
+        //             continue;
+        //         }
+        //         try {
+        //             juego.PruebaCon(+numeroLeido);
+        //         } catch (error) {
+        //             alert('ERROR: ' + error.message + '\n' + juego.mensaje)
+        //             break;
+        //         }
+        //         alert(juego.mensaje);
+        //     } while (juego.intentos < 10 && !juego.encontrado);
+        //     if (!confirm('¿Otra?'))
+        //         break;
+        //     juego.Inicializa();
+        // } while (true);
     </script>
 </body>
 </html> 

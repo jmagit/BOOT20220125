@@ -19,7 +19,7 @@ function JuegoDelNumero() {
     var numeroBuscado = aleatorio(1, 100);
     var numeroIntroducido;
     var intentos = 0;
-    var encontrado = false;
+    var encontrado = false; 
     do {
         intentos += 1;
         while (true) {
@@ -192,9 +192,6 @@ function esPalindromo(cadena) {
 
 function Juego(maxIntentos, valores) {
     var numeroBuscado;
-    this.intentos;
-    this.encontrado;
-    this.mensaje;
     this.Inicializa = function () {
         numeroBuscado = aleatorio(1, valores);
         // debugger;
@@ -235,9 +232,6 @@ function Juego(maxIntentos, valores) {
 Juego.prototype.DameIntento = function () { return this.intentos + 1; }
 
 class JuegoConClase {
-    _maxIntentos;
-    _valores;
-    _numeroBuscado;
     constructor(maxIntentos, valores) {
         this._maxIntentos = maxIntentos;
         this._valores = valores;
