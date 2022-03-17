@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo AJAX</title>
+</head>
+
+<body>
+    <main>
+        <h1>Películas</h1>
+        <section id="listado"></section>
+        <section id="paginacion"></section>
+    </main>
+    <img id="ajaxwait" src="images/loading.gif" alt="Cargando ..." hidden>
+    <button onclick="addActor({nombre: 'creado', apellidos: 'desde ajax'})">add</button>
+    <script>
+        function pintaListado(resp) {
+            let listado = '<ul>'
+            for(let peli of resp.content)
+                listado += `<li><a href="http://localhost:8001/api/peliculas/${peli.id}">${peli.titulo}</a></li>`
+            listado += `</ul>`
+            document.querySelector('#listado').innerHTML = listado;
+            let paginacion = '<div>'
+            for(let i=0; i < resp.totalPages; i++)
+                paginacion += `<input type="button" value="${i+1}" onclick="cargaPagina(${i}, pintaListado, pintaError)">`
+            paginacion += '</div>'
+            document.querySelector('#paginacion').innerHTML = paginacion;
+        }
+        function pintaError(resp) {
+            document.querySelector('#listado').textContent =resp
+        }
+        // function cargaPagina(page = 0, fnOK, fnKO) {
+        //     let xmlhttp = new XMLHttpRequest();
+        //     xmlhttp.onreadystatechange = function () {
+        //         if (xmlhttp.readyState == 4) {
+        //             document.querySelector('#ajaxwait').hidden = true;
+        //             document.querySelector('main').hidden = false;
+        //             if (xmlhttp.status == 200) {
+        //                 let resp = JSON.parse(xmlhttp.responseText);
+        //                 fnOK(resp)
+        //             } else {
+        //                 fnKO(xmlhttp.responseText) // xmlhttp.status
+        //             }
+        //         }
+        //     }
+        //     xmlhttp.open('get', `http://localhost:8001/api/peliculas?page=${page}&size=40`)
+        //     xmlhttp.send()
+        //     document.querySelector('#ajaxwait').hidden = false;
+        //     document.querySelector('main').hidden = true;
+        // }
+
+        function cargaPagina(page = 0, fnOK, fnKO) {
+            fetch( `http://localhost:8001/api/peliculas?page=${page}&size=40`)
+                .then(resp => resp.json())
+                .then(body => fnOK(body))
+                .catch(resp => fnKO(resp.status))
+        }
+        // function damePromesa(page = 0) {
+        //     return fetch( `http://localhost:8001/api/peliculas?page=${page}&size=40`)
+        // }
+
+        // damePromesa(0).then(resp => resp.json())
+        //         .then(body => pintaListado(body))
+        //         .catch(resp => pintaError(resp.status))
+        cargaPagina(0, pintaListado, pintaError);
+        // cargaPagina(0, resp => {
+        //     document.querySelector('#listado').innerHTML = `<b>Filas: </b>${resp.content.length}`
+        // }, pintaError);
+        
+        function addActor(actor) {
+            let xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4) {
+                    document.querySelector('#ajaxwait').hidden = true;
+                    document.querySelector('main').hidden = false;
+                    if (xmlhttp.status == 201) {
+                        document.querySelector('#listado').textContent ='OK'// xmlhttp.status
+                    } else {
+                        document.querySelector('#listado').textContent = xmlhttp.responseText // xmlhttp.status
+                    }
+                }
+            }
+            xmlhttp.open('post', `http://localhost:8001/api/actores`)
+            xmlhttp.setRequestHeader('Content-Type', 'application/json')
+            xmlhttp.send(JSON.stringify(actor))
+            document.querySelector('#ajaxwait').hidden = false;
+            document.querySelector('main').hidden = true;
+        }
+        
+    </script>
+</body>
+
+</html>
