@@ -41,5 +41,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 			.antMatchers("/demos/**").hasRole("ADMIN")
 			.anyRequest().permitAll();
+//		http.and().antMatchers(HttpMethod.GET, "/menu").permitAll().antMatchers("/menu").hasRole("ADMIN");
+//		http.and().antMatchers("/tienda").hasRole("EMPLOYER");
+//		http.and().antMatchers("/entregas").hasRole("DELIVERY");
 	}
 }
