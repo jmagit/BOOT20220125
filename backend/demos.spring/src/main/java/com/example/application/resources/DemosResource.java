@@ -1,5 +1,6 @@
 package com.example.application.resources;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.example.application.dtos.ActorDTO;
 import com.example.application.dtos.ContactoDTO;
+import com.example.application.proxies.AuthProxy;
 import com.example.application.proxies.ContactosProxy;
 import com.example.exceptions.InvalidDataException;
 import com.example.exceptions.NotFoundException;
@@ -109,5 +111,18 @@ public class DemosResource {
 	public String secreto() throws Exception {
 		return cotilla;
 	}
+
+	@Autowired
+	AuthProxy authProxy;
+
+	@GetMapping("/auth/seguro")
+	public String getSeguro(@RequestHeader String authorization) {
+		return authProxy.getSeguro(authorization);
+	}
+	@GetMapping("/auth/secreto")
+	public String getSecreto(@RequestHeader String authorization) {
+		return authProxy.getSecreto(authorization);
+	}
 	
+
 }

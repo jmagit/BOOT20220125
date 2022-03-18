@@ -4,7 +4,8 @@
   "description": "Ejemplos del curso",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint **/*.js"
   },
   "author": "Javier",
   "license": "MIT",
@@ -13,6 +14,7 @@
     "bootstrap": "^5.1.3"
   },
   "devDependencies": {
-    "eslint": "^8.10.0"
+    "eslint": "^8.11.0",
+    "eslint-plugin-jasmine": "^4.1.3"
   }
 }
