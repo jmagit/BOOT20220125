@@ -34,6 +34,10 @@
 			<input class="btnDigito btnNum" type="button" value="0" data-valor="0">
 			<input class="btnDigito" type="button" value=",">
 			<input class="btnOperar btnCalc" type="button" value="=">
+			<!-- 
+			<input id="btnPI" class="btnDigito" type="button" value="&#928">
+			<input class="btnOperar btnCalc" type="button" value="^">
+			-->
 		</div>
 	</main>
 
@@ -62,6 +66,7 @@
 			document.querySelector('[value="±"]').addEventListener('click', calc.cambiaSigno);
 			document.querySelector('#btnIniciar').addEventListener('click', calc.inicia);
 			document.querySelector('#btnBorrar').addEventListener('click', calc.borrar);
+			// document.querySelector('#btnPI').addEventListener('click', () => calc.ponOperando(Math.PI.toString()));
 
 			document.body.addEventListener('keydown', ev => {
 				if(location.href.endsWith('debug'))
