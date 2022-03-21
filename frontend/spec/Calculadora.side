@@ -1,0 +1,455 @@
+{
+  "id": "37303e57-efe2-4f45-abf9-a511029af6c9",
+  "version": "2.0",
+  "name": "Calculadora",
+  "url": "http://127.0.0.1:5500/fundamentos/ejercicios/calculadora.html",
+  "tests": [{
+    "id": "a2fbfda5-9fb5-47ca-9da0-2787fa7cb738",
+    "name": "Los digitos",
+    "commands": [{
+      "id": "ac23dd6a-9249-479a-a9ab-fbc51eaaebf9",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:5500/frontend/ejercicios/calculadora.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "60dd0423-40ef-434e-b537-f71ddf44553b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(8)",
+      "targets": [
+        ["css=.btnDigito:nth-child(8)", "css:finder"],
+        ["xpath=//input[@value='9']", "xpath:attributes"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2b8cc4b2-1006-47d9-8333-d4a2b8c1c1e3",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=txtPantalla",
+      "targets": [],
+      "value": "9"
+    }, {
+      "id": "cfe0c8e5-0a63-496b-954b-987398b909db",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(7)",
+      "targets": [
+        ["css=.btnDigito:nth-child(7)", "css:finder"],
+        ["xpath=//input[@value='8']", "xpath:attributes"],
+        ["xpath=//input[5]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "511b42ce-5059-44c9-8a1e-82b4d07381d4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(6)",
+      "targets": [
+        ["css=.btnDigito:nth-child(6)", "css:finder"],
+        ["xpath=//input[@value='7']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a0a17616-125d-43c5-bca7-31aebc600ab2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(12)",
+      "targets": [
+        ["css=.btnDigito:nth-child(12)", "css:finder"],
+        ["xpath=//input[@value='6']", "xpath:attributes"],
+        ["xpath=//input[10]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c458ba53-5262-41f5-912c-f2c0d470a821",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(11)",
+      "targets": [
+        ["css=.btnDigito:nth-child(11)", "css:finder"],
+        ["xpath=//input[@value='5']", "xpath:attributes"],
+        ["xpath=//input[9]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "071828ea-52e0-4591-b085-96e81ad587ae",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(10)",
+      "targets": [
+        ["css=.btnDigito:nth-child(10)", "css:finder"],
+        ["xpath=//input[@value='4']", "xpath:attributes"],
+        ["xpath=//input[8]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bee63fa6-ce4d-42c3-a92f-5e56562b7bff",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(16)",
+      "targets": [
+        ["css=.btnDigito:nth-child(16)", "css:finder"],
+        ["xpath=//input[@value='3']", "xpath:attributes"],
+        ["xpath=//input[14]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0e02255f-fc24-403c-abd5-799aff1c5053",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(15)",
+      "targets": [
+        ["css=.btnDigito:nth-child(15)", "css:finder"],
+        ["xpath=//input[@value='2']", "xpath:attributes"],
+        ["xpath=//input[13]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "04d8a5d0-6181-4a19-826d-12dd041704c3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(14)",
+      "targets": [
+        ["css=.btnDigito:nth-child(14)", "css:finder"],
+        ["xpath=//input[@value='1']", "xpath:attributes"],
+        ["xpath=//input[12]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "59aa3011-9b43-4e42-b80d-a33f2952cbb0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(19)",
+      "targets": [
+        ["css=.btnDigito:nth-child(19)", "css:finder"],
+        ["xpath=//input[@value='0']", "xpath:attributes"],
+        ["xpath=//input[17]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "edfefc7d-5575-4b1d-adf0-2e2da4cb814c",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=txtPantalla",
+      "targets": [
+        ["id=txtPantalla", "id"],
+        ["css=#txtPantalla", "css:finder"],
+        ["xpath=//output[@id='txtPantalla']", "xpath:attributes"],
+        ["xpath=//output[2]", "xpath:position"],
+        ["xpath=//output[contains(.,'9876543210')]", "xpath:innerText"]
+      ],
+      "value": "9876543210"
+    }, {
+      "id": "a1589eb3-05cc-47d5-87a5-32fe81396f85",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnOperar:nth-child(5)",
+      "targets": [
+        ["css=.btnOperar:nth-child(5)", "css:finder"],
+        ["xpath=//input[@value='+']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fd7d7cbb-3a15-44e5-b6c5-5fd6b6207e65",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=txtResumen",
+      "targets": [
+        ["id=txtResumen", "id"],
+        ["css=#txtResumen", "css:finder"],
+        ["xpath=//output[@id='txtResumen']", "xpath:attributes"],
+        ["xpath=//output", "xpath:position"],
+        ["xpath=//output[contains(.,'9876543210 +')]", "xpath:innerText"]
+      ],
+      "value": "9876543210 +"
+    }, {
+      "id": "c66049ba-fa0c-4d3b-99f7-5923d4d97936",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(14)",
+      "targets": [
+        ["css=.btnDigito:nth-child(14)", "css:finder"],
+        ["xpath=//input[@value='1']", "xpath:attributes"],
+        ["xpath=//input[12]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "673e5cce-dc74-4968-9cf0-bdb2ab4d0560",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=txtPantalla",
+      "targets": [
+        ["id=txtPantalla", "id"],
+        ["css=#txtPantalla", "css:finder"],
+        ["xpath=//output[@id='txtPantalla']", "xpath:attributes"],
+        ["xpath=//output[2]", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "eec02afd-b882-452c-93f3-c8cccfc71ceb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnOperar:nth-child(13)",
+      "targets": [
+        ["css=.btnOperar:nth-child(13)", "css:finder"],
+        ["xpath=//input[@value='*']", "xpath:attributes"],
+        ["xpath=//input[11]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6d3be116-fcaa-46bf-9946-95ea7bbf4844",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=txtPantalla",
+      "targets": [
+        ["id=txtPantalla", "id"],
+        ["css=#txtPantalla", "css:finder"],
+        ["xpath=//output[@id='txtPantalla']", "xpath:attributes"],
+        ["xpath=//output[2]", "xpath:position"]
+      ],
+      "value": "9876543211"
+    }, {
+      "id": "e9b81a55-0c66-4bce-8c50-d63d1ef7947c",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=txtResumen",
+      "targets": [
+        ["id=txtResumen", "id"],
+        ["css=#txtResumen", "css:finder"],
+        ["xpath=//output[@id='txtResumen']", "xpath:attributes"],
+        ["xpath=//output", "xpath:position"],
+        ["xpath=//output[contains(.,'9876543211 *')]", "xpath:innerText"]
+      ],
+      "value": "9876543211 *"
+    }, {
+      "id": "ef21dc8e-817f-4a1a-9a4c-cfda3180a9b7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(15)",
+      "targets": [
+        ["css=.btnDigito:nth-child(15)", "css:finder"],
+        ["xpath=//input[@value='2']", "xpath:attributes"],
+        ["xpath=//input[13]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b3a36d79-8314-4114-83c1-18740df6b5d1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnOperar:nth-child(21)",
+      "targets": [
+        ["css=.btnOperar:nth-child(21)", "css:finder"],
+        ["xpath=//input[@value='=']", "xpath:attributes"],
+        ["xpath=//input[19]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "310fdb26-599b-4ba9-bebb-4576f7822d1e",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=txtPantalla",
+      "targets": [
+        ["id=txtPantalla", "id"],
+        ["css=#txtPantalla", "css:finder"],
+        ["xpath=//output[@id='txtPantalla']", "xpath:attributes"],
+        ["xpath=//output[2]", "xpath:position"],
+        ["xpath=//output[contains(.,'19753086422')]", "xpath:innerText"]
+      ],
+      "value": "19753086422"
+    }]
+  }, {
+    "id": "0b0bff49-7fa7-459d-8fa7-5972d2e2281c",
+    "name": "Infinito",
+    "commands": [{
+      "id": "033a0334-fb16-4bd1-8347-cbaf5bacbe08",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:5500/frontend/ejercicios/calculadora.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d5f87718-2f95-46ee-bf20-d7988293c10c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "830x1032",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "66c6ce6a-efb6-4f52-85f2-5a78d9ff3a1c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(15)",
+      "targets": [
+        ["css=.btnDigito:nth-child(15)", "css:finder"],
+        ["xpath=//input[@value='2']", "xpath:attributes"],
+        ["xpath=//input[13]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "90b02aed-d722-4d86-a53b-81e774656cca",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnOperar:nth-child(17)",
+      "targets": [
+        ["css=.btnOperar:nth-child(17)", "css:finder"],
+        ["xpath=//input[@value='/']", "xpath:attributes"],
+        ["xpath=//input[15]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2c1bb521-c7bf-4562-923b-531ce8fb265d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(19)",
+      "targets": [
+        ["css=.btnDigito:nth-child(19)", "css:finder"],
+        ["xpath=//input[@value='0']", "xpath:attributes"],
+        ["xpath=//input[17]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c68e4c29-c650-4c76-b50d-ce29d5c08f9d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnOperar:nth-child(21)",
+      "targets": [
+        ["css=.btnOperar:nth-child(21)", "css:finder"],
+        ["xpath=//input[@value='=']", "xpath:attributes"],
+        ["xpath=//input[19]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "236d05f8-4c45-44bf-b882-40e09178bf76",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=txtPantalla",
+      "targets": [
+        ["id=txtPantalla", "id"],
+        ["css=#txtPantalla", "css:finder"],
+        ["xpath=//output[@id='txtPantalla']", "xpath:attributes"],
+        ["xpath=//output[2]", "xpath:position"],
+        ["xpath=//output[contains(.,'Infinity')]", "xpath:innerText"]
+      ],
+      "value": "Infinity"
+    }]
+  }, {
+    "id": "6bdd931c-1dc9-44c1-99cc-3aed4e026381",
+    "name": "IEEE",
+    "commands": [{
+      "id": "e0f105c5-0ce0-4085-abeb-f782298b382a",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:5500/frontend/ejercicios/calculadora.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ec1c5f1d-f1a5-4be3-9754-2fa6cc0941d9",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "830x1032",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7ab70291-bfe2-4df4-83a8-d9bb0f4742e5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(20)",
+      "targets": [
+        ["css=.btnDigito:nth-child(20)", "css:finder"],
+        ["xpath=//input[@value=',']", "xpath:attributes"],
+        ["xpath=//input[18]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "28979a8d-0737-4493-a525-90102558e576",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(14)",
+      "targets": [
+        ["css=.btnDigito:nth-child(14)", "css:finder"],
+        ["xpath=//input[@value='1']", "xpath:attributes"],
+        ["xpath=//input[12]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5f658a60-4084-4a20-90da-ece006441c8e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnOperar:nth-child(5)",
+      "targets": [
+        ["css=.btnOperar:nth-child(5)", "css:finder"],
+        ["xpath=//input[@value='+']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "86e90d8d-cf7d-476e-8578-0856c3530f94",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(20)",
+      "targets": [
+        ["css=.btnDigito:nth-child(20)", "css:finder"],
+        ["xpath=//input[@value=',']", "xpath:attributes"],
+        ["xpath=//input[18]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d820ab41-ac9a-4295-bcca-5f80ba3775b3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnDigito:nth-child(15)",
+      "targets": [
+        ["css=.btnDigito:nth-child(15)", "css:finder"],
+        ["xpath=//input[@value='2']", "xpath:attributes"],
+        ["xpath=//input[13]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "91220d91-bcf5-48e2-8d8b-10879b10cf95",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btnOperar:nth-child(21)",
+      "targets": [
+        ["css=.btnOperar:nth-child(21)", "css:finder"],
+        ["xpath=//input[@value='=']", "xpath:attributes"],
+        ["xpath=//input[19]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "da835ae0-49bf-4f0c-ab4a-3ba7b3d401fd",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=txtPantalla",
+      "targets": [
+        ["id=txtPantalla", "id"],
+        ["css=#txtPantalla", "css:finder"],
+        ["xpath=//output[@id='txtPantalla']", "xpath:attributes"],
+        ["xpath=//output[2]", "xpath:position"],
+        ["xpath=//output[contains(.,'0,3')]", "xpath:innerText"]
+      ],
+      "value": "0,3"
+    }]
+  }],
+  "suites": [{
+    "id": "c0857823-555e-466e-ac04-9273922c283c",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["a2fbfda5-9fb5-47ca-9da0-2787fa7cb738"]
+  }, {
+    "id": "db3de4ca-715d-4ce0-92d5-919e5229107f",
+    "name": "Operaciones",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://127.0.0.1:5500/", "http://127.0.0.1:5500/fundamentos/ejercicios/calculadora.html"],
+  "plugins": []
+}

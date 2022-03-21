@@ -22,12 +22,12 @@ function JuegoDelNumero() {
     var encontrado = false; 
     do {
         intentos += 1;
-        while (true) {
+        // while (true) {
             numeroIntroducido = +prompt(`Dame tu numero (${intentos} de 10) [${numeroBuscado}]:`);
-            // numeroIntroducido = +prompt(`Dame tu numero (${intentos} de 10):`);
-            if (!isNaN(numeroIntroducido)) break;
-            alert('No es un número')
-        }
+        //     // numeroIntroducido = +prompt(`Dame tu numero (${intentos} de 10):`);
+        //     if (!isNaN(numeroIntroducido)) break;
+        //     alert('No es un número')
+        // }
         if (numeroBuscado === numeroIntroducido) {
             encontrado = true;
             break;
