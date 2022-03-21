@@ -21,7 +21,7 @@ describe('Verificación de los ejercicios de JavaScript', () => {
     });
 
     describe('Ejercicio 1: Crear una función que devuelva un numero aleatorio', () => {
-        [[1, 100], [-10, -1] /*, [0, 10] */].forEach(caso => {
+        [[1, 100], [-10, -1] , [0, 10]].forEach(caso => {
             it(`Valor entre ${caso[0]} mas ${caso[1]}`, () => {
                 let rslt = aleatorio(caso[0], caso[1])
 
@@ -52,7 +52,7 @@ describe('Verificación de los ejercicios de JavaScript', () => {
             })
 
             it('Espía', () => {
-                const INICIO=1, FIN=100;
+                const INICIO=0, FIN=100;
                 let rslt = aleatorio(INICIO, FIN)
                 
                 expect(Math.random).toHaveBeenCalledWith()
@@ -286,12 +286,16 @@ describe('Verificación de los ejercicios de JavaScript', () => {
 describe('Ejemplos Asincronos', () => {
     it('async fetch', async () => {
         const page = 1
-        const response = await fetch(`https://picsum.photos/v2/list?page=${page}&limit=10`);
-        if (response.ok) {
-            const lst = await response.json();
-            expect(10).toBe(lst.length);
-        } else {
-            fail('Error ' + response.status + ': ' + response.statusText)
+        try {
+            const response = await fetch(`https://picsum.photos/v2/list?page=${page}&limit=10`);
+            if (response.ok) {
+                const lst = await response.json();
+                expect(10).toBe(lst.length);
+            } else {
+                fail('Error ' + response.status + ': ' + response.statusText)
+            }
+        } catch (error) {
+            fail('Reject la promesa')
         }
     })
     
