@@ -6,14 +6,15 @@ import { AjaxWaitComponent } from './ajax-wait';
 import { SecurityModule } from '../security';
 import { RouterModule } from '@angular/router';
 import { CommonServicesModule } from '../common-services';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
-    NotificationComponent, NotificationModalComponent, AjaxWaitComponent,
+    NotificationComponent, NotificationModalComponent, AjaxWaitComponent, HomeComponent,
   ],
   exports: [
-    NotificationComponent, NotificationModalComponent, AjaxWaitComponent,
+    NotificationComponent, NotificationModalComponent, AjaxWaitComponent, HomeComponent,
   ],
   imports: [
     CommonModule, CommonServicesModule, SecurityModule, RouterModule.forChild([]),

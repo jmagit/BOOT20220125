@@ -7,7 +7,6 @@ import { LoggerService } from 'src/lib/my-core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Hola mundo';
 
   // constructor(private out: LoggerService) {
   //   out.error('Es un error')
