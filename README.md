@@ -149,4 +149,21 @@ Cuaquleir tetxo se pduee leer... si se respetan la primera y la última letra de
 1. Calculadora.
 2. Validar formulario de clientes.
 
+## Angular
+
+1. Laboratorio de servicios: Notificaciones
+2. Reproducir la calculadora
+3. Reproducir el formulario de Clientes en el componente ClienteFormulario
+4. Crear módulo CommonComponent (export, import)
+    - Crear componente FormButtons con los botones de Enviar y Volver (@output: send, cancel - @input: send-disabled)
+    - Crear componente ShowErrorsMessages que muestre los errores de validación (@input: errors)
+5. Convertir ShowErrorsMessages en una directiva
+6. Crear directivas de validación:
+    - IBAN,
+    - greater-than,
+    - before, after, future, futureOrPresent, past, ...
+7. Laboratorio CRUD: Contactos
+8. Laboratorio Routing
+9. Testing de servicios, componentes, directivas
+
 ## Proyecto
