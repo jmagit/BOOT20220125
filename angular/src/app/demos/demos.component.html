@@ -1,4 +1,4 @@
-<h1>Hola {{Nombre}}</h1>
+<h1>Hola {{Nombre | elipsis:20 | uppercase }}</h1>
 <p>
   <input type="text" [(ngModel)]="Nombre">
   <input type="button" value="saluda" (click)="saluda()" >
@@ -22,21 +22,27 @@ Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores architecto 
 <p [class.semivisible]="!visible">Ahora casi me ves</p>
 
 <p>
-  Calcula 2 + 2 = {{ 2 + 2 }} = {{ calcula(2, 2) }}
+  Calcula 2 + 2 = {{ 2 + 2 }} = {{ calcula(2, 2) | currency:'EUR':'symbol':'1.2-2' }}
 </p>
 
 <ul>
-  <li *ngFor="let item of listado; let indice=index; let fondo=odd;"
+  <li *ngFor="let item of listado | slice:-5; let indice=index; let fondo=odd;"
     [style.background-color]="fondo ? 'LightBlue' : 'Lavender'" >
-    {{item.nombre}} ({{item.id}}) <i>[Elemento {{indice + 1}} de {{listado.length}}]</i>
+    {{item.nombre | titlecase }} ({{item.id}}) <i>[Elemento {{indice + 1}} de {{listado.length}}]</i>
   </li>
 </ul>
 
 <p>
   <select [(ngModel)]="idProvincia" >
-    <option *ngFor="let item of listado" [value]="item.id">{{item.nombre}}</option>
+    <option *ngFor="let item of listado" [value]="item.id">{{item.nombre | capitalize}}</option>
   </select>
   Seleccionado: {{idProvincia}}
   <input type="text" #txtProvincia value="Tabarnia">
   <input type="button" value="add" (click)="add(txtProvincia.value)" >
+</p>
+
+<my-sizer [(size)]="fontSize"></my-sizer>
+<input type="number" [(ngModel)]="fontSize">
+<p [style.font-size.px]="fontSize">
+  {{listado | json}}
 </p>

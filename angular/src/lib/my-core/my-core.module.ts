@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SizerComponent } from './components/sizer.component';
+import { PIPES_CADENAS } from './pipes/cadenas.pipe';
 
 
 
 @NgModule({
   declarations: [
-    SizerComponent,
+    SizerComponent, PIPES_CADENAS,
   ],
   exports: [
-    SizerComponent,
+    SizerComponent, PIPES_CADENAS,
   ],
   imports: [
     CommonModule
