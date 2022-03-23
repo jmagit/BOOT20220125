@@ -1,0 +1,10 @@
+<div class="notificaciones" *ngIf="VM.HayNotificaciones">
+  <div class="notificacion" [class.error]="item.Type === VM.NotificationType.error"
+    *ngFor="let item of VM.Listado; let i=index">
+    {{item.Message}}
+    <button type="button" (click)="VM.remove(i)">X</button>
+  </div>
+  <div class="center">
+    <button class="btn btn-info" type="button" (click)="VM.clear()">Cerrar</button>
+  </div>
+</div>

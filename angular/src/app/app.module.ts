@@ -8,14 +8,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainModule } from './main';
 import { SecurityModule } from './security';
+import { DemosComponent } from './demos/demos.component';
+import { CommonServicesModule } from './common-services';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DemosComponent
   ],
   imports: [
     BrowserModule, FormsModule,
-    AppRoutingModule, MainModule, SecurityModule, MyCoreModule,
+    AppRoutingModule, MainModule, SecurityModule, MyCoreModule, CommonServicesModule,
   ],
   providers: [
     LoggerService,
