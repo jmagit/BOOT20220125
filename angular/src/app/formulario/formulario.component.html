@@ -1,0 +1,40 @@
+<p>
+  <input type="button" value="add" (click)="VM.add()">
+  <input type="button" value="edit" (click)="VM.edit(1)">
+</p>
+<form #miForm="ngForm">
+  <p>
+    <label for="id">código: </label>
+    <input type="number" id="id" name="id" [(ngModel)]="VM.Elemento.id" #id="ngModel" required>
+    <output class="error" [hidden]="!id.hasError('required') || miForm.pristine">Es obligatorio</output>
+    <br>
+    <label for="nombre">nombre: </label>
+    <input type="text" id="nombre" name="nombre" [(ngModel)]="VM.Elemento.nombre" #nombre="ngModel"
+      required minlength="2" maxlength="10" pattern="[A-Za-z\s]+">
+    <output class="error" [hidden]="!nombre.hasError('required')">Es obligatorio</output>
+    <output class="error" [hidden]="!nombre.hasError('minlength') && !nombre.hasError('maxlength')">Debe tener entre 2 y 10 letras</output>
+    <output class="error" [hidden]="!nombre.hasError('pattern')">Formato invalido</output>{{nombre.errors | json}}
+    <br>
+    <label for="apellidos">apellidos: </label>
+    <input type="text" id="apellidos" name="apellidos" [(ngModel)]="VM.Elemento.apellidos" #apellidos="ngModel"
+       minlength="2" maxlength="10">
+    <output class="error" [hidden]="!apellidos.hasError('minlength') && !apellidos.hasError('maxlength')">Debe tener entre 2 y 10 letras</output>
+    <br>
+    <label for="email">email: </label>
+    <input type="email" id="email" name="email" [(ngModel)]="VM.Elemento.email" #email="ngModel"
+     maxlength="100" email>
+    <output class="error" [hidden]="!email.hasError('email')">No es un correo electrónico valido</output>
+    <br>
+    <label for="nif">nif: </label>
+    <input type="text" id="nif" name="nif" [(ngModel)]="VM.Elemento.nif" #nif="ngModel">
+    <br>
+    <label for="edad">edad: </label>
+    <input type="number" id="edad" name="edad" [(ngModel)]="VM.Elemento.edad" #edad="ngModel"
+      min="16" max="67">
+    <output class="error" [hidden]="!edad.hasError('min') && !edad.hasError('max')">Debe tener entre 16 y 67 años</output>
+  </p>
+  <b>
+    <input type="button" value="enviar" (click)="VM.send()" [disabled]="miForm.invalid">
+    <input type="button" value="volver" (click)="VM.cancel()">
+    </b>
+</form>

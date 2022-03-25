@@ -1,0 +1,21 @@
+.error {
+  color: red;
+}
+form .ng-pristine {
+  border-color: navy;
+  box-shadow: 5px 5px 5px navy;
+}
+form .ng-dirty {
+  border-color: green;
+  box-shadow: 5px 5px 5px green;
+}
+form .ng-invalid {
+  border-color: red !important;
+  box-shadow: 5px 5px 5px red !important;
+  margin-right: 10px;
+  transform: scale(1.02);
+  transition: all linear 1s;
+}
+form .ng-invalid-parse {
+  transition: all linear 1s;
+}
