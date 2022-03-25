@@ -25,7 +25,7 @@ public class EmpleadosResource {
 	private StaffRepository dao;
 	
 	@GetMapping("/{id}/foto")
-	public ResponseEntity<byte[]> getFoto(@PathVariable byte id) throws NotFoundException {
+	public ResponseEntity<byte[]> getFoto(@PathVariable int id) throws NotFoundException {
 		var result = dao.findById(id);
 		if(result.isEmpty() || result.get().getPicture() == null)
 			throw new NotFoundException();
@@ -33,7 +33,7 @@ public class EmpleadosResource {
 	}
 	
 	@GetMapping(path="/{id}/photo", produces = { "image/png" })
-	public byte[] getPhoto(@PathVariable byte id) throws NotFoundException {
+	public byte[] getPhoto(@PathVariable int id) throws NotFoundException {
 		var result = dao.findById(id);
 		if(result.isEmpty() || result.get().getPicture() == null)
 			throw new NotFoundException();
@@ -41,7 +41,7 @@ public class EmpleadosResource {
 	}
 	
 	@PutMapping(path="/{id}/photo", produces = { "image/png" })
-	public byte[]  setPhoto(@PathVariable byte id, @RequestBody byte[] file) throws NotFoundException {
+	public byte[]  setPhoto(@PathVariable int id, @RequestBody byte[] file) throws NotFoundException {
 		var item = dao.findById(id);
 		if(item.isEmpty())
 			throw new NotFoundException();
@@ -52,7 +52,7 @@ public class EmpleadosResource {
 	
 	@DeleteMapping("/{id}/foto")
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-	public void deleteFoto(@PathVariable byte id) throws NotFoundException {
+	public void deleteFoto(@PathVariable int id) throws NotFoundException {
 		var item = dao.findById(id);
 		if(item.isEmpty())
 			throw new NotFoundException();

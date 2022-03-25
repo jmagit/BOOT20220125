@@ -8,6 +8,6 @@ import com.example.domains.entities.projections.EmpleadoProjetion;
 
 @RepositoryRestResource(path="empleados", itemResourceRel="empleado", 
 	collectionResourceRel="empleados", excerptProjection = EmpleadoProjetion.class)
-public interface StaffRepository extends JpaRepository<Staff, Byte> {
+public interface StaffRepository extends JpaRepository<Staff, Integer> {
 
 }

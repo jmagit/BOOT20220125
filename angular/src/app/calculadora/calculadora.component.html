@@ -1,0 +1,41 @@
+<div class="Calculadora">
+  <output class="Resumen">
+    <ng-container *ngIf="SeparadorDecimal === ','; then ResumenComa; else ResumenPunto;"></ng-container>
+  </output>
+  <output class="Pantalla">
+    <ng-container *ngIf="SeparadorDecimal === ','; then PantallaComa; else PantallaPunto;"></ng-container>
+  </output>
+  <input class="btnOperar" type="button" value="C" (click)="inicia()">
+  <input class="btnOperar col-2x2" type="button" value="&curvearrowleft; BORRAR" (click)="borrar()">
+  <input class="btnOperar" type="button" value="+" (click)="calcula('+')">
+  <input class="btnDigito" type="button" value="7" (click)="ponDigito('7');">
+  <input class="btnDigito" type="button" value="8" (click)="ponDigito('8');">
+  <input class="btnDigito" type="button" value="9" (click)="ponDigito('9');">
+  <input class="btnOperar" type="button" value="-" (click)="calcula('-')">
+  <input class="btnDigito" type="button" value="4" (click)="ponDigito('4');">
+  <input class="btnDigito" type="button" value="5" (click)="ponDigito('5');">
+  <input class="btnDigito" type="button" value="6" (click)="ponDigito('6');">
+  <input class="btnOperar" type="button" value="*" (click)="calcula('*')">
+  <input class="btnDigito" type="button" value="1" (click)="ponDigito('1');">
+  <input class="btnDigito" type="button" value="2" (click)="ponDigito('2');">
+  <input class="btnDigito" type="button" value="3" (click)="ponDigito('3');">
+  <input class="btnOperar" type="button" value="/" (click)="calcula('/')">
+  <input class="btnDigito" type="button" value="±" (click)="cambiaSigno()">
+  <input class="btnDigito" type="button" value="0" (click)="ponDigito('0');">
+  <input class="btnDigito" type="button" value="{{SeparadorDecimal}}" (click)="ponComa()">
+  <input class="btnOperar" type="button" value="=" (click)="calcula('=');">
+  <!-- <input class="btnDigito" type="button" value="π" (click)="ponOperando(Math.PI);">
+  <input class="btnOperar" type="button" value="x" (click)="calcula('x');"> -->
+</div>
+<ng-template #ResumenComa>
+  {{Resumen | slice:-30 | toComaDecimal}}
+</ng-template>
+<ng-template #ResumenPunto>
+  {{Resumen | slice:-30}}
+</ng-template>
+<ng-template #PantallaComa>
+  {{Pantalla | toComaDecimal}}
+</ng-template>
+<ng-template #PantallaPunto>
+  {{Pantalla}}
+</ng-template>

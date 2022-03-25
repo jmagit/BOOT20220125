@@ -1,0 +1,15 @@
+<div class="input-group mb-3">
+  <input class="form-control" type="file" (change)="onChange($event)" multiple="true">
+  <button (click)="sendBinary()" class="btn btn-success">enviar</button>
+</div>
+
+<div class="container text-center jumbotron" *ngIf="fileURL">
+  <h2>Fichero subido</h2>
+  <a href="{{fileURL}}" target="_blank">{{fileURL}}</a>
+</div>
+
+<div class="container" *ngIf="loading">
+  <h3>Loading ...</h3>
+</div>
+
+<img *ngIf="blob" [src]="blob">

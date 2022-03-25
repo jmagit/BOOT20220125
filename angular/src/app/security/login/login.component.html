@@ -1,0 +1,18 @@
+<ng-container *ngIf="!loginSrv.isAutenticated">
+  <form #logForm="ngForm" class="form-inline my-2 my-lg-0">
+    <div class="input-group" role="group" aria-label="Login Form">
+      <input class="form-control-sm" [size]="8" type="text" [(ngModel)]="txtUsuario" required minlength="4" placeholder="Usuario"
+        [ngModelOptions]="{standalone: true}">
+      <input class="form-control-sm" [size]="8" type="password" [(ngModel)]="txtPassword" required minlength="4" placeholder="Contraseña"
+        [ngModelOptions]="{standalone: true}">
+      <div class="input-group-append">
+        <input class="btn btn-outline-success btn-sm" type="button" [disabled]="logForm.invalid" value="Enviar" (click)="logInOut()">
+        <input class="btn btn-outline-success btn-sm" type="button" value="Registrar" (click)="registrar()">
+      </div>
+    </div>
+  </form>
+</ng-container>
+<small *ngIf="loginSrv.isAutenticated">
+  Hola {{loginSrv.Name}}
+  <input class="btn btn-outline-success btn-sm" type="button" value="Desconectar" (click)="logInOut()">
+</small>

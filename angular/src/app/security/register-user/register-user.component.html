@@ -1,0 +1,50 @@
+<form [formGroup]="miForm" [class.is-invalid]="miForm.invalid">
+  <div class="form-group">
+    <label>User: </label>
+    <input class="form-control" [class.is-invalid]="miForm?.get('idUsuario')?.invalid" type="text"
+      formControlName="idUsuario">
+    <span class="invalid-feedback">{{getErrorMessage('idUsuario')}}</span>
+  </div>
+  <div class="form-group">
+    <label>Name: </label>
+    <input class="form-control" [class.is-invalid]="miForm?.get('nombre')?.invalid" type="text"
+      formControlName="nombre">
+    <span class="invalid-feedback">{{getErrorMessage('nombre')}}</span>
+  </div>
+  <fieldset formGroupName="password">
+    <div class="form-group">
+      <label>Password: </label>
+      <input class="form-control" [class.is-invalid]="miForm?.get('passwordValue')?.invalid" type="password"
+        formControlName="passwordValue">
+      <span class="invalid-feedback">{{getErrorMessage('passwordValue')}}</span>
+    </div>
+    <div class="form-group">
+      <label>Confirm Password: </label>
+      <input class="form-control" [class.is-invalid]="miForm?.get('password')?.invalid" type="password"
+        formControlName="passwordConfirm">
+      <span class="invalid-feedback">No coincide la confirmación</span>
+    </div>
+
+  </fieldset>
+  <div formArrayName="roles">
+    <h4>Roles
+      <button class="btn btn-info btn-sm" (click)="addRole()">Add Role</button>
+    </h4>
+
+    <ul *ngFor="let row of $any(miForm.get('roles')).controls; let i=index" [formGroupName]="i">
+      <li>Rol #{{i + 1}}:
+        <div class="form-group">
+          <select class="form-control" formControlName="role">
+            <option>Usuarios</option>
+            <option>Administradores</option>
+          </select>{{row?.get('role')?.errors | json}}
+          <button type="button" class="close" aria-label="Close" (click)="deleteRole(i)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <button class="btn btn-outline-primary" (click)="send()" [disabled]="miForm.invalid">Send</button>
+</form>
+{{ miForm.value | json }}
