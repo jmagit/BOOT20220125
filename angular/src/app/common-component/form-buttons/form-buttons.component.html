@@ -1,0 +1,5 @@
+<div class="btn-group" role="group">
+  <button class="btn btn-primary" *ngIf="hasSend" (click)="send.emit(null)" [disabled]="sendDisabled"><i class="fas fa-check-circle"></i> {{sendText}}</button>
+  <button class="btn btn-danger" *ngIf="hasDelete" (click)="delete.emit(null)"><i class="far fa-trash-alt"> {{deleteText}}</i></button>
+  <button class="btn btn-success" *ngIf="hasCancel" (click)="cancel.emit(null)"><i class="fas fa-undo-alt"></i> {{cancelText}}</button>
+</div>

@@ -1,6 +1,7 @@
 <p>
   <input type="button" value="add" (click)="VM.add()">
-  <input type="button" value="edit" (click)="VM.edit(1)">
+  <input type="button" value="edit" (click)="VM.edit(id.value)">
+  <input type="button" value="list" (click)="VM.list()">
 </p>
 <form #miForm="ngForm">
   <p>
@@ -23,7 +24,7 @@
     <output class="error" [hidden]="!apellidos.hasError('uppercase')">{{apellidos.getError('uppercase')}}</output>
     <br>
     <label for="email">email: </label>
-    <input type="email" id="email" name="email" [(ngModel)]="VM.Elemento.email" #email="ngModel"
+    <input type="email" id="email" name="email" [(ngModel)]="VM.Elemento.correo" #email="ngModel"
      maxlength="100" >
     <output class="error" [hidden]="!email.hasError('type')">{{email.getError('type')}}</output>
     <output class="error" [hidden]="!email.hasError('email')">No es un correo electrónico valido</output>
@@ -42,3 +43,13 @@
     <input type="button" value="volver" (click)="VM.cancel()">
     </b>
 </form>
+
+<table>
+  <tr *ngFor="let item of VM.listado">
+    <td>{{item.id}}</td>
+    <td>{{item.nombre}}</td>
+    <td>{{item.apellidos}}</td>
+    <td>{{item.correo}}</td>
+    <td>{{item.edad}}</td>
+  </tr>
+</table>

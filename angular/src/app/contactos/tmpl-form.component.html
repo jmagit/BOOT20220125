@@ -1,0 +1,101 @@
+<h1>Contacto</h1>
+<form #miForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label class="form-label" for="id">Código:</label>
+      <input class="form-control" [class.is-invalid]="id.invalid && miForm.dirty" type="number" name="id" id="id"
+        [(ngModel)]="VM.Elemento.id" #id="ngModel" required min="0">
+      <div class="invalid-feedback" [hidden]="!id.hasError('required') || miForm.pristine">Es obligatorio</div>
+    </div>
+    <div class="form-group col-md-2">
+      <label class="form-label" for="tratamiento">Tratamiento:</label>
+      <select class="form-control form-select" name="tratamiento" id="tratamiento" [(ngModel)]="VM.Elemento.tratamiento"
+        #tratamiento="ngModel">
+        <option>Sr.</option>
+        <option>Sra.</option>
+        <option>Srta.</option>
+        <option>Dr.</option>
+        <option>Dra.</option>
+        <option>Ilmo.</option>
+        <option>Ilma.</option>
+        <option>Excmo.</option>
+        <option>Excma.</option>
+      </select>
+    </div>
+    <div class="form-group col-md-4">
+      <label class="form-label" for="nombre">Nombre:</label>
+      <input class="form-control" [class.is-invalid]="nombre.invalid" type="text" name="nombre" id="nombre"
+        [(ngModel)]="VM.Elemento.nombre" #nombre="ngModel" required minlength="2" maxlength="50">
+      <app-show-errors-messages [errors]="nombre.errors"></app-show-errors-messages>
+    </div>
+    <div class="form-group col-md-4">
+      <label class="form-label" for="apellidos">Apellidos:</label>
+      <input class="form-control" [class.is-invalid]="apellidos.invalid" type="text" name="apellidos" id="apellidos"
+        [(ngModel)]="VM.Elemento.apellidos" #apellidos="ngModel" minlength="2" maxlength="50">
+      <div class="invalid-feedback" [hidden]="!apellidos.hasError('minlength') && !apellidos.hasError('maxlength')">
+        Debe tener entre 2 y 10 letras</div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label class="form-label" for="telefono">Teléfono:</label>
+      <input class="form-control" [class.is-invalid]="telefono.invalid" type="tel" name="telefono" id="telefono"
+        [(ngModel)]="VM.Elemento.telefono" #telefono="ngModel" maxlength="11">
+      <div class="invalid-feedback" [hidden]="!telefono.hasError('maxlength')">
+        No debe tener mas de 9 dígitos</div>
+    </div>
+    <div class="form-group col-md-4">
+      <label class="form-label" for="email">Correo:</label>
+      <input class="form-control" [class.is-invalid]="email.invalid" type="email" name="email" id="email"
+        [(ngModel)]="VM.Elemento.email" #email="ngModel" email maxlength="100">
+      <div class="invalid-feedback" [hidden]="email.valid">
+        <span [hidden]="!email.hasError('maxlength')">Debe tener menos 100 caracteres. </span>
+        <span [hidden]="!email.hasError('email')">Debe ser un correo electrónico. </span>
+      </div>
+    </div>
+    <div class="form-group col-md-2">
+      <label class="form-label" for="nacimiento">F. Nacimiento:</label>
+      <input class="form-control" type="date" name="nacimiento" id="nacimiento" [(ngModel)]="VM.Elemento.nacimiento"
+        #nacimiento="ngModel">
+    </div>
+    <fieldset class="form-group col-md-2">
+      <legend class="col-form-label col-sm-2 pt-0">Sexo</legend>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="sexo" id="sexo1" value="H" [(ngModel)]="VM.Elemento.sexo">
+          <label class="form-check-label" for="sexo1">Hombre</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="sexo" id="sexo2" value="M" [(ngModel)]="VM.Elemento.sexo">
+          <label class="form-check-label" for="sexo2">Mujer</label>
+        </div>
+      </div>
+    </fieldset>
+    <div class="form-group col-md-2">
+      <div>Situación:</div>
+      <div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="conflictivo" name="conflictivo"
+            [(ngModel)]="VM.Elemento.conflictivo" #conflictivo="ngModel">
+          <label class="form-check-label" for="conflictivo">Conflictivo</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="form-group col-md-12">
+      <label class="form-label" for="avatar">Avatar:</label>
+      <input class="form-control" [class.is-invalid]="avatar.invalid" type="url" name="avatar" id="avatar"
+        [(ngModel)]="VM.Elemento.avatar" #avatar="ngModel" maxlength="500">
+      <div class="invalid-feedback" [hidden]="!avatar.hasError('maxlength')">
+        Debe tener menos 500 caracteres.</div>
+      <div class="invalid-feedback" [hidden]="!avatar.hasError('type')">
+        {{avatar.hasError('type')}}</div>
+    </div>
+  </div>
+  <app-form-buttons (send)="VM.send()" [send-disabled]="miForm.invalid" (cancel)="VM.cancel()"></app-form-buttons>
+  <!-- <div class="form-group">
+    <input type="button" class="btn btn-success" value="Enviar" (click)="VM.send()" [disabled]="miForm.invalid">
+    <input type="button" class="btn btn-info" value="Volver" (click)="VM.cancel()">
+  </div> -->
+</form>
