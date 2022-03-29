@@ -1,0 +1,58 @@
+<form #miForm="ngForm">
+  <div class="form-group">
+    <label>Código</label>
+    <ng-container *ngIf="VM.Modo === 'add'">
+      <input class="form-control"  [class.is-invalid]="id.invalid" type="number" name="id" id="id" [(ngModel)]="VM.Elemento.id" #id="ngModel" required>
+      <output class="invalid-feedback" [myShowErrors]="id.errors"></output>
+    </ng-container>
+    <ng-container *ngIf="VM.Modo !== 'add'">
+      <label class="form-text">{{VM.Elemento.id}}</label>
+    </ng-container>
+  </div>
+  <div class="form-group">
+    <label for="titulo">Titulo</label>
+    <input class="form-control"  [class.is-invalid]="titulo.invalid" type="text" name="titulo" id="titulo" [(ngModel)]="VM.Elemento.titulo" #titulo="ngModel"
+      notblank minlength="2" maxlength="100">
+    <output class="invalid-feedback" [myShowErrors]="titulo.errors"></output>
+  </div>
+  <div class="form-group">
+    <label for="texto">Contenido</label>
+    <p-editor [(ngModel)]="VM.Elemento.texto" [style]="{'height':'320px'}" name="texto" #texto="ngModel" maxlength="1000"></p-editor>
+    <span [class.is-invalid]="texto.invalid">Quedan {{1000 - VM.Elemento?.texto?.length}} caracteres. </span>
+    <output class="invalid-feedback" [myShowErrors]="texto.errors"></output>
+  </div>
+  <div class="form-group">
+    <label for="autor">Autor</label>
+    <input class="form-control"  [class.is-invalid]="autor.invalid" type="text" name="autor" id="autor" [(ngModel)]="VM.Elemento.autor" #autor="ngModel" minlength="2"
+      notblank maxlength="50">
+    <output class="invalid-feedback" [myShowErrors]="autor.errors"></output>
+  </div>
+  <div class="form-group">
+    <label for="fecha">Fecha</label>
+    <input class="form-control"  [class.is-invalid]="fecha.invalid" type="date" name="fecha" id="fecha" [(ngModel)]="VM.Elemento.fecha" #fecha="ngModel"
+      pastOrPresent >
+    <output class="invalid-feedback" [myShowErrors]="fecha.errors"></output>
+  </div>
+  <div class="form-group">
+    <label for="fotourl">Foto</label>
+    <input class="form-control"  [class.is-invalid]="fotourl.invalid" type="url" name="fotourl" id="fotourl" [(ngModel)]="VM.Elemento.fotourl" #fotourl="ngModel"
+      maxlength="200">
+    <output class="invalid-feedback" [myShowErrors]="fotourl.errors"></output>
+  </div>
+  <p-inplace *ngIf="VM.Elemento.fotourl">
+      <span pInplaceDisplay>
+          <span class="fa fa-picture-o"></span><span style="margin-left:8px">Ver foto</span>
+      </span>
+      <span pInplaceContent>
+          <img [src]="VM.Elemento.fotourl" alt="Foto del Blog">
+      </span>
+  </p-inplace>
+  <div class="text-right">
+    <div class="btn-group">
+      <input class="btn btn-outline-success" type="button" value="Enviar" (click)="VM.send()" [disabled]="miForm.invalid">
+      <input *ngIf="VM.Modo !== 'add'" class="btn btn-outline-danger" type="button" value="Borrar" (myWinConfirm)="VM.delete(VM.Elemento.id)"
+        myWinConfirmMessage="Está a punto de eliminar el articulo y no se podrá recuperar. ¿Está seguro?">
+      <input class="btn btn-outline-primary" type="button" value="Volver" (click)="VM.cancel()">
+    </div>
+  </div>
+</form>

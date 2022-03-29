@@ -89,7 +89,7 @@ export class CalculadoraComponent implements OnInit {
       this.miPantalla = '0';
       this.limpiar = true;
     } else
-      this.miPantalla = this.miPantalla.slice(-1);
+      this.miPantalla = this.miPantalla.substring(0, this.miPantalla.length - 1);
   }
 
   cambiaSigno(): void {

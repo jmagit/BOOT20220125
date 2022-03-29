@@ -8,25 +8,12 @@ import { ModoCRUD } from '../base-code/tipos';
 import { NavigationService, NotificationService } from '../common-services';
 import { AuthService, AUTH_REQUIRED } from '../security';
 
-export class Contactos {
-  id: number = 0;
-  tratamiento: string | null = null;
-  nombre: string | null = null;
-  apellidos: string | null = null;
-  telefono: string | null = null;
-  email: string | null = null;
-  sexo: string | null = null;
-  nacimiento: string | null = null;
-  avatar: string | null = null;
-  conflictivo: boolean = false;
-}
-
 @Injectable({
   providedIn: 'root'
 })
-export class ContactosDAOService extends RESTDAOService<any, any> {
+export class LibrosDAOService extends RESTDAOService<any, any> {
   constructor(http: HttpClient) {
-    super(http, 'contactos', { context: new HttpContext().set(AUTH_REQUIRED, true) });
+    super(http, 'libros', { context: new HttpContext().set(AUTH_REQUIRED, true) });
   }
   page(page: number, rows: number = 20): Observable<{ page: number, pages: number, rows: number, list: Array<any> }> {
     return new Observable(subscriber => {
@@ -49,14 +36,14 @@ export class ContactosDAOService extends RESTDAOService<any, any> {
 @Injectable({
   providedIn: 'root'
 })
-export class ContactosViewModelService {
+export class LibrosViewModelService {
   protected modo: ModoCRUD = 'list';
   protected listado: Array<any> = [];
   protected elemento: any = {};
   protected idOriginal: any = null;
-  protected listURL = '/contactos';
+  protected listURL = '/libros';
 
-  constructor(protected notify: NotificationService, protected out: LoggerService, protected dao: ContactosDAOService,
+  constructor(protected notify: NotificationService, protected out: LoggerService, protected dao: LibrosDAOService,
     public auth: AuthService, protected router: Router, private navigation: NavigationService) { }
 
   public get Modo(): ModoCRUD { return this.modo; }

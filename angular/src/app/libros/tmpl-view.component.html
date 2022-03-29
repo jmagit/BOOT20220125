@@ -1,0 +1,18 @@
+<h1>Ficha del libro</h1>
+<div class="row">
+  <dl>
+    <dt>Título</dt>
+    <dd>{{VM.Elemento.titulo}}</dd>
+    <dt>Autor</dt>
+    <dd>{{VM.Elemento.autor}}</dd>
+    <dt>País</dt>
+    <dd>{{VM.Elemento.pais}}</dd>
+    <dt>Fecha</dt>
+    <dd>{{VM.Elemento.fecha}}</dd>
+    <dt>Paginas</dt>
+    <dd>{{VM.Elemento.paginas}}</dd>
+    <dt>Wiki</dt>
+    <dl><a [href]="VM.Elemento.wiki" target="_blank">{{VM.Elemento.wiki}}</a></dl>
+  </dl>
+  <input class="btn btn-link" type="button" value="Volver" (click)="VM.cancel()">
+</div>

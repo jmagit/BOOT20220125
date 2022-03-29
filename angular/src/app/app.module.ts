@@ -21,6 +21,8 @@ import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { CommonComponentModule } from './common-component';
 import { ContactosComponent, ContactosModule } from './contactos';
+import { LibrosModule } from './libros';
+import { BlogModule } from './blog';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,7 @@ import { ContactosComponent, ContactosModule } from './contactos';
   imports: [
     BrowserModule, FormsModule, HttpClientModule,
     AppRoutingModule, MainModule, SecurityModule, MyCoreModule, CommonServicesModule,
-    CommonComponentModule, ContactosModule,
+    CommonComponentModule, ContactosModule, LibrosModule, BlogModule,
   ],
   providers: [
     LoggerService,

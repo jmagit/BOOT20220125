@@ -1,0 +1,17 @@
+<img  class="rounded img-fluid" *ngIf="VM.Elemento.fotourl" [src]="VM.Elemento.fotourl">
+<div class="blog-post">
+  <h2 class="blog-post-title">{{VM.Elemento.titulo}}&nbsp;<sup class="badge rounded-pill bg-danger">{{VM.Elemento.megusta}}</sup>
+    <button type="button" (click)="VM.likeit(1)" class="btn btn-link"><i class="fas fa-thumbs-up"></i></button>
+    <button type="button" (click)="VM.likeit(-1)" class="btn btn-link"><i class="fas fa-thumbs-down"></i></button>
+    <button *ngIf="VM.auth.isAutenticated" type="button" [routerLink]="['/blog', VM.Elemento.id, 'edit']" class="btn btn-link"><i class="fas fa-pen"></i></button>
+  </h2>
+  <p class="blog-post-meta">
+    {{VM.Elemento.fecha | date:'dd/MM/yyyy'}} by {{VM.Elemento.autor}}
+  </p>
+  <hr>
+  <div [innerHTML]="VM.Elemento.texto"></div>
+  <hr>
+  <p class="blog-pagination text-right">
+    <input type="button" value="Volver" (click)="VM.cancel()" class="btn btn-outline-info">
+  </p>
+</div>
