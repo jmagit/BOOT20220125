@@ -10,36 +10,37 @@
           <a class="nav-link" routerLinkActive="active" routerLink="/inicio" ><i class="fa-solid fa-house"></i> inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/demos" ><i class="fa-solid fa-house"></i> demos</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/demos" ><i class="fa-solid fa-chalkboard-user"></i> demos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/chisme/de/hacer/numeros" ><i class="fa-solid fa-house"></i> calculadora</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/chisme/de/hacer/numeros" ><i class="fa-solid fa-calculator"></i> calculadora</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/contactos" ><i class="fa-solid fa-house"></i> contactos</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/contactos" ><i class="fa-solid fa-address-book"></i> contactos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/alisha/passion" ><i class="fa-solid fa-house"></i> alisha</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/alisha/passion" ><i class="fa-solid fa-user"></i> alisha</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/libros" ><i class="fa-solid fa-house"></i> libros</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/libros" *ngIf="auth.isInRoles('Administradores')" ><i class="fa-solid fa-book"></i> libros</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/blog" ><i class="fa-solid fa-house"></i> blog</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/blog" ><i class="fa-solid fa-blog"></i> blog</a>
+        </li>
+        <li class="nav-item" *ngIf="auth.isAutenticated">
+          <a class="nav-link" routerLinkActive="active" routerLink="/config" ><i class="fa-solid fa-gear"></i> config</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/config" ><i class="fa-solid fa-house"></i> config</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/config/datos" ><i class="fa-solid fa-list-check"></i> datos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/config/datos" ><i class="fa-solid fa-house"></i> datos</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/falsa" ><i class="fa-solid fa-bug"></i> falsa</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/falsa" ><i class="fa-solid fa-house"></i> falsa</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" href="/demos" ><i class="fa-solid fa-house"></i> lenta</a>
+          <a class="nav-link" routerLinkActive="active" href="/demos" ><i class="fa-solid fa-bug"></i> lenta</a>
         </li>
       </ul>
+      <app-login></app-login>
     </div>
   </div>
 </nav>

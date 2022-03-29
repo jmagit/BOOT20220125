@@ -24,16 +24,16 @@ export class LoginComponent implements OnInit {
       this.loginSrv.logout();
       this.cambiaTexto();
     } else {
-      this.loginSrv.login(this.txtUsuario, this.txtPassword).subscribe(
-        data => {
+      this.loginSrv.login(this.txtUsuario, this.txtPassword).subscribe({
+        next: data => {
           if (data) {
             this.cambiaTexto();
           } else {
             this.notify.add('Usuario o contraseña invalida.');
           }
         },
-        err => { this.notify.add(err.message); }
-      );
+        error: err => { this.notify.add(err.message); }
+      });
     }
   }
 

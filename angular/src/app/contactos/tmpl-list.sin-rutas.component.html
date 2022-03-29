@@ -1,8 +1,3 @@
-<style>
-  .pressed {
-    border: 2px solid red;
-  }
-</style>
 <table class="table table-striped table-hover">
   <thead>
     <tr class="table-info">
@@ -15,7 +10,6 @@
   <tbody>
     <tr *ngFor="let item of VM.Listado">
       <td>
-        <app-card [header]="item.tratamiento + ' ' + item.nombre + ' ' + item.apellidos">
           <div class="container">
             <div class="row">
               <div class="col-md-2">
@@ -30,16 +24,13 @@
               </div>
             </div>
           </div>
-        </app-card>
       </td>
       <td class="align-middle text-end">
-        <app-list-buttons (view)="VM.view(item.id)" (edit)="VM.edit(item.id)" (delete)="VM.delete(item.id)"></app-list-buttons>
-        <!-- <div class="btn-group" role="group">
+        <div class="btn-group" role="group">
           <button class="btn btn-info" (click)="VM.view(item.id)"><i class="fas fa-eye"></i></button>
-          <button class="btn btn-success" (myWinConfirm)="VM.edit(item.id)"
-            [myWinConfirmMessage]="'Una vez borrado ...'"><i class="fas fa-pen"></i></button>
+          <button class="btn btn-success" (click)="VM.edit(item.id)"><i class="fas fa-pen"></i></button>
           <button class="btn btn-danger" (click)="VM.delete(item.id)"><i class="far fa-trash-alt"></i></button>
-        </div> -->
+        </div>
       </td>
     </tr>
   </tbody>

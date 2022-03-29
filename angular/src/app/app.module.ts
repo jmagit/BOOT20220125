@@ -13,7 +13,7 @@ import { ERROR_LEVEL, LoggerService, MyCoreModule } from 'src/lib/my-core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AjaxWaitInterceptor, MainModule } from './main';
-import { SecurityModule } from './security';
+import { AuthInterceptor, SecurityModule } from './security';
 import { DemosComponent } from './demos/demos.component';
 import { CommonServicesModule } from './common-services';
 import { DinamicoComponent } from './dinamico/dinamico.component';
@@ -41,6 +41,7 @@ import { BlogModule } from './blog';
     LoggerService,
     { provide: ERROR_LEVEL, useValue: environment.ERROR_LEVEL },
     { provide: LOCALE_ID, useValue: 'es-ES'},
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true, },
     { provide: HTTP_INTERCEPTORS, useClass: AjaxWaitInterceptor, multi: true, },
   ],
   bootstrap: [AppComponent]
