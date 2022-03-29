@@ -13,8 +13,8 @@ import { LibrosComponent } from '../libros';
 })
 export class DinamicoComponent implements OnInit {
   menu = [
-    { texto: 'libros', icono: 'fa-solid fa-book', componente: LibrosComponent },
     { texto: 'contactos', icono: 'fa-solid fa-address-book', componente: ContactosComponent },
+    { texto: 'libros', icono: 'fa-solid fa-book', componente: LibrosComponent },
     { texto: 'inicio', icono: 'fa-solid fa-house', componente: HomeComponent},
     { texto: 'demos', icono: 'fa-solid fa-chalkboard-user', componente: DemosComponent},
     { texto: 'calculadora', icono: 'fa-solid fa-calculator', componente: CalculadoraComponent },

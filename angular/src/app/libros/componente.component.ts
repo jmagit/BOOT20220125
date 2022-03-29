@@ -9,11 +9,21 @@ import { LibrosViewModelService } from './servicios.service';
   styleUrls: ['./componente.component.css']
 })
 export class LibrosComponent implements OnInit, OnDestroy {
-  constructor(protected vm: LibrosViewModelService) { }
+  constructor(protected vm: LibrosViewModelService, private route: ActivatedRoute) { }
   public get VM(): LibrosViewModelService { return this.vm; }
   ngOnInit(): void {
-    //this.vm.list();
-    this.vm.load();
+    let id = this.route.snapshot.params['id'];
+    if (id) {
+      if (this.route.snapshot.url.slice(-1)[0]?.path === 'edit') {
+        this.vm.edit(+id);
+      } else {
+        this.vm.view(+id);
+      }
+    } else if (this.route.snapshot.url.slice(-1)[0]?.path === 'add') {
+      this.vm.add();
+    } else {
+      this.vm.load();
+    }
   }
   ngOnDestroy(): void {
     this.vm.clear()

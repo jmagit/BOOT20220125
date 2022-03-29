@@ -7,14 +7,18 @@ import { SecurityModule } from '../security';
 import { RouterModule } from '@angular/router';
 import { CommonServicesModule } from '../common-services';
 import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
   declarations: [
     NotificationComponent, NotificationModalComponent, AjaxWaitComponent, HomeComponent,
+    HeaderComponent, PageNotFoundComponent,
   ],
   exports: [
     NotificationComponent, NotificationModalComponent, AjaxWaitComponent, HomeComponent,
+    HeaderComponent, PageNotFoundComponent,
   ],
   imports: [
     CommonModule, CommonServicesModule, SecurityModule, RouterModule.forChild([]),

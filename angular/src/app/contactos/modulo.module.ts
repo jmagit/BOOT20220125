@@ -13,8 +13,8 @@ import { CommonComponentModule } from '../common-component';
     CONTACTOS_COMPONENTES,
   ],
   exports: [
-    // CONTACTOS_COMPONENTES,
-    ContactosComponent,
+    CONTACTOS_COMPONENTES,
+    // ContactosComponent,
   ],
   imports: [
     CommonModule, FormsModule, RouterModule.forChild([]),

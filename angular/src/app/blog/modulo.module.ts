@@ -12,13 +12,13 @@ import {InplaceModule} from 'primeng/inplace';
 import { AuthGuard } from '../security';
 
 const routes: Routes = [
-  { path: 'blog', children: [
-    { path: '', component: BlogListComponent },
-    { path: 'add', component: BlogAddComponent, canActivate: [AuthGuard] },
-    { path: ':id/edit', component: BlogEditComponent, canActivate: [AuthGuard] },
-    { path: ':id', component: BlogViewComponent },
-    { path: ':id/:kk', component: BlogViewComponent },
-  ] },
+  // { path: 'blog', children: [
+  //   { path: '', component: BlogListComponent },
+  //   { path: 'add', component: BlogAddComponent, canActivate: [AuthGuard] },
+  //   { path: ':id/edit', component: BlogEditComponent, canActivate: [AuthGuard] },
+  //   { path: ':id', component: BlogViewComponent },
+  //   { path: ':id/:kk', component: BlogViewComponent },
+  // ] },
 ]
 
 @NgModule({

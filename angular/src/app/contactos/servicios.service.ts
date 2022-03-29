@@ -110,8 +110,8 @@ export class ContactosViewModelService {
     this.elemento = {};
     this.idOriginal = null;
     // this.list();
-    this.load(this.page)
-    // this.router.navigateByUrl(this.listURL);
+    // this.load(this.page)
+    this.router.navigateByUrl(this.listURL);
     // this.navigation.back()
   }
 

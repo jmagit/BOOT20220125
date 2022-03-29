@@ -8,7 +8,7 @@
           [(ngModel)]="VM.Elemento.id" #id="ngModel" required min="0">
         <div class="invalid-feedback" [hidden]="!id.hasError('required') || miForm.pristine">Es obligatorio</div>
       </ng-container>
-      <ng-container *ngIf="VM.Modo!=='add'">
+      <ng-container *myUnless="VM.Modo==='add'">
         {{VM.Elemento.id}}
       </ng-container>
     </div>
@@ -31,7 +31,8 @@
       <label class="form-label" for="nombre">Nombre:</label>
       <input class="form-control" [class.is-invalid]="nombre.invalid" type="text" name="nombre" id="nombre"
         [(ngModel)]="VM.Elemento.nombre" #nombre="ngModel" required minlength="2" maxlength="50">
-      <app-show-errors-messages [errors]="nombre.errors"></app-show-errors-messages>
+      <!-- <app-show-errors-messages [errors]="nombre.errors"></app-show-errors-messages> -->
+      <output [myShowErrors]="nombre.errors"></output>
     </div>
     <div class="form-group col-md-4">
       <label class="form-label" for="apellidos">Apellidos:</label>
@@ -46,7 +47,7 @@
       <label class="form-label" for="telefono">Teléfono:</label>
       <input class="form-control" [class.is-invalid]="telefono.invalid" type="tel" name="telefono" id="telefono"
         [(ngModel)]="VM.Elemento.telefono" #telefono="ngModel" maxlength="11">
-      <div class="invalid-feedback" [hidden]="!telefono.hasError('maxlength')">
+      <div class="invalid-feedback" [show]="telefono.hasError('maxlength')">
         No debe tener mas de 9 dígitos</div>
     </div>
     <div class="form-group col-md-4">
