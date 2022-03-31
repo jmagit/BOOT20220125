@@ -7,11 +7,13 @@ import { DemosComponent } from './demos/demos.component';
 import { LibrosComponent } from './libros';
 import { HomeComponent, PageNotFoundComponent } from './main';
 import { AuthGuard, InRoleGuard } from './security';
+import { UploadComponent } from './upload/upload.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
   { path: 'inicio', component: HomeComponent },
   { path: 'demos', component: DemosComponent, data: { pageTitle: 'Demos' } },
+  { path: 'upload', component: UploadComponent },
   { path: 'chisme/de/hacer/numeros', component: CalculadoraComponent, data: { pageTitle: 'Calculadora' } },
   { path: 'contactos', component: ContactosListComponent, data: { pageTitle: 'Contactos' } },
   { path: 'contactos/add', component: ContactosAddComponent, canActivate: [AuthGuard] },

@@ -23,6 +23,7 @@ import { CommonComponentModule } from './common-component';
 import { ContactosComponent, ContactosModule } from './contactos';
 import { LibrosModule } from './libros';
 import { BlogModule } from './blog';
+import { UploadComponent } from './upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { BlogModule } from './blog';
     DinamicoComponent,
     CalculadoraComponent,
     FormularioComponent,
+    UploadComponent,
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule,
