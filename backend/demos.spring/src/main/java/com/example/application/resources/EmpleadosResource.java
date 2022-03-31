@@ -28,30 +28,30 @@ public class EmpleadosResource {
 	public ResponseEntity<byte[]> getFoto(@PathVariable int id) throws NotFoundException {
 		var result = dao.findById(id);
 		if(result.isEmpty() || result.get().getPicture() == null)
-			throw new NotFoundException();
+			return ResponseEntity.notFound().build();
 		return ResponseEntity.ok().header("content-type", "image/png").body(result.get().getPicture());
 	}
 	
 	@GetMapping(path="/{id}/photo", produces = { "image/png" })
-	public byte[] getPhoto(@PathVariable int id) throws NotFoundException {
+	public ResponseEntity<byte[]> getPhoto(@PathVariable int id) throws NotFoundException {
 		var result = dao.findById(id);
 		if(result.isEmpty() || result.get().getPicture() == null)
-			throw new NotFoundException();
-		return result.get().getPicture();
+			return ResponseEntity.notFound().build();
+		return ResponseEntity.ok().header("content-type", "image/png").body(result.get().getPicture());
 	}
 	
 	@PutMapping(path="/{id}/photo", produces = { "image/png" })
-	public byte[]  setPhoto(@PathVariable int id, @RequestBody byte[] file) throws NotFoundException {
+	public ResponseEntity<byte[]> setPhoto(@PathVariable int id, @RequestBody byte[] file) throws NotFoundException {
 		var item = dao.findById(id);
 		if(item.isEmpty())
-			throw new NotFoundException();
+			return ResponseEntity.notFound().build();
 		item.get().setPicture(file);
 		var result = dao.save(item.get());
-		return result.getPicture();
+		return ResponseEntity.ok().header("content-type", "image/png").body(result.getPicture());
 	}
 	
 	@DeleteMapping("/{id}/foto")
-	@ResponseStatus(code = HttpStatus.NOT_FOUND)
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteFoto(@PathVariable int id) throws NotFoundException {
 		var item = dao.findById(id);
 		if(item.isEmpty())
