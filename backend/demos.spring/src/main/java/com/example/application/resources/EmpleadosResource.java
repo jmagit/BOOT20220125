@@ -32,7 +32,7 @@ public class EmpleadosResource {
 		return ResponseEntity.ok().header("content-type", "image/png").body(result.get().getPicture());
 	}
 	
-	@GetMapping(path="/{id}/photo", produces = { "image/png" })
+	@GetMapping(path="/{id}/photo")
 	public ResponseEntity<byte[]> getPhoto(@PathVariable int id) throws NotFoundException {
 		var result = dao.findById(id);
 		if(result.isEmpty() || result.get().getPicture() == null)
@@ -40,7 +40,7 @@ public class EmpleadosResource {
 		return ResponseEntity.ok().header("content-type", "image/png").body(result.get().getPicture());
 	}
 	
-	@PutMapping(path="/{id}/photo", produces = { "image/png" })
+	@PutMapping(path="/{id}/photo")
 	public ResponseEntity<byte[]> setPhoto(@PathVariable int id, @RequestBody byte[] file) throws NotFoundException {
 		var item = dao.findById(id);
 		if(item.isEmpty())
