@@ -6,7 +6,7 @@ import { ContactosAddComponent, ContactosEditComponent, ContactosListComponent, 
 import { DemosComponent } from './demos/demos.component';
 import { LibrosComponent } from './libros';
 import { HomeComponent, PageNotFoundComponent } from './main';
-import { AuthGuard, InRoleGuard } from './security';
+import { AuthGuard, InRoleGuard, RegisterUserComponent } from './security';
 import { UploadComponent } from './upload/upload.component';
 
 const routes: Routes = [
@@ -21,22 +21,30 @@ const routes: Routes = [
   { path: 'contactos/:id', component: ContactosViewComponent },
   { path: 'contactos/:id/:kk', component: ContactosViewComponent },
   { path: 'alisha/passion', redirectTo: '/contactos/9' },
-  { path: 'libros', children: [
-    { path: '', component: LibrosComponent },
-    { path: 'add', component: LibrosComponent },
-    { path: ':id/edit', component: LibrosComponent },
-    { path: ':id', component: LibrosComponent },
-    { path: ':id/:kk', component: LibrosComponent },
-  ], canActivateChild: [ InRoleGuard ], data: { roles: ['Administradores', 'Empleados']}},
-  { path: 'blog', children: [
-    { path: '', component: BlogListComponent },
-    { path: 'add', component: BlogAddComponent },
-    { path: ':id/edit', component: BlogEditComponent },
-    { path: ':id', component: BlogViewComponent },
-    { path: ':id/:kk', component: BlogViewComponent },
-  ] },
-  { path: 'config', loadChildren: () => import('./config/config.module').then(mod => mod.ConfigModule),
-    canLoad: [InRoleGuard], data: { roles: ['Administradores']}},
+  {
+    path: 'libros', children: [
+      { path: '', component: LibrosComponent },
+      { path: 'add', component: LibrosComponent },
+      { path: ':id/edit', component: LibrosComponent },
+      { path: ':id', component: LibrosComponent },
+      { path: ':id/:kk', component: LibrosComponent },
+    ], canActivateChild: [InRoleGuard], data: { roles: ['Administradores', 'Empleados'] }
+  },
+  {
+    path: 'blog', children: [
+      { path: '', component: BlogListComponent },
+      { path: 'add', component: BlogAddComponent },
+      { path: ':id/edit', component: BlogEditComponent },
+      { path: ':id', component: BlogViewComponent },
+      { path: ':id/:kk', component: BlogViewComponent },
+    ]
+  },
+  {
+    path: 'config', loadChildren: () => import('./config/config.module').then(mod => mod.ConfigModule),
+    canLoad: [InRoleGuard], data: { roles: ['Administradores'] }
+  },
+  { path: 'registro', component: RegisterUserComponent },
+
   // { path: 'blog', loadChildren: () => import('./blog').then(mod => mod.BlogModule)},
   { path: '404.html', component: PageNotFoundComponent },
   { path: '**', component: PageNotFoundComponent },
