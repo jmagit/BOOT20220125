@@ -4,6 +4,7 @@ import { BlogListComponent, BlogAddComponent, BlogEditComponent, BlogViewCompone
 import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { ContactosAddComponent, ContactosEditComponent, ContactosListComponent, ContactosViewComponent } from './contactos';
 import { DemosComponent } from './demos/demos.component';
+import { FormularioComponent } from './formulario/formulario.component';
 import { LibrosComponent } from './libros';
 import { HomeComponent, PageNotFoundComponent } from './main';
 import { AuthGuard, InRoleGuard, RegisterUserComponent } from './security';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'inicio', component: HomeComponent },
   { path: 'demos', component: DemosComponent, data: { pageTitle: 'Demos' } },
   { path: 'upload', component: UploadComponent },
+  { path: 'formulario', component: FormularioComponent },
   { path: 'chisme/de/hacer/numeros', component: CalculadoraComponent, data: { pageTitle: 'Calculadora' } },
   { path: 'contactos', component: ContactosListComponent, data: { pageTitle: 'Contactos' } },
   { path: 'contactos/add', component: ContactosAddComponent, canActivate: [AuthGuard] },

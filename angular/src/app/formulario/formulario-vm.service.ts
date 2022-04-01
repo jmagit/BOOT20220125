@@ -60,4 +60,12 @@ export class FormularioVMService {
       })
     }
   }
+
+  addTel(prop: any, item: any) {
+    if(!this.elemento[prop]) this.elemento[prop] = []
+    this.elemento[prop].push(item)
+  }
+  delTel(prop: any, index: any) {
+    this.elemento[prop].splice(index, 1)
+  }
 }

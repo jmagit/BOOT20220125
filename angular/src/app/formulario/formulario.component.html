@@ -38,6 +38,13 @@
       min="16" max="67">
     <output class="error" [hidden]="!edad.hasError('min') && !edad.hasError('max')">Debe tener entre 16 y 67 años</output>
   </p>
+  <h1>Telefonos</h1><input type="button" value="+" (click)="VM.addTel('telefonos','')">
+  <ul>
+    <li *ngFor="let item of VM.Elemento.telefonos; let indice=index">
+      <input [(ngModel)]="VM.Elemento.telefonos[indice]" name="tel{{indice}}">
+      <input type="button" value="x" (click)="VM.delTel('telefonos', indice)">
+    </li>
+  </ul>
   <b>
     <input type="button" value="enviar" (click)="VM.send()" [disabled]="miForm.invalid">
     <input type="button" value="volver" (click)="VM.cancel()">
