@@ -55,8 +55,8 @@ describe('LibrosDAOService', () => {
       },
       data => { fail(); }
     );
-    // const req = httpMock.expectOne('http://localhost:4321/Libros');
-    const req = httpMock.expectOne('/api/Libros');
+    const req = httpMock.expectOne('http://localhost:4321/api/libros');
+    // const req = httpMock.expectOne('/api/libros');
     expect(req.request.method).toEqual('GET');
     req.flush([
       {"id":1,"tratamiento":"Sra.","nombre":"Marline","apellidos":"Lockton Jerrans","telefono":"846 054 444","email":"mjerrans0@de.vu","sexo":"M","nacimiento":"1973-07-09","avatar":"https://randomuser.me/api/portraits/women/1.jpg","conflictivo":true},
@@ -70,8 +70,8 @@ describe('LibrosDAOService', () => {
   it('change', inject([LibrosDAOService, HttpTestingController], (dao: LibrosDAOService, httpMock: HttpTestingController) => {
     let item = {id:1, nombre:"Pepito",apellido:"Grillo"};
     dao.change(1, item).subscribe(() => { });
-    // const req = httpMock.expectOne('http://localhost:4321/Libros');
-    const req = httpMock.expectOne('/api/Libros/1');
+    const req = httpMock.expectOne('http://localhost:4321/api/libros/1');
+    // const req = httpMock.expectOne('/api/Libros/1');
     expect(req.request.method).toEqual('PUT');
     expect(req.request.body.id).toEqual(1);
     expect(req.request.body.nombre).toEqual('Pepito');
@@ -147,7 +147,7 @@ describe('LibrosViewModelService', () => {
     expect(service.Modo).toBe('view')
   }))
 
-  xit('delete: accept confirm', fakeAsync(() => {
+  it('delete: accept confirm', fakeAsync(() => {
     spyOn(window, 'confirm').and.returnValue(true)
     service.delete(4)
     tick()

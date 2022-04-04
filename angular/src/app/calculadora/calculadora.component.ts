@@ -79,8 +79,8 @@ export class CalculadoraComponent implements OnInit {
     } else if (this.miPantalla.indexOf('.') === -1) {
       this.miPantalla += '.';
     } else {
-      // this.notify.add('Ya está la coma', NotificationType.warn)
-      this.log.warn('Ya está la coma');
+      this.notify.add('Ya está la coma', NotificationType.warn)
+      // this.log.warn('Ya está la coma');
     }
   }
 

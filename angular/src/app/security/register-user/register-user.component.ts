@@ -28,11 +28,11 @@ export class RegisterUserComponent implements OnInit {
     //   new FormGroup({ role: new FormControl(r.role , Validators.required) })
     // ));
     this.miForm = new FormGroup({
-      idUsuario: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20), Validators.email]),
+      idUsuario: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(100), Validators.email]),
       nombre: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
       password: new FormGroup({
-        passwordValue: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        passwordConfirm: new FormControl('', Validators.minLength(2)),
+        passwordValue: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/)]),
+        passwordConfirm: new FormControl('', Validators.required),
       }, this.passwordMatchValidator()),
       roles: new FormArray([])
     });

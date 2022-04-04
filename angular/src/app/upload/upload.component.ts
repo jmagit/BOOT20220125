@@ -20,13 +20,16 @@ export class FileUploadService {
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.css']
 })
-export class UploadComponent {
+export class UploadComponent implements OnInit {
   fileURL: string = "";
   loading: boolean = false;
   file: File | null = null;
   blob: any = null;
 
   constructor(private fileUploadService: FileUploadService, private http: HttpClient, private sanitizer: DomSanitizer) { }
+  ngOnInit(): void {
+    this.getBinary();
+  }
 
   onChange(event: any) {
     this.file = event.target.files[0];
@@ -65,6 +68,14 @@ export class UploadComponent {
         error: err => { this.loading = false; console.error(err); }
       });
     };
+  }
+
+  getBinary() {
+    this.http.get('http://localhost:8001/api/empleados/2/photo',{ responseType: 'blob'}).subscribe({
+      next: (data: any) => {
+        this.blob = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(data));
+      }
+    })
   }
 
 }

@@ -44,7 +44,7 @@ describe('ContactosDAOService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ],
-      providers: [ ContactosDAOService ],
+      providers: [ ContactosDAOService, HttpClient ],
     });
   });
 
@@ -55,8 +55,8 @@ describe('ContactosDAOService', () => {
       },
       data => { fail(); }
     );
-    // const req = httpMock.expectOne('http://localhost:4321/contactos');
-    const req = httpMock.expectOne('/api/contactos');
+    const req = httpMock.expectOne('http://localhost:4321/api/contactos');
+    // const req = httpMock.expectOne('/api/contactos');
     expect(req.request.method).toEqual('GET');
     req.flush([
       {"id":1,"tratamiento":"Sra.","nombre":"Marline","apellidos":"Lockton Jerrans","telefono":"846 054 444","email":"mjerrans0@de.vu","sexo":"M","nacimiento":"1973-07-09","avatar":"https://randomuser.me/api/portraits/women/1.jpg","conflictivo":true},
@@ -70,8 +70,8 @@ describe('ContactosDAOService', () => {
   it('change', inject([ContactosDAOService, HttpTestingController], (dao: ContactosDAOService, httpMock: HttpTestingController) => {
     let item = {id:1, nombre:"Pepito",apellido:"Grillo"};
     dao.change(1, item).subscribe(() => { });
-    // const req = httpMock.expectOne('http://localhost:4321/contactos');
-    const req = httpMock.expectOne('/api/contactos/1');
+    const req = httpMock.expectOne('http://localhost:4321/api/contactos/1');
+    // const req = httpMock.expectOne('/api/contactos/1');
     expect(req.request.method).toEqual('PUT');
     expect(req.request.body.id).toEqual(1);
     expect(req.request.body.nombre).toEqual('Pepito');
@@ -147,7 +147,7 @@ describe('ContactosViewModelService', () => {
     expect(service.Modo).toBe('view')
   }))
 
-  xit('delete: accept confirm', fakeAsync(() => {
+  it('delete: accept confirm', fakeAsync(() => {
     spyOn(window, 'confirm').and.returnValue(true)
     service.delete(4)
     tick()

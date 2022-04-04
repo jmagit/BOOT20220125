@@ -52,8 +52,8 @@ describe('BlogDAOService', () => {
       },
       data => { fail(); }
     );
-    // const req = httpMock.expectOne('http://localhost:4321/blog');
-    const req = httpMock.expectOne('/api/blog');
+    const req = httpMock.expectOne('http://localhost:4321/api/blog');
+    // const req = httpMock.expectOne('/api/blog');
     expect(req.request.method).toEqual('GET');
     req.flush([
       {"id":1,"tratamiento":"Sra.","nombre":"Marline","apellidos":"Lockton Jerrans","telefono":"846 054 444","email":"mjerrans0@de.vu","sexo":"M","nacimiento":"1973-07-09","avatar":"https://randomuser.me/api/portraits/women/1.jpg","conflictivo":true},
@@ -67,8 +67,8 @@ describe('BlogDAOService', () => {
   it('change', inject([BlogDAOService, HttpTestingController], (dao: BlogDAOService, httpMock: HttpTestingController) => {
     let item = {id:1, nombre:"Pepito",apellido:"Grillo"};
     dao.change(1, item).subscribe(() => { });
-    // const req = httpMock.expectOne('http://localhost:4321/blog');
-    const req = httpMock.expectOne('/api/blog/1');
+    const req = httpMock.expectOne('http://localhost:4321/api/blog/1');
+    // const req = httpMock.expectOne('/api/blog/1');
     expect(req.request.method).toEqual('PUT');
     expect(req.request.body.id).toEqual(1);
     expect(req.request.body.nombre).toEqual('Pepito');
